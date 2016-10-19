@@ -1,0 +1,15 @@
+{
+  "name": "bbman",
+  "version": "1.0.0",
+  "description": "bomberman web game using nodejs",
+  "main": "server.js",
+  "scripts": {
+    "test": "bbman test",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "bbman"
+  ],
+  "author": "bloo",
+  "license": "ISC"
+}
