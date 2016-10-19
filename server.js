@@ -10,13 +10,14 @@ app.use(express.static(__dirname));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.get('/', function(request, response) {
-	response.writeHead(200, {'Content-Type': 'text/html'});
-	response.end('<h1>Hello World</h1>');
+app.get('/', function(req, res) {
+	// res.writeHead(200, {'Content-Type': 'text/html'});
+	// res.end('<h1>Hello World</h1>');
+	res.render('index');
 });
 
-app.get('/cool', function(request, response) {
-  response.send(cool());
+app.get('/cool', function(req, res) {
+  res.send(cool());
 });
 
 app.listen(app.get('port'), function() {
