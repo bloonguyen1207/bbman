@@ -11,8 +11,6 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(req, res) {
-	// res.writeHead(200, {'Content-Type': 'text/html'});
-	// res.end('<h1>Hello World</h1>');
 	res.render('index');
 });
 
