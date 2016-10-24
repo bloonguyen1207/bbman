@@ -29,6 +29,7 @@
             game.load.spritesheet('dude', 'images/test.png', 32, 32);
             game.load.image('shrub', 'images/bush.gif');
             game.load.image('iron', 'images/iron.png');
+            game.load.image('grassbg', 'images/grass.png');
             game.load.image('brick', 'images/brick.png');
             game.load.text('map1', 'maps/map1.txt');
 
@@ -36,10 +37,11 @@
 
         function create () {
             game.stage.backgroundColor = bg;
+            // game.add.sprite(0, 0, 'grassbg');
             //  We're going to be using physics, so enable the Arcade Physics system
             game.physics.startSystem(Phaser.Physics.ARCADE);
 
-            // Create Iron iron
+            // Create iron iron
             irons = game.add.group();
             irons.enableBody = true;
 
@@ -158,8 +160,10 @@
 
         function render () {
             game.debug.body(player);
-            shrubs.forEachAlive(renderGroup, this);
-            function renderGroup(member) { game.debug.body(member);}
+            // shrubs.forEachAlive(renderGroup, this);
+            // function renderGroup(member) { 
+            //     game.debug.body(member);
+            // }
             // game.debug.body(shrub);
         }
 
