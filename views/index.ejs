@@ -56,8 +56,8 @@
             var shrub;
 
             // Create Bricks
-            bricks = game.add.group();
-            bricks.enableBody = true;
+            brick2 = game.add.group();
+            brick2.enableBody = true;
 
             var brick;
 
@@ -71,7 +71,7 @@
                         iron.body.immovable = true;
                         iron.scale.setTo(0.4, 0.4);
                     } else if (mapText[i][j] == 2) {
-                        brick = bricks.create(j * 32, i * 32, 'brick2');
+                        brick = brick2.create(j * 32, i * 32, 'brick2');
                         brick.body.immovable = true;
                         brick.scale.setTo(0.5, 0.5);
                     } else if (mapText[i][j] == 3) {
