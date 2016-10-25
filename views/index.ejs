@@ -41,7 +41,7 @@
         }
 
         function create () {
-            game.stage.backgroundColor = bg_map4;
+            game.stage.backgroundColor = bg_map2;
             // game.add.sprite(0, 0, 'grassbg');
             //  We're going to be using physics, so enable the Arcade Physics system
             game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -74,7 +74,7 @@
                         iron.body.immovable = true;
                         iron.scale.setTo(0.32, 0.32);
                     } else if (mapText[i][j] == 2) {
-                        brick = brick2.create(j * 32, i * 32, 'brick2');
+                        brick = brick2.create(j * 32, i * 32, 'brick');
                         brick.body.immovable = true;
                         brick.scale.setTo(0.5, 0.5);
                     } else if (mapText[i][j] == 3) {
@@ -109,7 +109,7 @@
             //  Collide the player with the obstacles
             game.physics.arcade.collide(player, irons);
             game.physics.arcade.collide(player, shrubs);
-            game.physics.arcade.collide(player, brick2);
+            game.physics.arcade.collide(player, bricks);
 
             cursors = game.input.keyboard.createCursorKeys();
 
