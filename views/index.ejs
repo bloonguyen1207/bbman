@@ -21,8 +21,10 @@
         var irons;
         var shrubs;
         var bricks;
+        var concrete;
         var mapText;
         var bg = "#5b3b0e";
+        var bg_map4 = "#770528"
 
         function preload () {
 
@@ -30,13 +32,13 @@
             game.load.image('shrub', 'images/bush.gif');
             game.load.image('iron', 'images/iron.png');
             game.load.image('grassbg', 'images/grass.png');
-            game.load.image('brick', 'images/brick.png');
-            game.load.text('map1', 'maps/map3.txt');
+            game.load.image('concrete', 'images/concrete.png');
+            game.load.text('map4', 'maps/map4.txt');
 
         }
 
         function create () {
-            game.stage.backgroundColor = bg;
+            game.stage.backgroundColor = bg_map4;
             // game.add.sprite(0, 0, 'grassbg');
             //  We're going to be using physics, so enable the Arcade Physics system
             game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -60,7 +62,7 @@
             var brick;
 
             // Load mapfile
-            var mapFile = game.cache.getText('map1');
+            var mapFile = game.cache.getText('map4');
             mapText = mapFile.split('\n');
             for (i = 0; i < 20; i++) {
                 for (var j = 0; j < 35; j++) {
@@ -69,7 +71,7 @@
                         iron.body.immovable = true;
                         iron.scale.setTo(0.4, 0.4);
                     } else if (mapText[i][j] == 2) {
-                        brick = bricks.create(j * 32, i * 32, 'brick');
+                        brick = bricks.create(j * 32, i * 32, 'concrete');
                         brick.body.immovable = true;
                         brick.scale.setTo(0.5, 0.5);
                     } else if (mapText[i][j] == 3) {
@@ -104,7 +106,7 @@
             //  Collide the player with the obstacles
             game.physics.arcade.collide(player, irons);
             game.physics.arcade.collide(player, shrubs);
-            game.physics.arcade.collide(player, bricks);
+            game.physics.arcade.collide(player, concrete);
 
             cursors = game.input.keyboard.createCursorKeys();
 
