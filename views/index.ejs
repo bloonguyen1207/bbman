@@ -23,17 +23,20 @@
         var bricks;
         var brick2;
         var mapText;
-        var bg = "#5b3b0e";
+        var bg_map1 = "#5b3b0e";
         var bg_map4 = "#770528"
+        var bg_map2 = "#A5F2F3";
 
         function preload () {
 
             game.load.spritesheet('dude', 'images/test.png', 32, 32);
             game.load.image('shrub', 'images/bush.gif');
-            game.load.image('iron', 'images/iron.png');
+            game.load.image('iron', 'images/steel.png');
             game.load.image('grassbg', 'images/grass.png');
             game.load.image('brick2', 'images/brick2.png');
             game.load.text('map4', 'maps/map4.txt');
+            game.load.image('brick', 'images/ice.png');
+            game.load.text('map1', 'maps/map2.txt');
 
         }
 
@@ -69,7 +72,7 @@
                     if (mapText[i][j] == 1) {
                         iron = irons.create(j * 32, i * 32, 'iron');
                         iron.body.immovable = true;
-                        iron.scale.setTo(0.4, 0.4);
+                        iron.scale.setTo(0.32, 0.32);
                     } else if (mapText[i][j] == 2) {
                         brick = brick2.create(j * 32, i * 32, 'brick2');
                         brick.body.immovable = true;
