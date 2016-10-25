@@ -21,7 +21,7 @@
         var irons;
         var shrubs;
         var bricks;
-        var concrete;
+        var brick2;
         var mapText;
         var bg = "#5b3b0e";
         var bg_map4 = "#770528"
@@ -32,7 +32,7 @@
             game.load.image('shrub', 'images/bush.gif');
             game.load.image('iron', 'images/iron.png');
             game.load.image('grassbg', 'images/grass.png');
-            game.load.image('concrete', 'images/concrete.png');
+            game.load.image('brick2', 'images/brick2.png');
             game.load.text('map4', 'maps/map4.txt');
 
         }
@@ -71,7 +71,7 @@
                         iron.body.immovable = true;
                         iron.scale.setTo(0.4, 0.4);
                     } else if (mapText[i][j] == 2) {
-                        brick = bricks.create(j * 32, i * 32, 'concrete');
+                        brick = bricks.create(j * 32, i * 32, 'brick2');
                         brick.body.immovable = true;
                         brick.scale.setTo(0.5, 0.5);
                     } else if (mapText[i][j] == 3) {
