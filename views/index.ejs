@@ -21,7 +21,6 @@
         var irons;
         var shrubs;
         var bricks;
-        var brick2;
         var mapText;
         var bg_map1 = "#5b3b0e";
         var bg_map4 = "#770528"
@@ -30,13 +29,17 @@
         function preload () {
 
             game.load.spritesheet('dude', 'images/test.png', 32, 32);
-            game.load.image('shrub', 'images/bush.gif');
-            game.load.image('iron', 'images/steel.png');
-            game.load.image('grassbg', 'images/grass.png');
+            game.load.image('brick', 'images/brick.png');
             game.load.image('brick2', 'images/brick2.png');
+            game.load.image('grassbg', 'images/grass.png');
+            game.load.image('ice', 'images/ice.png');
+            game.load.image('iron', 'images/iron.png');
+            game.load.image('steel', 'images/steel.png');
+            game.load.image('shrub', 'images/bush.gif');
+            game.load.text('map1', 'maps/map1.txt');
+            game.load.text('map2', 'maps/map2.txt');
+            game.load.text('map3', 'maps/map3.txt');
             game.load.text('map4', 'maps/map4.txt');
-            game.load.image('brick', 'images/ice.png');
-            game.load.text('map1', 'maps/map2.txt');
 
         }
 
@@ -59,22 +62,22 @@
             var shrub;
 
             // Create Bricks
-            brick2 = game.add.group();
-            brick2.enableBody = true;
+            bricks = game.add.group();
+            bricks.enableBody = true;
 
             var brick;
 
             // Load mapfile
-            var mapFile = game.cache.getText('map1');
+            var mapFile = game.cache.getText('map3');
             mapText = mapFile.split('\n');
             for (i = 0; i < 20; i++) {
                 for (var j = 0; j < 35; j++) {
                     if (mapText[i][j] == 1) {
-                        iron = irons.create(j * 32, i * 32, 'iron');
+                        iron = irons.create(j * 32, i * 32, 'steel');
                         iron.body.immovable = true;
                         iron.scale.setTo(0.32, 0.32);
                     } else if (mapText[i][j] == 2) {
-                        brick = brick2.create(j * 32, i * 32, 'brick');
+                        brick = bricks.create(j * 32, i * 32, 'ice');
                         brick.body.immovable = true;
                         brick.scale.setTo(0.5, 0.5);
                     } else if (mapText[i][j] == 3) {
@@ -108,8 +111,8 @@
 
             //  Collide the player with the obstacles
             game.physics.arcade.collide(player, irons);
-            game.physics.arcade.collide(player, shrubs);
             game.physics.arcade.collide(player, bricks);
+            game.physics.arcade.collide(player, shrubs);
 
             cursors = game.input.keyboard.createCursorKeys();
 
