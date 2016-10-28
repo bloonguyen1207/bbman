@@ -1,5 +1,5 @@
 var title_text = "Fire the hole";
-var instruction_text = "Press space to start";
+var instruction_text = "Press space to proceed";
 
 var menu = {
 
@@ -14,14 +14,14 @@ var menu = {
 			fill:'#ffffff' 
 		});
 
-		var start_key = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
+		var proceed_key = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
 
-		start_key.onDown.addOnce(this.start, this);
+		proceed_key.onDown.addOnce(this.start, this);
 	},
 
 	start: function() {
 
-		game.state.start('play');
+		game.state.start('map');
 	
 	}
 }
