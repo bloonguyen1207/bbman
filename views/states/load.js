@@ -2,12 +2,17 @@ var load = {
 
 	preload: function() {
 		
+        var loading = game.add.text(game.world.centerX - 100, 240, 'Loading...', {
+            font: '30px Coiny', fill: '#fffffff'
+        });
 
+        game.add.tween(loading).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+        
         // Map thubmails
-        game.load.image("fire_thumb", "res/tilesets/fire_thumb.png");
-        game.load.image("ice_thumb", "res/tilesets/ice_thumb.png");
-        game.load.image("forest_thumb", "res/tilesets/forest_thumb.png");
-        game.load.image("underwater_thumb", "res/tilesets/underwater_thumb.png");
+        game.load.image('fire_thumb', 'res/tilesets/fire_thumb.png');
+        game.load.image('ice_thumb', 'res/tilesets/ice_thumb.png');
+        game.load.image('forest_thumb', 'res/tilesets/forest_thumb.png');
+        game.load.image('underwater_thumb', 'res/tilesets/underwater_thumb.png');
 
         // Backgrounds
         game.load.image('menubg', 'res/tilesets/title.png');
@@ -29,12 +34,6 @@ var load = {
 	},
 
 	create: function() {
-
-        var loading = game.add.text(game.world.centerX - 100, 240, "Loading...", {
-            font: '30px Coiny', fill: '#fffffff'
-        });
-
-        game.add.tween(loading).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
 		game.state.start('menu');
 
