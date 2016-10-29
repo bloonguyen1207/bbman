@@ -1,4 +1,4 @@
-var game = new Phaser.Game(1120, 640, Phaser.AUTO, 'game');
+var game = new Phaser.Game(608, 480, Phaser.AUTO, 'game');
 
 game.state.add('boot', boot);
 game.state.add('load', load);
