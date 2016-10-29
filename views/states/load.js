@@ -1,6 +1,8 @@
 var load = {
 
 	preload: function() {
+
+        game.stage.backgroundColor = "#d0d0d0";
 		
         var loading = game.add.text(game.world.centerX - 100, 240, 'Loading...', {
             font: '30px Coiny', fill: '#fffffff'
