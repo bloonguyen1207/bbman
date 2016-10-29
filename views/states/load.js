@@ -1,10 +1,7 @@
 var load = {
 
 	preload: function() {
-
-		var loading = game.add.text(320, 400, "Loading...", {
-            font: '30px Coiny', fill: '#fffffff'
-        });
+		
 
         // Map thubmails
         game.load.image("fire_thumb", "res/tilesets/fire_thumb.png");
@@ -32,6 +29,12 @@ var load = {
 	},
 
 	create: function() {
+
+        var loading = game.add.text(game.world.centerX - 100, 240, "Loading...", {
+            font: '30px Coiny', fill: '#fffffff'
+        });
+
+        game.add.tween(loading).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
 		game.state.start('menu');
 
