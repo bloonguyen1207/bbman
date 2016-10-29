@@ -4,21 +4,24 @@ var load = {
 
         var loading = game.add.text(game.world.centerX - 100, 204, 'Loading...0%', { font: '30px Coiny', fill: '#ffffff'});
 
-        var progressDisplay = 0;
+        var progress = 0;
  
 
         var timerEvt = game.time.events.loop(100, function (){
 
-            if(progressDisplay < 100){
+            if(progress <= 100){
 
-                if(progressDisplay < game.load.progress){
+                if(progress < game.load.progress){
 
-                    loading.text = 'Loading...'+ (++progressDisplay) + '%';
+                    loading.text = 'Loading...'+ (++progress) + '%';
+
+                    if (progress == 100) {
+                        progress++;
+                    }
 
                 }
 
             } else {
-                loading.text = 'Loading...100%';
                 game.time.events.remove(timerEvt);
 
             }
