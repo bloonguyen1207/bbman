@@ -10,9 +10,9 @@ var map = {
 
 	create: function() {
 
-		// game.stage.backgroundColor = "#ffffff";
+		game.stage.backgroundColor = "#ffffff";
 
-		var bg = game.add.sprite(0, 0,'grassbg');
+		// var bg = game.add.sprite(0, 0,'grassbg');
 
 		var title = game.add.text(game.world.centerX - 145, 10, map_text, {
 			font: '40px Coiny', 
