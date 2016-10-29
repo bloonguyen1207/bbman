@@ -3,11 +3,20 @@ var load = {
 	preload: function() {
 
 		var loading = game.add.text(320, 400, "Loading...", {
-            font: '30px Courier', fill: '#fffffff'
+            font: '30px Coiny', fill: '#fffffff'
         });
 
+        // Map thubmails
+        game.load.image("fire_thumb", "res/tilesets/fire_thumb.png");
+        game.load.image("ice_thumb", "res/tilesets/ice_thumb.png");
+        game.load.image("forest_thumb", "res/tilesets/forest_thumb.png");
+        game.load.image("underwater_thumb", "res/tilesets/underwater_thumb.png");
+
+        // Backgrounds
         game.load.image('menubg', 'res/tilesets/title.png');
         game.load.image('grassbg', 'res/tilesets/grass.png');
+        
+        // Sprites
         game.load.spritesheet('dude', 'res/spritesheets/test.png', 32, 32);
         game.load.image('brick', 'res/tilesets/brick.png');
         game.load.image('brick2', 'res/tilesets/brick2.png');

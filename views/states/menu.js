@@ -16,8 +16,8 @@ var menu = {
 		// 	fill:'#ffffff'
 		// });
 		
-		var instruction = game.add.text(game.world.centerX - 130, game.world.height - 35, instruction_text, {
-			font: '30px Calibri',
+		var instruction = game.add.text(game.world.centerX - 155, game.world.height - 40, instruction_text, {
+			font: '30px Coiny',
 		});
 
 		instruction.alpha = 0;

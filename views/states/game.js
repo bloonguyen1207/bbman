@@ -1,4 +1,5 @@
 var game = new Phaser.Game(608, 480, Phaser.AUTO, 'game');
+var font = 'Coiny';
 
 game.state.add('boot', boot);
 game.state.add('load', load);
