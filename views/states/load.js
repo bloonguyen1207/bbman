@@ -2,8 +2,7 @@ var load = {
 
 	preload: function() {
 
-        var loading = game.add.text(game.world.centerX - 100, 204, 'Loading... 0%', { font: '30px Coiny', fill: '#ffffff'});
-        game.add.tween(loading).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+        var loading = game.add.text(game.world.centerX - 100, 204, 'Loading...0%', { font: '30px Coiny', fill: '#ffffff'});
 
         var progressDisplay = 0;
  
@@ -14,20 +13,17 @@ var load = {
 
                 if(progressDisplay < game.load.progress){
 
-                    loading.text = 'Loading... '+(++progressDisplay)+'%';
-                    game.add.tween(loading).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+                    loading.text = 'Loading...'+(++progressDisplay)+'%';
 
                 }
 
             } else {
-
+                loading.text = 'Loading...100%';
                 game.time.events.remove(timerEvt);
 
             }
         });
 
-        game.add.tween(loading).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
-        
         // Map thubmails
         game.load.image('fire_thumb', 'res/tilesets/fire_thumb.png');
         game.load.image('ice_thumb', 'res/tilesets/ice_thumb.png');
