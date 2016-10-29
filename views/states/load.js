@@ -2,10 +2,8 @@ var load = {
 
 	preload: function() {
 
-        game.stage.backgroundColor = "#d0d0d0";
-		
-        var loading = game.add.text(game.world.centerX - 100, 240, 'Loading...', {
-            font: '30px Coiny', fill: '#fffffff'
+        var loading = game.add.text(game.world.centerX - 100, 204, 'Loading...' + game.load.process + '%', {
+            font: '30px Coiny', fill: '#ffffff'
         });
 
         game.add.tween(loading).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
