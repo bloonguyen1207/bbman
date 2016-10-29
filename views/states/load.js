@@ -2,7 +2,7 @@ var load = {
 
 	preload: function() {
 
-        // var loading = game.add.text(game.world.centerX - 100, 204, 'Loading...0%', { font: '30px Coiny', fill: '#ffffff'});
+        var loading = game.add.text(game.world.centerX - 100, 204, 'Loading...0%', { font: '30px Coiny', fill: '#ffffff'});
 
         var progressDisplay = 0;
  
