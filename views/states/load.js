@@ -2,24 +2,21 @@ var load = {
 
 	preload: function() {
 
-        var loading = game.add.text(game.world.centerX - 100, 204, 'Loading...0%', { font: '30px Coiny', fill: '#ffffff'});
+        // var loading = game.add.text(game.world.centerX - 100, 204, 'Loading...0%', { font: '30px Coiny', fill: '#ffffff'});
 
         var progressDisplay = 0;
  
 
         var timerEvt = game.time.events.loop(100, function (){
-            if(progressDisplay < 100){
+            if(progressDisplay <= 100){
 
                 if(progressDisplay < game.load.progress){
 
                     loading.text = 'Loading...'+(++progressDisplay)+'%';
 
                 }
-
-            } else {
-                game.time.events.remove(timerEvt);
-            }
-        });
+            });
+        game.time.events.remove(timerEvt);
 
 
         // Map thubmails
@@ -48,8 +45,6 @@ var load = {
 	},
 
 	create: function() {
-
-        loading.text = 'Loading...100%';
 
 		game.state.start('menu');
 
