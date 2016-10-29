@@ -21,7 +21,6 @@ var load = {
             }
         });
 
-        loading.text = 'Loading...100%';
 
         // Map thubmails
         game.load.image('fire_thumb', 'res/tilesets/fire_thumb.png');
@@ -49,6 +48,8 @@ var load = {
 	},
 
 	create: function() {
+
+        loading.text = 'Loading...100%';
 
 		game.state.start('menu');
 
