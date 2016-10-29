@@ -18,10 +18,10 @@ var load = {
 
             } else {
                 game.time.events.remove(timerEvt);
-
             }
-            loading.text = 'Loading...100%';
         });
+
+        loading.text = 'Loading...100%';
 
         // Map thubmails
         game.load.image('fire_thumb', 'res/tilesets/fire_thumb.png');
