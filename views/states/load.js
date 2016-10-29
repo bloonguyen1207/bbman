@@ -7,7 +7,7 @@ var load = {
         var progress = 0;
  
 
-        var timerEvt = game.time.events.loop(100, function (){
+        var timerEvt = game.time.events.loop(20, function (){
 
             if(progress <= 100){
 
