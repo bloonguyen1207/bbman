@@ -2,8 +2,28 @@ var load = {
 
 	preload: function() {
 
-        var loading = game.add.text(game.world.centerX - 100, 204, 'Loading...' + game.load.progress + '%', {
-            font: '30px Coiny', fill: '#ffffff'
+        var loading = game.add.text(game.world.centerX - 100, 204, 'Loading... 0%', { font: '30px Coiny', fill: '#ffffff'});
+        game.add.tween(loading).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+
+        var progressDisplay = 0;
+ 
+
+        var timerEvt = game.time.events.loop(100, function (){
+
+            if(progressDisplay < 100){
+
+                if(progressDisplay < game.load.progress){
+
+                    loading.text = 'Loading... '+(++progressDisplay)+'%';
+                    game.add.tween(loading).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+
+                }
+
+            } else {
+
+                game.time.events.remove(timerEvt);
+
+            }
         });
 
         game.add.tween(loading).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
