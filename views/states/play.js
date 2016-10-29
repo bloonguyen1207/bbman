@@ -32,10 +32,10 @@ var play = {
         var brick;
 
         // Load mapfile
-        var mapFile = game.cache.getText('map3');
+        var mapFile = game.cache.getText('map4');
         mapText = mapFile.split('\n');
-        for (i = 0; i < 20; i++) {
-            for (var j = 0; j < 35; j++) {
+        for (i = 0; i < 15; i++) {
+            for (var j = 0; j < 19; j++) {
                 if (mapText[i][j] == 1) {
                     iron = irons.create(j * 32, i * 32, 'steel');
                     iron.body.immovable = true;
