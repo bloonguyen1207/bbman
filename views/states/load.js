@@ -8,7 +8,6 @@ var load = {
  
 
         var timerEvt = game.time.events.loop(100, function (){
-
             if(progressDisplay < 100){
 
                 if(progressDisplay < game.load.progress){
@@ -18,10 +17,10 @@ var load = {
                 }
 
             } else {
-                loading.text = 'Loading...100%';
                 game.time.events.remove(timerEvt);
 
             }
+            loading.text = 'Loading...100%';
         });
 
         // Map thubmails
