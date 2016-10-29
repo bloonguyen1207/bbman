@@ -15,7 +15,8 @@ var load = {
                     loading.text = 'Loading...'+(++progressDisplay)+'%';
 
                 }
-            });
+            }
+        });
         game.time.events.remove(timerEvt);
 
 
