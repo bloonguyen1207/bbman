@@ -8,17 +8,21 @@ var load = {
  
 
         var timerEvt = game.time.events.loop(100, function (){
-            if(progressDisplay <= 100){
+
+            if(progressDisplay < 100){
 
                 if(progressDisplay < game.load.progress){
 
-                    loading.text = 'Loading...'+(++progressDisplay)+'%';
+                    loading.text = 'Loading...'+ (++progressDisplay) + '%';
 
                 }
+
+            } else {
+                loading.text = 'Loading...100%';
+                game.time.events.remove(timerEvt);
+
             }
         });
-        game.time.events.remove(timerEvt);
-
 
         // Map thubmails
         game.load.image('fire_thumb', 'res/tilesets/fire_thumb.png');
