@@ -3,9 +3,14 @@ var irons;
 var shrubs;
 var bricks;
 var mapText;
+var bombs;
+var bomb;
 var bg_map1 = "#5b3b0e";
-var bg_map4 = "#770528"
+var bg_map4 = "#770528";
 var bg_map2 = "#A5F2F3";
+
+var space_bar;
+var flipFlop;
 
 var play = {
 
@@ -30,6 +35,7 @@ var play = {
         bricks.enableBody = true;
 
         var brick;
+
 
         // Load mapfile
         var mapFile = game.cache.getText('map4');
@@ -58,7 +64,7 @@ var play = {
             }
 
         }
-        
+
         player.body.collideWorldBounds = true;
 
         //  Our two animations, walking left and right.
@@ -67,16 +73,33 @@ var play = {
         player.animations.add('right', [24, 25, 26, 27], 10, true);
         player.animations.add('up', [36, 37, 38, 39], 10, true);
 
+        // Create Bombs
+        bombs = game.add.group();
+        bombs.enableBody = true;
+
+        for (var i = 0; i < 20; i++) {
+            var b = bombs.create(0, 0, 'bomb');
+            b.body.immovable = true;
+            b.scale.setTo(0.08, 0.08);
+            b.exists = false;
+            b.visible = false;
+            b.body.setCircle(16);
+        }
+
+        game.world.bringToTop(player);
+
+        cursors = game.input.keyboard.createCursorKeys();
+        space_bar = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
 	},
 
-	update: function() {
+    update: function () {
 
 		//  Collide the player with the obstacles
         game.physics.arcade.collide(player, irons);
         game.physics.arcade.collide(player, bricks);
         game.physics.arcade.collide(player, shrubs);
+        //game.physics.arcade.collide(player, bombs);
 
-        cursors = game.input.keyboard.createCursorKeys();
 
         //  Reset the players velocity (movement)
         player.body.velocity.x = 0;
@@ -102,7 +125,7 @@ var play = {
             player.animations.play('up');
         } 
         else if (cursors.down.isDown){
-            
+
             player.body.velocity.y = 150;
 
             player.animations.play('down');
@@ -113,6 +136,19 @@ var play = {
             player.animations.stop();
 
             player.frame = 4;
+        }
+
+        if (space_bar.isDown) {
+            if (!flipFlop) { //flipFlop is used to set one press to one callback (instead of multi)
+                console.log("BOMB!!!");
+                console.log(player.x);
+                this.dropBomb();
+                flipFlop = true;
+                //player.body.enable = false;
+            }
+        }
+        if (space_bar.isUp) {
+            flipFlop = false;
         }
 
 	},
@@ -126,6 +162,22 @@ var play = {
         // }
         // game.debug.body(shrub);
 
-	}
+    },
 
-}
+    dropBomb: function () {
+        var round_x = player.x % 32;
+        var round_y = player.y % 32;
+        var pos_x = player.x - round_x;
+        var pos_y = player.y - round_y;
+        if (round_x > 10) {
+            pos_x += 32;
+        }
+        if (round_y > 10) {
+            pos_y += 32;
+        }
+        bomb = bombs.getFirstExists(false);
+        if (bomb) {
+            bomb.reset(pos_x, pos_y);
+        }
+    }
+};

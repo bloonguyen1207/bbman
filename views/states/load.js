@@ -45,6 +45,7 @@ var load = {
         game.load.image('iron', 'res/tilesets/iron.png');
         game.load.image('steel', 'res/tilesets/steel.png');
         game.load.image('shrub', 'res/tilesets/bush.gif');
+        game.load.image('bomb', 'res/tilesets/bomb.png');
         game.load.text('map1', 'data/maps/map1.txt');
         game.load.text('map2', 'data/maps/map2.txt');
         game.load.text('map3', 'data/maps/map3.txt');
@@ -57,4 +58,4 @@ var load = {
 		game.state.start('menu');
 
 	}
-}
+};
