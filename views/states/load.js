@@ -51,6 +51,9 @@ var load = {
         game.load.text('map3', 'data/maps/map3.txt');
         game.load.text('map4', 'data/maps/map4.txt');
 
+        // Script
+        game.load.script('Bomb', 'model/entities/bomb.js');
+
 	},
 
 	create: function() {

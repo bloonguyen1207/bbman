@@ -1,10 +1,12 @@
+//import
+// var Bomb = require("../../model/entities/bomb");
+
 // Map tiles
 var irons;
 var shrubs;
 var bricks;
 var mapText;
 var bombs;
-var bomb;
 var bg_map1 = "#5b3b0e";
 var bg_map4 = "#770528";
 var bg_map2 = "#A5F2F3";
@@ -77,15 +79,6 @@ var play = {
         bombs = game.add.group();
         bombs.enableBody = true;
 
-        for (var i = 0; i < 20; i++) {
-            var b = bombs.create(0, 0, 'bomb');
-            b.body.immovable = true;
-            b.scale.setTo(0.08, 0.08);
-            b.exists = false;
-            b.visible = false;
-            b.body.setCircle(16);
-        }
-
         game.world.bringToTop(player);
 
         cursors = game.input.keyboard.createCursorKeys();
@@ -142,7 +135,7 @@ var play = {
             if (!flipFlop) { //flipFlop is used to set one press to one callback (instead of multi)
                 console.log("BOMB!!!");
                 console.log(player.x);
-                this.dropBomb();
+                this.dropBomb(player.x, player.y);
                 flipFlop = true;
                 //player.body.enable = false;
             }
@@ -150,6 +143,10 @@ var play = {
         if (space_bar.isUp) {
             flipFlop = false;
         }
+
+        // bombs.forEach(function(bomb) {
+        //     bomb.explode();
+        // })
 
 	},
 
@@ -164,20 +161,18 @@ var play = {
 
     },
 
-    dropBomb: function () {
-        var round_x = player.x % 32;
-        var round_y = player.y % 32;
-        var pos_x = player.x - round_x;
-        var pos_y = player.y - round_y;
+    dropBomb: function (x, y) {
+        var bomb = new Bomb(x, y);
+        var round_x = x % 32;
+        var round_y = y % 32;
+        bomb.x = x - round_x;
+        bomb.y = y - round_y;
         if (round_x > 10) {
-            pos_x += 32;
+            bomb.x += 32;
         }
         if (round_y > 10) {
-            pos_y += 32;
+            bomb.y += 32;
         }
-        bomb = bombs.getFirstExists(false);
-        if (bomb) {
-            bomb.reset(pos_x, pos_y);
-        }
+        bombs.add(bomb);
     }
 };
