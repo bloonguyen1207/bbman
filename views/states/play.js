@@ -1,6 +1,3 @@
-//import
-// var Bomb = require("../../model/entities/bomb");
-
 // Map tiles
 var irons;
 var shrubs;
@@ -135,7 +132,7 @@ var play = {
             if (!flipFlop) { //flipFlop is used to set one press to one callback (instead of multi)
                 console.log("BOMB!!!");
                 console.log(player.x);
-                this.dropBomb(player.x, player.y);
+                this.dropBomb(player);
                 flipFlop = true;
                 //player.body.enable = false;
             }
@@ -161,12 +158,12 @@ var play = {
 
     },
 
-    dropBomb: function (x, y) {
-        var bomb = new Bomb(x, y);
-        var round_x = x % 32;
-        var round_y = y % 32;
-        bomb.x = x - round_x;
-        bomb.y = y - round_y;
+    dropBomb: function (aPlayer) {
+        var bomb = new Bomb(aPlayer);
+        var round_x = aPlayer.x % 32;
+        var round_y = aPlayer.y % 32;
+        bomb.x = aPlayer.x - round_x;
+        bomb.y = aPlayer.y - round_y;
         if (round_x > 10) {
             bomb.x += 32;
         }
