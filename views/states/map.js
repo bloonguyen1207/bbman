@@ -55,10 +55,10 @@ var map = {
         graphics.lineStyle(10, 0x000000, 1);
         select_frame = graphics.drawRoundedRect(119, 75, 160, 160, 3);
 
-
-		deb = game.add.text(50, 50, val, {
-			font: '30px Coiny',
-		});
+        // Value debug
+		// deb = game.add.text(50, 50, val, {
+		// 	font: '30px Coiny',
+		// });
 		
 		instruction.alpha = 0;
 
