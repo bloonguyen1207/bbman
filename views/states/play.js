@@ -157,7 +157,7 @@ var play = {
 
 		game.debug.body(player);
         // shrubs.forEachAlive(renderGroup, this);
-        // function renderGroup(member) { 
+        // function renderGroup(member) {
         //     game.debug.body(member);
         // }
         // game.debug.body(shrub);
