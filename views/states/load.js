@@ -36,15 +36,28 @@ var load = {
         // Backgrounds
         game.load.image('menubg', 'res/tilesets/title.png');
         game.load.image('grassbg', 'res/tilesets/grass.png');
+        game.load.image('lavabg', 'res/tilesets/lavabg.png');
         
         // Sprites
         game.load.spritesheet('dude', 'res/spritesheets/test.png', 32, 32);
-        game.load.image('brick', 'res/tilesets/brick.png');
-        game.load.image('brick2', 'res/tilesets/brick2.png');
-        game.load.image('ice', 'res/tilesets/ice.png');
-        game.load.image('iron', 'res/tilesets/iron.png');
+        
+        // Map 1
+        game.load.image('volcano', 'res/tilesets/brick2.png');
+        game.load.image('fossil', 'res/tilesets/fossil.png');
+        
+        // Map 2
         game.load.image('steel', 'res/tilesets/steel.png');
-        game.load.image('shrub', 'res/tilesets/bush.gif');
+        game.load.image('ice', 'res/tilesets/ice.png');
+        
+        // Map 3
+        game.load.image('tree', 'res/tilesets/tree.png');
+        game.load.image('shrub', 'res/tilesets/shrub.png');
+
+        // Map 4
+        game.load.image('iron', 'res/tilesets/iron.png');
+        game.load.image('brick', 'res/tilesets/brick.png');
+
+        // Bomb
         game.load.image('bomb', 'res/tilesets/bomb.png');
         game.load.spritesheet('fire', 'res/spritesheets/sprite_fire.png', 32, 32);
         game.load.text('map1', 'data/maps/map1.txt');

@@ -1,13 +1,13 @@
 // Map tiles
-var irons;
+var unbreakables;
 var shrubs;
-var bricks;
+var breakables;
 var mapText;
 var bombs;
 var fire;
-var bg_map1 = "#5b3b0e";
-var bg_map4 = "#770528";
+var bg_map1 = "#602320";
 var bg_map2 = "#A5F2F3";
+var bg_map4 = "#261712";
 
 var space_bar;
 var flipFlop;
@@ -16,13 +16,22 @@ var play = {
 
 	create: function() {
 
-		game.stage.backgroundColor = bg_map2;
+        if (val == 1) {
+            game.stage.backgroundColor = bg_map1;
+        } else if (val == 2) {
+            game.stage.backgroundColor = bg_map2;
+        } else if (val == 3) {
+            var bg = game.add.sprite(0, 0, 'grassbg');
+        } else if (val == 4) {
+            game.stage.backgroundColor = bg_map4;
+        }
 
-		// Create iron iron
-        irons = game.add.group();
-        irons.enableBody = true;
 
-        var iron;
+        // Create unbreakable unbreakable
+        unbreakables = game.add.group();
+        unbreakables.enableBody = true;
+
+        var unbreakable;
 
         // Create Shrubs
         shrubs = game.add.group();
@@ -30,30 +39,48 @@ var play = {
 
         var shrub;
 
-        // Create Bricks
-        bricks = game.add.group();
-        bricks.enableBody = true;
+        // Create breakables
+        breakables = game.add.group();
+        breakables.enableBody = true;
 
-        var brick;
+        var breakable;
 
 
         // Load mapfile
-        var mapFile = game.cache.getText('map4');
+        var mapFile = game.cache.getText('map' + val);
         mapText = mapFile.split('\n');
         for (i = 0; i < 15; i++) {
             for (var j = 0; j < 19; j++) {
                 if (mapText[i][j] == 1) {
-                    iron = irons.create(j * 32, i * 32, 'steel');
-                    iron.body.immovable = true;
-                    iron.scale.setTo(0.32, 0.32);
+                    if (val == 1) {
+                        unbreakable = unbreakables.create(j * 32, i * 32, 'volcano');
+                        unbreakable.scale.setTo(0.2, 0.2);
+                    } else if (val == 2) {
+                        unbreakable = unbreakables.create(j * 32, i * 32, 'steel');
+                        unbreakable.scale.setTo(0.32, 0.32);
+                    } else if (val == 3) {
+                        unbreakable = unbreakables.create(j * 32, i * 32, 'tree');
+                    } else if (val == 4) {
+                        unbreakable = unbreakables.create(j * 32, i * 32, 'iron');
+                        unbreakable.scale.setTo(0.4, 0.4);
+                    }
+                    unbreakable.body.immovable = true;
                 } else if (mapText[i][j] == 2) {
-                    brick = bricks.create(j * 32, i * 32, 'ice');
-                    brick.body.immovable = true;
-                    brick.scale.setTo(0.5, 0.5);
-                } else if (mapText[i][j] == 3) {
-                    shrub = shrubs.create(j * 32, i * 32, 'shrub');
-                    shrub.body.immovable = true;
-                    shrub.body.setCircle(16);
+                    if (val == 1) {
+                        breakable = breakables.create(j * 32, i * 32, 'fossil');
+                    } else if (val == 2) {
+                        breakable = breakables.create(j * 32, i * 32, 'ice');
+                        breakable.scale.setTo(0.5, 0.5);
+                    } else if (val == 3) {
+                        breakable = breakables.create(j * 32, i * 32, 'shrub');
+                        // breakable.scale.setTo(0.5, 0.5);
+                    } else if (val == 4) {
+                        breakable = unbreakables.create(j * 32, i * 32, 'brick');
+                        breakable.scale.setTo(0.5, 0.5);
+                    }
+
+                    breakable.body.immovable = true;
+                    
                 } else if (mapText[i][j] == 'x') {
                     // The player and its settings
                     player = game.add.sprite(j * 32, i * 32, 'dude');
@@ -89,8 +116,8 @@ var play = {
     update: function () {
 
 		//  Collide the player with the obstacles
-        game.physics.arcade.collide(player, irons);
-        game.physics.arcade.collide(player, bricks);
+        game.physics.arcade.collide(player, unbreakables);
+        game.physics.arcade.collide(player, breakables);
         game.physics.arcade.collide(player, shrubs);
         //game.physics.arcade.collide(player, bombs);
 
