@@ -1,6 +1,8 @@
 function Bomb(aPlayer) {
-    // // this.id = id;
-    Phaser.Sprite.call(this, game, aPlayer.x, aPlayer.y, 'bomb', 0);
+    // this.id = id;
+    console.log(this);
+    Phaser.Sprite.call(this, game, aPlayer.x, aPlayer.y, 'bomb');
+    console.log(this);
     this.scale.setTo(0.08, 0.08);
     game.physics.enable(this, Phaser.Physics.ARCADE);
     this.body.immovable = true;
@@ -11,6 +13,7 @@ function Bomb(aPlayer) {
 Bomb.prototype = Object.create(Phaser.Sprite.prototype);
 
 Bomb.prototype.explode = function () {
-    var fire = new Fire(this);
+    _self = this;
+    fire.add(new Fire(_self));
     this.kill();
 };

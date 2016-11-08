@@ -4,6 +4,7 @@ var shrubs;
 var bricks;
 var mapText;
 var bombs;
+var fire;
 var bg_map1 = "#5b3b0e";
 var bg_map4 = "#770528";
 var bg_map2 = "#A5F2F3";
@@ -72,9 +73,12 @@ var play = {
         player.animations.add('right', [24, 25, 26, 27], 10, true);
         player.animations.add('up', [36, 37, 38, 39], 10, true);
 
-        // Create Bombs
+        // Create Bombs + Fire
         bombs = game.add.group();
         bombs.enableBody = true;
+
+        fire = game.add.group();
+        fire.enableBody = true;
 
         game.world.bringToTop(player);
 

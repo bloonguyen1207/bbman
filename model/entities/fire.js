@@ -1,8 +1,11 @@
 function Fire(bomb) {
     // this.id = id;
     //add player length
+    console.log("Fireeeeee!!!!");
+    console.log(this);
     this.length = 2;
-    Phaser.Sprite.call(this, game, bomb.x, bomb.y, 'fire', 22);
+    Phaser.Sprite.call(this, game, bomb.x, bomb.y, 'fire', 21);
+    console.log(this);
     game.physics.enable(this, Phaser.Physics.ARCADE);
     this.body.immovable = true;
     // this.body.setCircle(16);
