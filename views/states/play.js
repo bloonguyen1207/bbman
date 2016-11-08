@@ -86,7 +86,7 @@ var play = {
                     player = game.add.sprite(j * 32, i * 32, 'dude');
                     //  We need to enable physics on the player
                     game.physics.arcade.enable(player);
-                    player.body.setCircle(16);
+                    player.body.setCircle(14);
                 }
             }
 

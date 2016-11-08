@@ -7,13 +7,14 @@ function Bomb(aPlayer) {
     game.physics.enable(this, Phaser.Physics.ARCADE);
     this.body.immovable = true;
     // this.body.setCircle(16);
-    game.time.events.add(3000, this.explode, this);
+    game.time.events.add(3000, this.explode, this, aPlayer);
 }
 
 Bomb.prototype = Object.create(Phaser.Sprite.prototype);
 
-Bomb.prototype.explode = function () {
+Bomb.prototype.explode = function (aPlayer) {
     _self = this;
-    fire.add(new Fire(_self));
+    this.visible = false;
+    fire.add(new Fire(_self, aPlayer));
     this.kill();
 };
