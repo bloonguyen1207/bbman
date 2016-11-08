@@ -40,15 +40,15 @@ var load = {
         
         // Sprites
         game.load.spritesheet('dude', 'res/spritesheets/test.png', 32, 32);
-        
+
         // Map 1
         game.load.image('volcano', 'res/tilesets/brick2.png');
         game.load.image('fossil', 'res/tilesets/fossil.png');
-        
+
         // Map 2
         game.load.image('steel', 'res/tilesets/steel.png');
         game.load.image('ice', 'res/tilesets/ice.png');
-        
+
         // Map 3
         game.load.image('tree', 'res/tilesets/tree.png');
         game.load.image('shrub', 'res/tilesets/shrub.png');

@@ -56,9 +56,9 @@ var map = {
         select_frame = graphics.drawRoundedRect(119, 75, 160, 160, 3);
 
         // Value debug
-		// deb = game.add.text(50, 50, val, {
-		// 	font: '30px Coiny',
-		// });
+        // deb = game.add.text(50, 50, val, {
+        // 	font: '30px Coiny',
+        // });
 		
 		instruction.alpha = 0;
 
