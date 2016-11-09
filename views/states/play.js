@@ -1,13 +1,13 @@
 // Map tiles
-var irons;
+var unbreakables;
 var shrubs;
-var bricks;
+var breakables;
 var mapText;
 var bombs;
-var bomb;
-var bg_map1 = "#5b3b0e";
-var bg_map4 = "#770528";
+var fire;
+var bg_map1 = "#602320";
 var bg_map2 = "#A5F2F3";
+var bg_map4 = "#261712";
 
 var space_bar;
 var flipFlop;
@@ -16,14 +16,29 @@ var play = {
 
 	create: function() {
 
-		game.stage.backgroundColor = bg_map2;
+        if (val == 1) {
+            game.stage.backgroundColor = bg_map1;
+        } else if (val == 2) {
+            game.stage.backgroundColor = bg_map2;
+        } else if (val == 3) {
+            var bg = game.add.sprite(0, 0, 'grassbg');
+        } else if (val == 4) {
+            game.stage.backgroundColor = bg_map4;
+        }
+
+
 
 
 		// Create iron iron
         irons = game.add.group();
         irons.enableBody = true;
 
-        var iron;
+        // Create unbreakable unbreakable
+        unbreakables = game.add.group();
+        unbreakables.enableBody = true;
+
+
+        var unbreakable;
 
         // Create Shrubs
         shrubs = game.add.group();
@@ -31,36 +46,54 @@ var play = {
 
         var shrub;
 
-        // Create Bricks
-        bricks = game.add.group();
-        bricks.enableBody = true;
+        // Create breakables
+        breakables = game.add.group();
+        breakables.enableBody = true;
 
-        var brick;
+        var breakable;
 
 
         // Load mapfile
-        var mapFile = game.cache.getText('map4');
+        var mapFile = game.cache.getText('map' + val);
         mapText = mapFile.split('\n');
         for (i = 0; i < 15; i++) {
             for (var j = 0; j < 19; j++) {
                 if (mapText[i][j] == 1) {
-                    iron = irons.create(j * 32, i * 32, 'steel');
-                    iron.body.immovable = true;
-                    iron.scale.setTo(0.32, 0.32);
+                    if (val == 1) {
+                        unbreakable = unbreakables.create(j * 32, i * 32, 'volcano');
+                        unbreakable.scale.setTo(0.2, 0.2);
+                    } else if (val == 2) {
+                        unbreakable = unbreakables.create(j * 32, i * 32, 'steel');
+                        unbreakable.scale.setTo(0.32, 0.32);
+                    } else if (val == 3) {
+                        unbreakable = unbreakables.create(j * 32, i * 32, 'tree');
+                    } else if (val == 4) {
+                        unbreakable = unbreakables.create(j * 32, i * 32, 'iron');
+                        unbreakable.scale.setTo(0.4, 0.4);
+                    }
+                    unbreakable.body.immovable = true;
                 } else if (mapText[i][j] == 2) {
-                    brick = bricks.create(j * 32, i * 32, 'ice');
-                    brick.body.immovable = true;
-                    brick.scale.setTo(0.5, 0.5);
-                } else if (mapText[i][j] == 3) {
-                    shrub = shrubs.create(j * 32, i * 32, 'shrub');
-                    shrub.body.immovable = true;
-                    shrub.body.setCircle(16);
+                    if (val == 1) {
+                        breakable = breakables.create(j * 32, i * 32, 'fossil');
+                    } else if (val == 2) {
+                        breakable = breakables.create(j * 32, i * 32, 'ice');
+                        breakable.scale.setTo(0.5, 0.5);
+                    } else if (val == 3) {
+                        breakable = breakables.create(j * 32, i * 32, 'shrub');
+                        // breakable.scale.setTo(0.5, 0.5);
+                    } else if (val == 4) {
+                        breakable = unbreakables.create(j * 32, i * 32, 'brick');
+                        breakable.scale.setTo(0.5, 0.5);
+                    }
+
+                    breakable.body.immovable = true;
+                    
                 } else if (mapText[i][j] == 'x') {
                     // The player and its settings
                     player = game.add.sprite(j * 32, i * 32, 'dude');
                     //  We need to enable physics on the player
                     game.physics.arcade.enable(player);
-                    player.body.setCircle(16);
+                    player.body.setCircle(14);
                 }
             }
 
@@ -74,18 +107,12 @@ var play = {
         player.animations.add('right', [24, 25, 26, 27], 10, true);
         player.animations.add('up', [36, 37, 38, 39], 10, true);
 
-        // Create Bombs
+        // Create Bombs + Fire
         bombs = game.add.group();
         bombs.enableBody = true;
 
-        for (var i = 0; i < 20; i++) {
-            var b = bombs.create(0, 0, 'bomb');
-            b.body.immovable = true;
-            b.scale.setTo(0.08, 0.08);
-            b.exists = false;
-            b.visible = false;
-            b.body.setCircle(16);
-        }
+        fire = game.add.group();
+        fire.enableBody = true;
 
         game.world.bringToTop(player);
 
@@ -96,8 +123,8 @@ var play = {
     update: function () {
 
 		//  Collide the player with the obstacles
-        game.physics.arcade.collide(player, irons);
-        game.physics.arcade.collide(player, bricks);
+        game.physics.arcade.collide(player, unbreakables);
+        game.physics.arcade.collide(player, breakables);
         game.physics.arcade.collide(player, shrubs);
         //game.physics.arcade.collide(player, bombs);
 
@@ -143,7 +170,7 @@ var play = {
             if (!flipFlop) { //flipFlop is used to set one press to one callback (instead of multi)
                 console.log("BOMB!!!");
                 console.log(player.x);
-                this.dropBomb();
+                this.dropBomb(player);
                 flipFlop = true;
                 //player.body.enable = false;
             }
@@ -152,33 +179,35 @@ var play = {
             flipFlop = false;
         }
 
+        // bombs.forEach(function(bomb) {
+        //     bomb.explode();
+        // })
+
 	},
 
 	render: function() {
 
 		game.debug.body(player);
         // shrubs.forEachAlive(renderGroup, this);
-        // function renderGroup(member) { 
+        // function renderGroup(member) {
         //     game.debug.body(member);
         // }
         // game.debug.body(shrub);
 
     },
 
-    dropBomb: function () {
-        var round_x = player.x % 32;
-        var round_y = player.y % 32;
-        var pos_x = player.x - round_x;
-        var pos_y = player.y - round_y;
+    dropBomb: function (aPlayer) {
+        var bomb = new Bomb(aPlayer);
+        var round_x = aPlayer.x % 32;
+        var round_y = aPlayer.y % 32;
+        bomb.x = aPlayer.x - round_x;
+        bomb.y = aPlayer.y - round_y;
         if (round_x > 10) {
-            pos_x += 32;
+            bomb.x += 32;
         }
         if (round_y > 10) {
-            pos_y += 32;
+            bomb.y += 32;
         }
-        bomb = bombs.getFirstExists(false);
-        if (bomb) {
-            bomb.reset(pos_x, pos_y);
-        }
+        bombs.add(bomb);
     }
 };

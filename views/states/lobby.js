@@ -1,15 +1,15 @@
-// var title_text = "Fire the hole";
 var instruction_text = "Press space to proceed";
 var titleOffsetX = 55;
 var titleOffsetY = 20;
 
-var menu = {
+var lobby = {
 
 	create: function() {
-		var bg = game.add.sprite(0, 0,'menubg');
-		bg.scale.setTo(0.6, 0.65);
+		var bg = game.add.sprite(0, 0,'grassbg');
 
-        game.load.image('title','res/tilesets/tiltle_screen.png');
+		var title = game.add.text(game.world.width / 2 - 145, 10, "Choose a lobby", {
+			font: '40px Coiny', 
+		});
 		
 		var instruction = game.add.text(game.world.centerX - 175, game.world.height - 40, instruction_text, {
 			font: '30px Coiny',
@@ -26,7 +26,7 @@ var menu = {
 
 	start: function() {
 
-		game.state.start('lobby');
+		game.state.start('map');
 	
 	}
 }
