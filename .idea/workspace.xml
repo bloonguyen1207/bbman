@@ -5,7 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/entities/bomb.js" afterPath="$PROJECT_DIR$/model/entities/bomb.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/entities/fire.js" afterPath="$PROJECT_DIR$/model/entities/fire.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/states/play.js" afterPath="$PROJECT_DIR$/views/states/play.js" />
     </list>
     <ignored path="bbman.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +30,8 @@
       <file leaf-file-name="bomb.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/entities/bomb.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+            <state relative-caret-position="75">
+              <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -41,8 +40,8 @@
       <file leaf-file-name="fire.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/entities/fire.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="85" column="21" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
+            <state relative-caret-position="0">
+              <caret line="0" column="26" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -97,8 +96,8 @@
       <list>
         <option value="$PROJECT_DIR$/views/index.ejs" />
         <option value="$PROJECT_DIR$/views/states/load.js" />
-        <option value="$PROJECT_DIR$/model/entities/bomb.js" />
         <option value="$PROJECT_DIR$/views/states/play.js" />
+        <option value="$PROJECT_DIR$/model/entities/bomb.js" />
         <option value="$PROJECT_DIR$/model/entities/fire.js" />
       </list>
     </option>
@@ -330,7 +329,7 @@
       <updated>1477307696356</updated>
       <workItem from="1477307702143" duration="781000" />
       <workItem from="1477976726826" duration="21471000" />
-      <workItem from="1478184230143" duration="33175000" />
+      <workItem from="1478184230143" duration="37551000" />
     </task>
     <task id="LOCAL-00001" summary="press Spacebar to add bomb (without collision)">
       <created>1478053285534</created>
@@ -381,11 +380,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478595850317</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Bomb Explosion">
+      <created>1478623348245</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1478623348245</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55427000" />
+    <option name="totallyTimeSpent" value="59803000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-5" y="33" width="1376" height="635" extended-state="6" />
@@ -430,7 +436,8 @@
     <MESSAGE value="update fire" />
     <MESSAGE value="Merge&#10;" />
     <MESSAGE value="Merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge" />
+    <MESSAGE value="Bomb Explosion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bomb Explosion" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -530,14 +537,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/entities/bomb.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/states/play.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
@@ -554,10 +553,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/model/entities/bomb.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/entities/fire.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="85" column="21" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
+        <state relative-caret-position="0">
+          <caret line="0" column="26" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
           <folding />
         </state>
       </provider>

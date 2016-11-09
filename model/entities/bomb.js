@@ -1,5 +1,7 @@
 function Bomb(aPlayer) {
     // this.id = id;
+    // this.length = aPlayer.length;
+    this.length = 1;
     console.log(this);
     Phaser.Sprite.call(this, game, aPlayer.x, aPlayer.y, 'bomb');
     console.log(this);
@@ -7,14 +9,14 @@ function Bomb(aPlayer) {
     game.physics.enable(this, Phaser.Physics.ARCADE);
     this.body.immovable = true;
     // this.body.setCircle(16);
-    game.time.events.add(3000, this.explode, this, aPlayer);
+    this.timer = game.time.events.add(3000, this.explode, this);
 }
 
 Bomb.prototype = Object.create(Phaser.Sprite.prototype);
 
-Bomb.prototype.explode = function (aPlayer) {
+Bomb.prototype.explode = function () {
     _self = this;
     this.visible = false;
-    fire.add(new Fire(_self, aPlayer));
+    fire.add(new Fire(_self));
     this.kill();
 };
