@@ -18,6 +18,7 @@ var play = {
 
 		game.stage.backgroundColor = bg_map2;
 
+
 		// Create iron iron
         irons = game.add.group();
         irons.enableBody = true;
