@@ -25,18 +25,22 @@ Fire.prototype.createExplosion = function (bomb) {
     var leftExplosion = true;
     var rightExplosion = true;
     // var temp;
-    Phaser.Sprite.call(this, game, bomb.x, bomb.y, 'fire', 21);
+    Phaser.Sprite.call(this, game, bomb.x, bomb.y, 'fire');
+    this.animations.add('explodeChanged', [0, 7, 14, 21, 14, 7, 0], 7);
     for (var i = 1; i <= bomb.length; i++) {
-        upExplosion = this.oneSideExplosion(bomb.x, bomb.y - i * 32, 22, upExplosion);
-        downExplosion = this.oneSideExplosion(bomb.x, bomb.y + i * 32, 22, downExplosion);
-        leftExplosion = this.oneSideExplosion(bomb.x - i * 32, bomb.y, 23, leftExplosion);
-        rightExplosion = this.oneSideExplosion(bomb.x + i * 32, bomb.y, 23, rightExplosion);
+        upExplosion = this.oneSideExplosion(bomb.x, bomb.y - i * 32, [1, 8, 15, 22, 15, 8, 1], upExplosion);
+        downExplosion = this.oneSideExplosion(bomb.x, bomb.y + i * 32, [1, 8, 15, 22, 15, 8, 1], downExplosion);
+        leftExplosion = this.oneSideExplosion(bomb.x - i * 32, bomb.y, [2, 9, 16, 23, 16, 9, 2], leftExplosion);
+        rightExplosion = this.oneSideExplosion(bomb.x + i * 32, bomb.y, [2, 9, 16, 23, 16, 9, 2], rightExplosion);
     }
+    this.animations.play('explodeChanged', 7);
+    this.fireGroup.callAll('animations.play', 'animations', 'explodeChanged', 7);
 };
 
 Fire.prototype.oneSideExplosion = function (x, y, keyframe, side) {
+    var temp;
     if (side) {
-        var temp = this.fireGroup.create(x, y, 'fire', keyframe);
+        temp = this.fireGroup.create(x, y, 'fire');
         if (this.checkOtherOverlap()) {
             side = false;
         }
@@ -47,6 +51,7 @@ Fire.prototype.oneSideExplosion = function (x, y, keyframe, side) {
         }
 
         // game.physics.arcade.overlap(bombs, this.fireGroup, this.chainExplosion);
+        temp.animations.add('explodeChanged', keyframe, 7);
     }
     return side;
 };
