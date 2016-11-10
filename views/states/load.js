@@ -64,6 +64,12 @@ var load = {
         game.load.text('map2', 'data/maps/map2.txt');
         game.load.text('map3', 'data/maps/map3.txt');
         game.load.text('map4', 'data/maps/map4.txt');
+        //Item
+        game.load.image('bomb_length','res/tilesets/item1.png');
+        game.load.image('bomb_num','res/tilesets/item2.png');
+        game.load.image('speed','res/tilesets/item3.png');
+
+
 
         // Script
         game.load.script('Bomb', 'model/entities/bomb.js');

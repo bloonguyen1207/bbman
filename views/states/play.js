@@ -8,6 +8,7 @@ var fire;
 var bg_map1 = "#602320";
 var bg_map2 = "#A5F2F3";
 var bg_map4 = "#261712";
+var items;
 
 var space_bar;
 var flipFlop;
@@ -29,6 +30,7 @@ var play = {
 
 
 
+        //game.physics.enable()
 		// Create iron iron
         irons = game.add.group();
         irons.enableBody = true;
@@ -51,6 +53,11 @@ var play = {
         breakables.enableBody = true;
 
         var breakable;
+
+        //Item
+        // items = game.add.group();
+        // items.enableBody = true;
+        // var item;
 
 
         // Load mapfile
@@ -88,7 +95,16 @@ var play = {
 
                     breakable.body.immovable = true;
                     
-                } else if (mapText[i][j] == 'x') {
+                }
+                // else if (mapText[i][j] == '.'){
+                //     if(val == 1) {
+                //         item = items.create(j * 32, i *32,'bomb_length');
+                //
+                //     }
+                //     item.body.immovable = true;
+                // }
+
+                else if (mapText[i][j] == 'x') {
                     // The player and its settings
                     player = game.add.sprite(j * 32, i * 32, 'dude');
                     //  We need to enable physics on the player
@@ -126,6 +142,11 @@ var play = {
         game.physics.arcade.collide(player, unbreakables);
         game.physics.arcade.collide(player, breakables);
         game.physics.arcade.collide(player, shrubs);
+
+
+
+
+
         //game.physics.arcade.collide(player, bombs);
 
 
@@ -210,4 +231,6 @@ var play = {
         }
         bombs.add(bomb);
     }
+
+
 };
