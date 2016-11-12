@@ -115,9 +115,6 @@ var play = {
             rdItems = Math.floor(Math.random() * 14) + 1;
             if (rdItems < 2) {
                 item = items.create(breakables.children[rdBlock].x, breakables.children[rdBlock].y, 'bomb_length');
-//scale
-                //item.scale.setTo(0.08, 0.08);
-//
                 item.visible = true;
                 item.body.setSize(32, 32, 24, 24);
                 item.body.immovable = true;
@@ -126,9 +123,6 @@ var play = {
             }
             else if (rdItems < 3) {
                 item = items.create(breakables.children[rdBlock].x, breakables.children[rdBlock].y, 'bomb_num');
-//scale
-                //item.scale.setTo(0.08, 0.08);
-//
                 item.visible = true;
                 item.body.setSize(32, 32, 24, 24);
                 item.body.immovable = true;
@@ -137,9 +131,6 @@ var play = {
             }
             else if (rdItems < 4) {
                 item = items.create(breakables.children[rdBlock].x, breakables.children[rdBlock].y, 'speed');
-//scale
-                //item.scale.setTo(0.08, 0.08);
-//
                 item.visible = true;
                 item.body.setSize(32, 32, 24, 24);
                 item.body.immovable = true;

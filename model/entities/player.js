@@ -1,6 +1,8 @@
 function Player(x, y) {
     // this.id = id;
     this.length = 1;
+    this.limit = 2;
+    this.checkLimit = 0;
     console.log("Playerrrr");
     Phaser.Sprite.call(this, game, x, y, 'dude');
     game.add.existing(this);
@@ -29,7 +31,9 @@ Player.prototype.update = function () {
     this.body.velocity.x = 0;
     this.body.velocity.y = 0;
 
-    this.movement();
+    if (this.alive) {
+        this.movement();
+    }
 };
 
 Player.prototype.movement = function () {
@@ -66,16 +70,50 @@ Player.prototype.movement = function () {
 
     if (this.space_bar.isDown) {
         if (!this.flipFlop) { //flipFlop is used to set one press to one callback (instead of multi)
-            console.log("BOMB!!!");
-            // console.log(this.x);
-            this.dropBomb();
-            this.flipFlop = true;
-            //player.body.enable = false;
+            console.log(this.checkBombAvailable());
+            if (!this.checkBombAvailable()) {
+                console.log("BOMB!!!");
+                // console.log(this.x);
+                if (this.checkLimit < this.limit) {
+                    this.checkLimit += 1;
+                    console.log("checkBomb - drop");
+
+                    this.dropBomb();
+
+                }
+                this.flipFlop = true;
+                //player.body.enable = false;
+            }
         }
     }
     if (this.space_bar.isUp) {
         this.flipFlop = false;
     }
+};
+
+Player.prototype.checkBombAvailable = function () {
+    bombsArray = bombs.children;
+    console.log(bombsArray);
+
+    var round_x = this.x % 32;
+    var round_y = this.y % 32;
+    var testX = this.x - round_x;
+    var testY = this.y - round_y;
+    if (round_x > 10) {
+        testX += 32;
+    }
+    if (round_y > 10) {
+        testY += 32;
+    }
+
+    for (var i = 0; i < bombsArray.length; i++) {
+        console.log("checkBoom-loop");
+        console.log(bombsArray[i].x === testX);
+        if (bombsArray[i].x === testX && bombsArray[i].y === testY) {
+            return true;
+        }
+    }
+    return false;
 };
 
 Player.prototype.dropBomb = function () {
