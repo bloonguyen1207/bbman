@@ -1,10 +1,10 @@
 function Bomb(aPlayer) {
     // this.id = id;
     // this.length = aPlayer.length;
-    this.length = 1;
-    console.log(this);
+    this.length = aPlayer.length;
+    // console.log(this);
     Phaser.Sprite.call(this, game, aPlayer.x, aPlayer.y, 'bomb');
-    console.log(this);
+    // console.log(this);
     this.scale.setTo(0.08, 0.08);
     game.physics.enable(this, Phaser.Physics.ARCADE);
     this.body.immovable = true;

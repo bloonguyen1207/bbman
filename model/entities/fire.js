@@ -19,6 +19,10 @@ function Fire(bomb) {
 
 Fire.prototype = Object.create(Phaser.Sprite.prototype);
 
+Fire.prototype.update = function () {
+    this.checkOtherOverlap();
+};
+
 Fire.prototype.createExplosion = function (bomb) {
     var upExplosion = true;
     var downExplosion = true;
@@ -67,7 +71,8 @@ Fire.prototype.checkOtherOverlap = function () {
         console.log("breakable vs fire");
         isOverlap = true;
     }
-    if (game.physics.arcade.overlap(player, this.fireGroup, this.destroyOtherOverlap)) {
+
+    if (game.physics.arcade.overlap(players, this.fireGroup, this.destroyOtherOverlap)) {
         console.log("player vs fire");
         isOverlap = true;
     }
@@ -79,11 +84,12 @@ Fire.prototype.checkOtherOverlap = function () {
 
 Fire.prototype.destroyOtherOverlap = function (destroyable) {
     console.log("fire destroy overlap");
+    console.log(destroyable);
     destroyable.kill();
 };
 
 Fire.prototype.endFire = function () {
     console.log("end");
     this.fireGroup.callAll('kill');
-    this.kill();
+    this.destroy();
 };

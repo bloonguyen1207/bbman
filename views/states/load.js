@@ -72,6 +72,7 @@ var load = {
 
 
         // Script
+        game.load.script('Player', 'model/entities/player.js');
         game.load.script('Bomb', 'model/entities/bomb.js');
         game.load.script('Fire', 'model/entities/fire.js');
 
