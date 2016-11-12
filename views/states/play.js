@@ -99,13 +99,6 @@ var play = {
 
 
                 }
-                // else if (mapText[i][j] == '.'){
-                //     if(val == 1) {
-                //         item = items.create(j * 32, i *32,'bomb_length');
-                //
-                //     }
-                //     item.body.immovable = true;
-                // }
 
                 else if (mapText[i][j] == 'x') {
                     players.add(new Player(j * 32, i * 32));
@@ -123,7 +116,7 @@ var play = {
             if (rdItems < 2) {
                 item = items.create(breakables.children[rdBlock].x, breakables.children[rdBlock].y, 'bomb_length');
 //scale
-                item.scale.setTo(0.08, 0.08);
+                //item.scale.setTo(0.08, 0.08);
 //
                 item.visible = true;
                 item.body.setSize(32, 32, 24, 24);
@@ -134,7 +127,7 @@ var play = {
             else if (rdItems < 3) {
                 item = items.create(breakables.children[rdBlock].x, breakables.children[rdBlock].y, 'bomb_num');
 //scale
-                item.scale.setTo(0.08, 0.08);
+                //item.scale.setTo(0.08, 0.08);
 //
                 item.visible = true;
                 item.body.setSize(32, 32, 24, 24);
@@ -145,7 +138,7 @@ var play = {
             else if (rdItems < 4) {
                 item = items.create(breakables.children[rdBlock].x, breakables.children[rdBlock].y, 'speed');
 //scale
-                item.scale.setTo(0.08, 0.08);
+                //item.scale.setTo(0.08, 0.08);
 //
                 item.visible = true;
                 item.body.setSize(32, 32, 24, 24);
