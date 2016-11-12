@@ -50,7 +50,7 @@ Fire.prototype.oneSideExplosion = function (x, y, keyframe, side) {
             side = false;
         }
 
-        // game.physics.arcade.overlap(bombs, this.fireGroup, this.chainExplosion);
+        //game.physics.arcade.overlap(bombs, this.fireGroup, this.chainExplosion);
         temp.animations.add('explodeChanged', keyframe, 7);
     }
     return side;
