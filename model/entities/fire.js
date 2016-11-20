@@ -31,10 +31,17 @@ Fire.prototype.createExplosion = function () {
     var crossExplosion = this.fireGroup.create(this.belongBomb.x, this.belongBomb.y, 'fire');
     crossExplosion.animations.add('explodeChanged', [0, 7, 14, 21, 14, 7, 0], 14);
     for (var i = 1; i <= this.belongBomb.owner.length; i++) {
-        upExplosion = this.oneSideExplosion(this.belongBomb.x, this.belongBomb.y - i * 32, [1, 8, 15, 22, 15, 8, 1], upExplosion);
-        downExplosion = this.oneSideExplosion(this.belongBomb.x, this.belongBomb.y + i * 32, [1, 8, 15, 22, 15, 8, 1], downExplosion);
-        leftExplosion = this.oneSideExplosion(this.belongBomb.x - i * 32, this.belongBomb.y, [2, 9, 16, 23, 16, 9, 2], leftExplosion);
-        rightExplosion = this.oneSideExplosion(this.belongBomb.x + i * 32, this.belongBomb.y, [2, 9, 16, 23, 16, 9, 2], rightExplosion);
+        if (i = this.belongBomb.owner.length) {
+            upExplosion = this.oneSideExplosion(this.belongBomb.x, this.belongBomb.y - i * 32, [3, 10, 17, 24, 17, 10, 3], upExplosion);
+            downExplosion = this.oneSideExplosion(this.belongBomb.x, this.belongBomb.y + i * 32, [4, 11, 18, 25, 18, 11, 4], downExplosion);
+            leftExplosion = this.oneSideExplosion(this.belongBomb.x - i * 32, this.belongBomb.y, [6, 13, 20, 27, 20, 13, 6], leftExplosion);
+            rightExplosion = this.oneSideExplosion(this.belongBomb.x + i * 32, this.belongBomb.y, [5, 12, 19, 26, 19, 12, 5], rightExplosion);
+        } else {
+            upExplosion = this.oneSideExplosion(this.belongBomb.x, this.belongBomb.y - i * 32, [1, 8, 15, 22, 15, 8, 1], upExplosion);
+            downExplosion = this.oneSideExplosion(this.belongBomb.x, this.belongBomb.y + i * 32, [1, 8, 15, 22, 15, 8, 1], downExplosion);
+            leftExplosion = this.oneSideExplosion(this.belongBomb.x - i * 32, this.belongBomb.y, [2, 9, 16, 23, 16, 9, 2], leftExplosion);
+            rightExplosion = this.oneSideExplosion(this.belongBomb.x + i * 32, this.belongBomb.y, [2, 9, 16, 23, 16, 9, 2], rightExplosion);
+        }
     }
     // this.animations.play('explodeChanged', 14);
     this.fireGroup.callAll('animations.play', 'animations', 'explodeChanged', 14);
