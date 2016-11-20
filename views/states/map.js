@@ -29,11 +29,11 @@ var map = {
 
 
 		var title = game.add.text(game.world.centerX - 145, 10, map_text, {
-			font: '40px Coiny', 
+			font: '40px Coiny'
 		});
 		
 		var instruction = game.add.text(game.world.centerX - 175, game.world.height - 40, instruction_text, {
-			font: '30px Coiny',
+			font: '30px Coiny'
 		});
 
 
@@ -42,7 +42,7 @@ var map = {
         var fire_map = game.add.sprite(game.world.centerX - 180, 80, "fire_thumb");
         var ice_map = game.add.sprite(game.world.centerX + 30, 80, 'ice_thumb');
         var forest_map = game.add.image(game.world.centerX - 180, 260, 'forest_thumb');
-        var water_map = game.add.image(game.world.centerX + 30, 260, 'underwater_thumb');
+		var water_map = game.add.image(game.world.centerX + 30, 260, 'cave_thumb');
 
         
         // Scale maps images
@@ -50,7 +50,7 @@ var map = {
         fire_map.scale.setTo(0.25,0.25);
         ice_map.scale.setTo(0.25, 0.25);
         forest_map.scale.setTo(0.25, 0.25);
-        water_map.scale.setTo(0.25, 0.25);
+		// water_map.scale.setTo(0.25, 0.25);
 
         graphics.lineStyle(10, 0x000000, 1);
         select_frame = graphics.drawRoundedRect(119, 75, 160, 160, 3);
@@ -116,4 +116,4 @@ var map = {
 		game.state.start('play');
 	
 	}
-}
+};

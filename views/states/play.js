@@ -158,12 +158,16 @@ var play = {
     },
 
 	render: function() {
-        // game.debug.body(players);
-        // shrubs.forEachAlive(renderGroup, this);
+        //change group name
+        // players.forEachAlive(renderGroup, this);
         // function renderGroup(member) {
-        //     game.debug.body(member);
+        // //     //show hitbox of single sprite
+        // //     game.debug.body(member);
         // }
-        // game.debug.body(shrub);
+        var playersArray = players.children;
+        playersArray.forEach(function (player) {
+            game.debug.body(player.hitboxFire);
+        });
 
     },
 

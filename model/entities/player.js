@@ -7,13 +7,12 @@ function Player(x, y) {
     Phaser.Sprite.call(this, game, x, y, 'dude');
     game.add.existing(this);
     game.physics.enable(this, Phaser.Physics.ARCADE);
-    this.body.setCircle(14);
+    this.body.setCircle(16);
     this.body.collideWorldBounds = true;
 
-    this.animations.add('down', [0, 1, 2, 3], 10, true);
-    this.animations.add('left', [12, 13, 14, 15], 10, true);
-    this.animations.add('right', [24, 25, 26, 27], 10, true);
-    this.animations.add('up', [36, 37, 38, 39], 10, true);
+    this.setUpHitbox();
+    this.setUpAnimation();
+
 }
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
@@ -21,6 +20,22 @@ Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.cursors = game.input.keyboard.createCursorKeys();
 Player.prototype.space_bar = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
 Player.prototype.flipFlop = false;
+
+Player.prototype.setUpHitbox = function () {
+    var _self = this;
+    this.hitboxDistance = 10;
+    this.hitboxFire = game.add.sprite(_self.x + _self.hitboxDistance, _self.y + _self.hitboxDistance, null);
+    game.physics.arcade.enable(this.hitboxFire);
+    this.hitboxFire.body.setCircle(16 - _self.hitboxDistance);
+    // this.hitboxFire.visible = false;
+};
+
+Player.prototype.setUpAnimation = function () {
+    this.animations.add('down', [0, 1, 2, 3], 10, true);
+    this.animations.add('left', [12, 13, 14, 15], 10, true);
+    this.animations.add('right', [24, 25, 26, 27], 10, true);
+    this.animations.add('up', [36, 37, 38, 39], 10, true);
+};
 
 Player.prototype.update = function () {
     game.physics.arcade.collide(this, unbreakables);
@@ -31,9 +46,22 @@ Player.prototype.update = function () {
     this.body.velocity.x = 0;
     this.body.velocity.y = 0;
 
+    if (this.hitboxFire.alive === false) {
+        // console.log("Hitbox Die!!!");
+        // this.kill();
+    }
+
     if (this.alive) {
         this.movement();
+        this.updateHitboxLocation();
     }
+};
+
+Player.prototype.updateHitboxLocation = function () {
+    var _self = this;
+    this.hitboxFire.x = this.x + _self.hitboxDistance;
+    this.hitboxFire.y = this.y + _self.hitboxDistance;
+    this.hitboxFire.z = this.z;
 };
 
 Player.prototype.movement = function () {
@@ -107,8 +135,6 @@ Player.prototype.checkBombAvailable = function () {
     }
 
     for (var i = 0; i < bombsArray.length; i++) {
-        console.log("checkBoom-loop");
-        console.log(bombsArray[i].x === testX);
         if (bombsArray[i].x === testX && bombsArray[i].y === testY) {
             return true;
         }

@@ -32,6 +32,7 @@ var load = {
         game.load.image('ice_thumb', 'res/tilesets/ice_thumb.png');
         game.load.image('forest_thumb', 'res/tilesets/forest_thumb.png');
         game.load.image('underwater_thumb', 'res/tilesets/underwater_thumb.png');
+        game.load.image('cave_thumb', 'res/tilesets/cave.png');
 
         // Backgrounds
         game.load.image('menubg', 'res/tilesets/title.png');

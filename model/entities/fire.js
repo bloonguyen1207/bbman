@@ -14,7 +14,7 @@ function Fire(aBomb) {
     this.body.immovable = true;
 
     // this.body.setCircle(16);
-    game.time.events.add(1000, this.endFire, this);
+    game.time.events.add(500, this.endFire, this);
 }
 
 Fire.prototype = Object.create(Phaser.Sprite.prototype);
@@ -30,15 +30,15 @@ Fire.prototype.createExplosion = function () {
     var rightExplosion = true;
     // var temp;
     Phaser.Sprite.call(this, game, this.belongBomb.x, this.belongBomb.y, 'fire');
-    this.animations.add('explodeChanged', [0, 7, 14, 21, 14, 7, 0], 7);
+    this.animations.add('explodeChanged', [0, 7, 14, 21, 14, 7, 0], 14);
     for (var i = 1; i <= this.belongBomb.owner.length; i++) {
         upExplosion = this.oneSideExplosion(this.belongBomb.x, this.belongBomb.y - i * 32, [1, 8, 15, 22, 15, 8, 1], upExplosion);
         downExplosion = this.oneSideExplosion(this.belongBomb.x, this.belongBomb.y + i * 32, [1, 8, 15, 22, 15, 8, 1], downExplosion);
         leftExplosion = this.oneSideExplosion(this.belongBomb.x - i * 32, this.belongBomb.y, [2, 9, 16, 23, 16, 9, 2], leftExplosion);
         rightExplosion = this.oneSideExplosion(this.belongBomb.x + i * 32, this.belongBomb.y, [2, 9, 16, 23, 16, 9, 2], rightExplosion);
     }
-    this.animations.play('explodeChanged', 7);
-    this.fireGroup.callAll('animations.play', 'animations', 'explodeChanged', 7);
+    this.animations.play('explodeChanged', 14);
+    this.fireGroup.callAll('animations.play', 'animations', 'explodeChanged', 14);
 };
 
 Fire.prototype.oneSideExplosion = function (x, y, keyframe, side) {
@@ -55,39 +55,55 @@ Fire.prototype.oneSideExplosion = function (x, y, keyframe, side) {
         }
 
         game.physics.arcade.overlap(bombs, this.fireGroup, this.chainExplosion, this.chainCondition);
-        temp.animations.add('explodeChanged', keyframe, 7);
+        temp.animations.add('explodeChanged', keyframe, 14);
+        console.log("fire x y");
+        console.log(temp.x);
+        console.log(temp.y);
     }
     return side;
 };
 
 Fire.prototype.chainCondition = function (bomb) {
-    // console.log("fire.chain COndition 64");
-    console.log(bomb === this.belongBomb);
     return !(bomb === this.belongBomb);
 };
 
 Fire.prototype.chainExplosion = function (bomb) {
-    // console.log("fire.chainExplosion 70");
     game.time.events.remove(bomb.timer);
-    // console.log("after remove timer");
     bomb.explode();
 };
 
 Fire.prototype.checkOtherOverlap = function () {
     var isOverlap = false;
+    var _self = this;
     if (game.physics.arcade.overlap(breakables, this.fireGroup, this.destroyOtherOverlap)) {
         console.log("breakable vs fire");
         isOverlap = true;
     }
 
-    if (game.physics.arcade.overlap(players, this.fireGroup, this.destroyOtherOverlap)) {
-        console.log("player vs fire");
-        isOverlap = true;
-    }
+    playersArray = players.children;
+
+    var checkOverlapPlayerFire = function (player) {
+        console.log("playerHitbox.x. y: ");
+        console.log(player.hitboxFire.x);
+        console.log(player.hitboxFire.y);
+
+
+        if (player.hitboxFire.overlap(_self.fireGroup)) {
+            console.log("player vs fire");
+            player.hitboxFire.kill();
+            isOverlap = true;
+        }
+    };
+
+    playersArray.forEach(checkOverlapPlayerFire);
 
     //items
 
     return isOverlap;
+};
+
+Fire.prototype.testPlayerOverlap = function (playerHitbox) {
+    console.log("trueeee");
 };
 
 Fire.prototype.destroyOtherOverlap = function (destroyable) {
