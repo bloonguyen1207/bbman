@@ -3,8 +3,6 @@
 function Fire(aBomb) {
     // this.id = id;
     //add player length
-    // console.log("Fireeeeee!!!!");
-    // console.log(this);
     this.belongBomb = aBomb;
     this.fireGroup = game.add.group();
     this.fireGroup.enableBody = true;
@@ -54,21 +52,13 @@ Fire.prototype.oneSideExplosion = function (x, y, keyframe, side) {
             temp.kill();
             side = false;
         }
-
-        game.physics.arcade.overlap(bombs, this.fireGroup, this.chainExplosion, this.chainCondition);
+        game.physics.arcade.overlap(temp, bombs, this.chainExplosion);
         temp.animations.add('explodeChanged', keyframe, 14);
-        console.log("fire x y");
-        console.log(temp.x);
-        console.log(temp.y);
     }
     return side;
 };
 
-Fire.prototype.chainCondition = function (bomb) {
-    return !(bomb === this.belongBomb);
-};
-
-Fire.prototype.chainExplosion = function (bomb) {
+Fire.prototype.chainExplosion = function (oneFire, bomb) {
     game.time.events.remove(bomb.timer);
     bomb.explode();
 };
@@ -84,11 +74,7 @@ Fire.prototype.checkOtherOverlap = function () {
     playersArray = players.children;
 
     var checkOverlapPlayerFire = function (player) {
-        console.log("playerHitbox.x. y: ");
-        console.log(player.hitboxFire.x);
-        console.log(player.hitboxFire.y);
-
-        if (game.physics.arcade.overlap(player.hitboxFire, _self.fireGroup, this.destroyOtherOverlap)) {
+        if (game.physics.arcade.overlap(player.hitboxFire, _self.fireGroup, _self.destroyOtherOverlap)) {
             console.log("player vs fire");
             isOverlap = true;
         }
@@ -101,13 +87,8 @@ Fire.prototype.checkOtherOverlap = function () {
     return isOverlap;
 };
 
-Fire.prototype.testPlayerOverlap = function (playerHitbox) {
-    console.log("trueeee");
-};
-
 Fire.prototype.destroyOtherOverlap = function (destroyable) {
     console.log("fire destroy overlap");
-    console.log(destroyable);
     destroyable.kill();
 };
 

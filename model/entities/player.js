@@ -3,7 +3,6 @@ function Player(x, y) {
     this.length = 1;
     this.limit = 2;
     this.checkLimit = 0;
-    console.log("Playerrrr");
     Phaser.Sprite.call(this, game, x, y, 'dude');
     game.add.existing(this);
     game.physics.enable(this, Phaser.Physics.ARCADE);
@@ -45,9 +44,8 @@ Player.prototype.update = function () {
     this.body.velocity.x = 0;
     this.body.velocity.y = 0;
 
-    if (this.hitboxFire.alive === false) {
-        // console.log("Hitbox Die!!!");
-        // this.kill();
+    if (this.alive && !this.hitboxFire.alive) {
+        this.kill();
     }
 
     if (this.alive) {
@@ -97,13 +95,10 @@ Player.prototype.movement = function () {
 
     if (this.space_bar.isDown) {
         if (!this.flipFlop) { //flipFlop is used to set one press to one callback (instead of multi)
-            console.log(this.checkBombAvailable());
             if (!this.checkBombAvailable()) {
-                console.log("BOMB!!!");
                 // console.log(this.x);
                 if (this.checkLimit < this.limit) {
                     this.checkLimit += 1;
-                    console.log("checkBomb - drop");
 
                     this.dropBomb();
 
@@ -120,7 +115,6 @@ Player.prototype.movement = function () {
 
 Player.prototype.checkBombAvailable = function () {
     bombsArray = bombs.children;
-    console.log(bombsArray);
 
     var round_x = this.x % 32;
     var round_y = this.y % 32;

@@ -155,26 +155,32 @@ var play = {
 
     update: function () {
         game.physics.arcade.overlap(players, items, this.destroyItem);
+        if (players.getFirstAlive() === null) {
+            console.log("End game!!!!");
+            game.paused = true;
+        }
     },
 
 	render: function() {
         // change group name
-        // fire.forEachAlive(renderGroup, this);
         function renderGroup(member) {
             //show hitbox of single sprite
             game.debug.body(member);
         }
 
+        //show hitboxFire
         var playersArray = players.children;
         playersArray.forEach(function (player) {
             game.debug.body(player.hitboxFire);
         });
 
-        var fireArray = fire.children;
-        fireArray.forEach(function (fireG) {
-            fireG.fireGroup.forEachAlive(renderGroup, this);
-        });
+        //show fireRange
+        // var fireArray = fire.children;
+        // fireArray.forEach(function (fireG) {
+        //     fireG.fireGroup.forEachAlive(renderGroup, this);
+        // });
 
+        // bombs.forEachAlive(renderGroup, this);
     },
 
     //Destroy item when Player overlap
