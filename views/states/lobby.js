@@ -1,6 +1,7 @@
 var instruction_text = "Press space to proceed";
 var titleOffsetX = 55;
 var titleOffsetY = 20;
+var socket = io();
 
 var lobby = {
 

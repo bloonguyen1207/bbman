@@ -1,8 +1,8 @@
 var cool = require('cool-ascii-faces');
 var express = require('express');
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 app.set('port', (process.env.PORT || 2222));
 
@@ -20,7 +20,7 @@ app.get('/cool', function(req, res) {
   res.send(cool());
 });
 
-app.listen(app.get('port'), function() {
+http.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
