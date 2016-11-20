@@ -30,14 +30,15 @@ Fire.prototype.createExplosion = function () {
     var rightExplosion = true;
     // var temp;
     Phaser.Sprite.call(this, game, this.belongBomb.x, this.belongBomb.y, 'fire');
-    this.animations.add('explodeChanged', [0, 7, 14, 21, 14, 7, 0], 14);
+    var crossExplosion = this.fireGroup.create(this.belongBomb.x, this.belongBomb.y, 'fire');
+    crossExplosion.animations.add('explodeChanged', [0, 7, 14, 21, 14, 7, 0], 14);
     for (var i = 1; i <= this.belongBomb.owner.length; i++) {
         upExplosion = this.oneSideExplosion(this.belongBomb.x, this.belongBomb.y - i * 32, [1, 8, 15, 22, 15, 8, 1], upExplosion);
         downExplosion = this.oneSideExplosion(this.belongBomb.x, this.belongBomb.y + i * 32, [1, 8, 15, 22, 15, 8, 1], downExplosion);
         leftExplosion = this.oneSideExplosion(this.belongBomb.x - i * 32, this.belongBomb.y, [2, 9, 16, 23, 16, 9, 2], leftExplosion);
         rightExplosion = this.oneSideExplosion(this.belongBomb.x + i * 32, this.belongBomb.y, [2, 9, 16, 23, 16, 9, 2], rightExplosion);
     }
-    this.animations.play('explodeChanged', 14);
+    // this.animations.play('explodeChanged', 14);
     this.fireGroup.callAll('animations.play', 'animations', 'explodeChanged', 14);
 };
 
@@ -87,10 +88,8 @@ Fire.prototype.checkOtherOverlap = function () {
         console.log(player.hitboxFire.x);
         console.log(player.hitboxFire.y);
 
-
-        if (player.hitboxFire.overlap(_self.fireGroup)) {
+        if (game.physics.arcade.overlap(player.hitboxFire, _self.fireGroup, this.destroyOtherOverlap)) {
             console.log("player vs fire");
-            player.hitboxFire.kill();
             isOverlap = true;
         }
     };

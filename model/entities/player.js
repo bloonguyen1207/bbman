@@ -23,11 +23,10 @@ Player.prototype.flipFlop = false;
 
 Player.prototype.setUpHitbox = function () {
     var _self = this;
-    this.hitboxDistance = 10;
+    this.hitboxDistance = 4;
     this.hitboxFire = game.add.sprite(_self.x + _self.hitboxDistance, _self.y + _self.hitboxDistance, null);
     game.physics.arcade.enable(this.hitboxFire);
     this.hitboxFire.body.setCircle(16 - _self.hitboxDistance);
-    // this.hitboxFire.visible = false;
 };
 
 Player.prototype.setUpAnimation = function () {
