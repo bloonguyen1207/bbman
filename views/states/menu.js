@@ -26,7 +26,7 @@ var menu = {
 
 	start: function() {
 
-		game.state.start('lobby');
+		game.state.start('map');
 	
 	}
 }

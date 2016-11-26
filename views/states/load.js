@@ -27,6 +27,15 @@ var load = {
             }
         });
 
+        // Room
+        game.load.image('empty_room', 'res/tilesets/room.png');
+
+        // Player
+        game.load.image('player_1', 'res/spritesheets/player1.png');
+        game.load.image('player_2', 'res/spritesheets/player2.png');
+        game.load.image('player_3', 'res/spritesheets/player3.png');
+        game.load.image('player_4', 'res/spritesheets/player4.png');
+
         // Map thubmails
         game.load.image('fire_thumb', 'res/tilesets/fire_thumb.png');
         game.load.image('ice_thumb', 'res/tilesets/ice_thumb.png');
@@ -65,12 +74,11 @@ var load = {
         game.load.text('map2', 'data/maps/map2.txt');
         game.load.text('map3', 'data/maps/map3.txt');
         game.load.text('map4', 'data/maps/map4.txt');
+        
         //Item
         game.load.image('bomb_num', 'res/tilesets/item1.png');
         game.load.image('bomb_length', 'res/tilesets/item2.png');
         game.load.image('speed', 'res/tilesets/item3.png');
-
-
 
         // Script
         game.load.script('Player', 'model/entities/player.js');
