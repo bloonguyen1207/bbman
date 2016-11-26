@@ -26,5 +26,17 @@ http.listen(app.get('port'), function() {
 
 // Web Socket
 io.on('connection', function(socket){
-  console.log('a user connected');
+  console.log('a user connected with id: ' + socket.id);
+  
+  // User disconnected
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+
+  // Create room
+  socket.on('create', function(room) {
+	  socket.join(room);
+	});
 });
+
+

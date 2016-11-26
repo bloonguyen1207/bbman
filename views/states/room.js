@@ -1,13 +1,15 @@
 var instruction_text = "Press space to proceed";
 var titleOffsetX = 55;
 var titleOffsetY = 20;
-var socket = io();
 
-var lobby = {
+var room = {
 
 	create: function() {
+		socket.on('connectToRoom',function(data){
+		  console.log(data);
+		});
 		var bg = game.add.sprite(0, 0,'grassbg');
-		var title = game.add.text(game.world.width / 2 - 145, 10, "Choose a room", {
+		var title = game.add.text(game.world.width / 2 - 50, 10, "Room", {
 			font: '40px Coiny', 
 		});
 		var instruction = game.add.text(game.world.centerX - 175, game.world.height - 40, instruction_text, {
@@ -20,12 +22,12 @@ var lobby = {
 		var proceed_key = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
 		proceed_key.onDown.addOnce(this.start, this);
 
-		console.log(socket.id);
+		
 	},
 
 	start: function() {
 
-		game.state.start('map');
+		game.state.start('play');
 	
 	}
 }
