@@ -54,6 +54,11 @@ Items.prototype.destroyItems = function (item, aPlayer) {
             aPlayer.limit++;
         }
     }
+    else if (item.type === 'velocity') {
+        if (aPlayer.speed < 210) {
+            aPlayer.speed = aPlayer.speed + 20;
+        }
+    }
     item.destroy();
     console.log('Item picked');
 };

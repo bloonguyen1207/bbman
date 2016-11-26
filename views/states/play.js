@@ -169,7 +169,7 @@ var play = {
         //     fireG.fireGroup.forEachAlive(renderGroup, this);
         // });
 
-        items.forEachAlive(renderGroup, this);
+        //items.forEachAlive(renderGroup, this);
     }
 
     //Destroy item when Player overlap

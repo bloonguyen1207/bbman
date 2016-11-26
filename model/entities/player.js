@@ -3,6 +3,7 @@ function Player(x, y) {
     this.length = 2;
     this.limit = 2;
     this.checkLimit = 0;
+    this.speed = 150;
     Phaser.Sprite.call(this, game, x, y, 'dude');
     game.add.existing(this);
     game.physics.enable(this, Phaser.Physics.ARCADE);
@@ -71,24 +72,24 @@ Player.prototype.movement = function () {
 
     if (this.cursors.left.isDown) {
         //  Move to the left
-        this.body.velocity.x = -150;
+        this.body.velocity.x = -(this.speed);
 
         this.animations.play('left');
     }
     else if (this.cursors.right.isDown) {
         //  Move to the right
-        this.body.velocity.x = 150;
+        this.body.velocity.x = this.speed;
 
         this.animations.play('right');
     }
     else if (this.cursors.up.isDown) {
 
-        this.body.velocity.y = -150;
+        this.body.velocity.y = -(this.speed);
         this.animations.play('up');
     }
     else if (this.cursors.down.isDown) {
 
-        this.body.velocity.y = 150;
+        this.body.velocity.y = this.speed;
 
         this.animations.play('down');
     }
