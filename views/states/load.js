@@ -66,8 +66,8 @@ var load = {
         game.load.text('map3', 'data/maps/map3.txt');
         game.load.text('map4', 'data/maps/map4.txt');
         //Item
-        game.load.image('bomb_length', 'res/tilesets/item1.png');
-        game.load.image('bomb_num', 'res/tilesets/item2.png');
+        game.load.image('bomb_num', 'res/tilesets/item1.png');
+        game.load.image('bomb_length', 'res/tilesets/item2.png');
         game.load.image('speed', 'res/tilesets/item3.png');
 
 
@@ -76,6 +76,7 @@ var load = {
         game.load.script('Player', 'model/entities/player.js');
         game.load.script('Bomb', 'model/entities/bomb.js');
         game.load.script('Fire', 'model/entities/fire.js');
+        game.load.script('Items', 'model/entities/items.js');
 
 	},
 

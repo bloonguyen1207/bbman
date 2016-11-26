@@ -75,6 +75,7 @@ Fire.prototype.checkOtherOverlap = function () {
     var _self = this;
     if (game.physics.arcade.overlap(breakables, this.fireGroup, this.destroyOtherOverlap)) {
         console.log("breakable vs fire");
+
         isOverlap = true;
     }
 
@@ -97,6 +98,7 @@ Fire.prototype.checkOtherOverlap = function () {
 Fire.prototype.destroyOtherOverlap = function (destroyable) {
     console.log("fire destroy overlap");
     destroyable.kill();
+
 };
 
 Fire.prototype.endFire = function () {
