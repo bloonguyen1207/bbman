@@ -1,6 +1,6 @@
 function Player(x, y) {
     // this.id = id;
-    this.length = 1;
+    this.length = 2;
     this.limit = 2;
     this.checkLimit = 0;
     Phaser.Sprite.call(this, game, x, y, 'dude');
@@ -8,6 +8,9 @@ function Player(x, y) {
     game.physics.enable(this, Phaser.Physics.ARCADE);
     this.body.setCircle(16);
     this.body.collideWorldBounds = true;
+
+    this.dropX = 0;
+    this.dropY = 0;
 
     this.setUpHitbox();
     this.setUpAnimation();
@@ -39,6 +42,9 @@ Player.prototype.update = function () {
     game.physics.arcade.collide(this, unbreakables);
     game.physics.arcade.collide(this, breakables);
     game.physics.arcade.collide(this, shrubs);
+    // if (Math.abs(this.dropX - this.x) || Math.abs(this.dropY - this.y) >= 16) {
+
+    // }
 
     //  Reset the players velocity (movement)
     this.body.velocity.x = 0;
@@ -148,4 +154,8 @@ Player.prototype.dropBomb = function () {
         bomb.y += 32;
     }
     bombs.add(bomb);
+
+    this.dropX = bomb.x;
+    this.dropY = bomb.y;
+
 };

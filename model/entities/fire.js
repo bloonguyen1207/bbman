@@ -31,7 +31,7 @@ Fire.prototype.createExplosion = function () {
     var crossExplosion = this.fireGroup.create(this.belongBomb.x, this.belongBomb.y, 'fire');
     crossExplosion.animations.add('explodeChanged', [0, 7, 14, 21, 14, 7, 0], 14);
     for (var i = 1; i <= this.belongBomb.owner.length; i++) {
-        if (i = this.belongBomb.owner.length) {
+        if (i === this.belongBomb.owner.length) {
             upExplosion = this.oneSideExplosion(this.belongBomb.x, this.belongBomb.y - i * 32, [3, 10, 17, 24, 17, 10, 3], upExplosion);
             downExplosion = this.oneSideExplosion(this.belongBomb.x, this.belongBomb.y + i * 32, [4, 11, 18, 25, 18, 11, 4], downExplosion);
             leftExplosion = this.oneSideExplosion(this.belongBomb.x - i * 32, this.belongBomb.y, [6, 13, 20, 27, 20, 13, 6], leftExplosion);
