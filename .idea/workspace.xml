@@ -332,7 +332,7 @@
       <workItem from="1479617419397" duration="2883000" />
       <workItem from="1479623760254" duration="1832000" />
       <workItem from="1479627535467" duration="132000" />
-      <workItem from="1480133747809" duration="44000" />
+      <workItem from="1480133747809" duration="49000" />
     </task>
     <task id="LOCAL-00001" summary="press Spacebar to add bomb (without collision)">
       <created>1478053285534</created>
@@ -411,11 +411,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480133787162</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Update items.js">
+      <created>1480133794310</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1480133794310</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97120000" />
+    <option name="totallyTimeSpent" value="97125000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="723" extended-state="6" />
