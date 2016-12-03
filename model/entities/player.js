@@ -1,6 +1,6 @@
 function Player(x, y) {
     // this.id = id;
-    this.length = 2;
+    this.length = 1;
     this.limit = 2;
     this.checkLimit = 0;
     this.speed = 150;
@@ -43,10 +43,18 @@ Player.prototype.update = function () {
     game.physics.arcade.collide(this, unbreakables);
     game.physics.arcade.collide(this, breakables);
     game.physics.arcade.collide(this, shrubs);
-    // if (Math.abs(this.dropX - this.x) || Math.abs(this.dropY - this.y) >= 16) {
-
-    // }
-
+    if (Math.abs(this.dropX - this.x) >= 32 || Math.abs(this.dropY - this.y) >= 32) {
+        // console.log("set dropX Y");
+        this.dropX = 0;
+        this.dropY = 0;
+    }
+    // console.log("Collide: ");
+    game.physics.arcade.collide(this, bombs, null, function (aPlayer, aBomb) {
+        // console.log(!(Math.abs(aBomb.x - aPlayer.dropX) <= 31 && Math.abs(aBomb.y - aPlayer.dropY) <= 31));
+        // console.log(aBomb.x + " " + aBomb.y);
+        // console.log(aPlayer.dropX + " " + aPlayer.dropY);
+        return !((Math.abs(aBomb.x - aPlayer.dropX) <= 31 && Math.abs(aBomb.y - aPlayer.dropY) <= 31))
+    });
     //  Reset the players velocity (movement)
     this.body.velocity.x = 0;
     this.body.velocity.y = 0;
@@ -156,6 +164,8 @@ Player.prototype.dropBomb = function () {
     }
     bombs.add(bomb);
 
+    // console.log(bomb.x);
+    // console.log(bomb.y);
     this.dropX = bomb.x;
     this.dropY = bomb.y;
 

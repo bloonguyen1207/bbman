@@ -74,7 +74,7 @@ Fire.prototype.checkOtherOverlap = function () {
     var isOverlap = false;
     var _self = this;
     if (game.physics.arcade.overlap(breakables, this.fireGroup, this.destroyOtherOverlap)) {
-        console.log("breakable vs fire");
+        // console.log("breakable vs fire");
 
         isOverlap = true;
     }
@@ -83,7 +83,7 @@ Fire.prototype.checkOtherOverlap = function () {
 
     var checkOverlapPlayerFire = function (player) {
         if (game.physics.arcade.overlap(player.hitboxFire, _self.fireGroup, _self.destroyOtherOverlap)) {
-            console.log("player vs fire");
+            // console.log("player vs fire");
             isOverlap = true;
         }
     };
@@ -96,13 +96,13 @@ Fire.prototype.checkOtherOverlap = function () {
 };
 
 Fire.prototype.destroyOtherOverlap = function (destroyable) {
-    console.log("fire destroy overlap");
+    // console.log("fire destroy overlap");
     destroyable.kill();
 
 };
 
 Fire.prototype.endFire = function () {
-    console.log("end");
+    // console.log("end");
     this.fireGroup.callAll('kill');
     this.destroy();
 };

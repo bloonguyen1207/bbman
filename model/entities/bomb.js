@@ -5,7 +5,8 @@ function Bomb(aPlayer) {
     this.scale.setTo(0.08, 0.08);
     game.physics.enable(this, Phaser.Physics.ARCADE);
     this.body.immovable = true;
-    this.body.setSize(14, 14, 2, 2);
+    //????????
+    // this.body.setCircle(15, 185, 185);
     this.timer = game.time.events.add(3000, this.explode, this);
     this.isExploded = false;
 
@@ -21,7 +22,7 @@ Bomb.prototype.explode = function () {
         if (this.owner.checkLimit > 0) {
             this.owner.checkLimit -= 1;
         }
-        console.log("bomb.explode!!!");
+        // console.log("bomb.explode!!!");
         var _self = this;
         this.visible = false;
         fire.add(new Fire(_self));

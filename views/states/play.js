@@ -158,10 +158,10 @@ var play = {
         }
 
         //show hitboxFire
-        var playersArray = players.children;
-        playersArray.forEach(function (player) {
-            game.debug.body(player.hitboxFire);
-        });
+        // var playersArray = players.children;
+        // playersArray.forEach(function (player) {
+        //     game.debug.body(player.hitboxFire);
+        // });
 
         //show fireRange
         // var fireArray = fire.children;
@@ -170,6 +170,8 @@ var play = {
         // });
 
         //items.forEachAlive(renderGroup, this);
+        bombs.forEachAlive(renderGroup, this);
+        players.forEachAlive(renderGroup, this);
     }
 
     //Destroy item when Player overlap
