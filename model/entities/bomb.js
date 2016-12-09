@@ -10,7 +10,7 @@ function Bomb(aPlayer) {
     this.timer = game.time.events.add(3000, this.explode, this);
     this.isExploded = false;
 
-    // this.sizeTween = game.add.tween(this.scale).to({x: 0.1, y: 0.1}, 300, Phaser.Easing.Default, true, 0, true, true);
+    // this.sizeTween = game.add.tween(this.scale).({x: 0.1, y: 0.1}, 300, Phaser.Easing.Default, true, 0, true, true);
 
 }
 
@@ -26,7 +26,10 @@ Bomb.prototype.explode = function () {
         var _self = this;
         this.visible = false;
         fire.add(new Fire(_self));
+        // this.sizeTween.stop();
+
         this.destroy();
+
     }
-    // this.sizeTween.stop();
+
 };

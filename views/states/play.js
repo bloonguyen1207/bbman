@@ -14,6 +14,7 @@ var rdBlock;
 var rdItems;
 var type;
 
+
 var play = {
 
 	create: function() {
@@ -107,25 +108,95 @@ var play = {
 
         }
 
+        if (val == 1) {
+            for (i = 0; i < breakables.length; i++) {
+                rdBlock = Math.floor(Math.random() * 144) + 1;
+                //random integer associated with Item (If < 2 , generate bomblength .... )
+                rdItems = Math.floor(Math.random() * 14) + 1;
+                if (rdItems < 2) {
+                    type = 'length';
+                    items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
 
-        for (i = 0; i < breakables.length; i++) {
-            rdBlock = Math.floor(Math.random() * 144) + 1;
-            //random integer associated with Item (If < 2 , generate bomblength .... )
-            rdItems = Math.floor(Math.random() * 14) + 1;
-            if (rdItems < 2) {
-                type = 'length';
-                items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+                }
+                else if (rdItems < 3) {
+                    type = 'limit';
+                    items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
 
+                }
+                else if (rdItems < 4) {
+                    type = 'velocity';
+                    items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
+                }
             }
-            else if (rdItems < 3) {
-                type = 'limit';
-                items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+        }
+        else if (val == 2) {
+            for (i = 0; i < breakables.length; i++) {
+                rdBlock = Math.floor(Math.random() * 132) + 1;
+                //random integer associated with Item (If < 2 , generate bomblength .... )
+                rdItems = Math.floor(Math.random() * 14) + 1;
+                if (rdItems < 2) {
+                    type = 'length';
+                    items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
 
+                }
+                else if (rdItems < 3) {
+                    type = 'limit';
+                    items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
+                }
+                else if (rdItems < 4) {
+                    type = 'velocity';
+                    items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
+                }
             }
-            else if (rdItems < 4) {
-                type = 'velocity';
-                items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
 
+        }
+
+        else if (val == 3) {
+            for (i = 0; i < breakables.length; i++) {
+                rdBlock = Math.floor(Math.random() * 111) + 1;
+                //random integer associated with Item (If < 2 , generate bomblength .... )
+                rdItems = Math.floor(Math.random() * 14) + 1;
+                if (rdItems < 2) {
+                    type = 'length';
+                    items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
+                }
+                else if (rdItems < 3) {
+                    type = 'limit';
+                    items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
+                }
+                else if (rdItems < 4) {
+                    type = 'velocity';
+                    items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
+                }
+            }
+
+        }
+        else {
+            for (i = 0; i < breakables.length; i++) {
+                rdBlock = Math.floor(Math.random() * 83) + 1;
+                //random integer associated with Item (If < 2 , generate bomblength .... )
+                rdItems = Math.floor(Math.random() * 14) + 1;
+                if (rdItems < 2) {
+                    type = 'length';
+                    items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
+                }
+                else if (rdItems < 3) {
+                    type = 'limit';
+                    items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
+                }
+                else if (rdItems < 4) {
+                    type = 'velocity';
+                    items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
+                }
             }
         }
 
