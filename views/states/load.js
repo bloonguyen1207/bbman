@@ -29,6 +29,7 @@ var load = {
 
         // Room
         game.load.image('empty_room', 'res/tilesets/room.png');
+        game.load.image('exit', 'res/spritesheets/Button.png');
 
         // Player
         game.load.image('player_1', 'res/spritesheets/player1.png');

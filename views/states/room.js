@@ -13,7 +13,10 @@ var room = {
 		var room = game.add.sprite(game.world.width / 2 - 265, 60, 'empty_room');
 		room.scale.setTo(0.55, 0.55);
 
+		var back_btn = game.add.button(game.world.centerX + 140, game.world.centerY + 100, 'exit', this.actionOnClick, this, 2, 1, 0);
+		back_btn.scale.setTo(0.06, 0.03);
 
+		//TODO: Implement socket to add new icon to slot when a player enters room
 		var player = game.add.sprite(game.world.width / 2 + 45, 110, 'player_3');
 		player.scale.setTo(0.1, 0.1);
 		var player1 = game.add.sprite(game.world.width / 2 + 155, 110, 'player_1');
@@ -23,6 +26,7 @@ var room = {
 		var player3 = game.add.sprite(game.world.width / 2 + 155, 210, 'player_4');
 		player3.scale.setTo(0.1, 0.1);
 
+		// Declare stuff
 		var title = game.add.text(game.world.width / 2 - 50, 10, "Room", {
 			font: '40px Coiny', 
 		});
@@ -37,6 +41,12 @@ var room = {
 		proceed_key.onDown.addOnce(this.start, this);
 
 		
+	},
+
+	actionOnClick: function() {
+
+    	game.state.start('menu');
+	
 	},
 
 	start: function() {
