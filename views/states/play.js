@@ -216,9 +216,23 @@ var play = {
     update: function () {
         //game.physics.arcade.overlap(players, items, this.destroyItem);
         if (players.getFirstAlive() === null) {
-            console.log("End game!!!!");
-            game.paused = true;
+            var game_over = game.add.sprite(0, 0, 'game_over');
+            game_over.alpha = 0.1;
+            var title = game.add.text(game.world.width / 2 - 100, 10, "Game Over", {
+                font: '40px Coiny',
+                fill: '#ff9900',
+                align: 'center' 
+            });
+            // game.paused = true;
+            var back_btn = game.add.button(game.world.centerX - 30, game.world.height - 70, 'exit', this.actionOnClick, this, 2, 1, 0);
+            back_btn.scale.setTo(0.06, 0.03);
         }
+    },
+
+    actionOnClick: function() {
+
+        game.state.start('menu');
+    
     },
 
 	render: function() {

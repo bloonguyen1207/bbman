@@ -30,6 +30,10 @@ var load = {
         // Room
         game.load.image('empty_room', 'res/tilesets/room.png');
         game.load.image('exit', 'res/spritesheets/Button.png');
+        game.load.spritesheet('fire_room', 'res/spritesheets/fire_room.png', 128, 128);
+        game.load.spritesheet('ice_room', 'res/spritesheets/ice_room.png');
+        game.load.spritesheet('forest_room', 'res/spritesheets/forest_room.png', 271, 249);
+        game.load.spritesheet('cave_room', 'res/spritesheets/cave_room.png');
 
         // Player
         game.load.image('player_1', 'res/spritesheets/player1.png');
@@ -81,11 +85,14 @@ var load = {
         game.load.image('bomb_length', 'res/tilesets/item2.png');
         game.load.image('speed', 'res/tilesets/item3.png');
 
+        // Game Over
+        game.load.image('game_over', 'res/tilesets/game_over.png');
+
         // Script
         game.load.script('Player', 'model/entities/player.js');
         game.load.script('Bomb', 'model/entities/bomb.js');
         game.load.script('Fire', 'model/entities/fire.js');
-        game.load.script('Items', 'model/entities/items.js');
+        game.load.script('Items', 'model/entities/items.js');        
 
 	},
 
