@@ -5,10 +5,8 @@ function Bomb(aPlayer) {
     this.scale.setTo(0.08, 0.08);
     game.physics.enable(this, Phaser.Physics.ARCADE);
     this.body.immovable = true;
-    //????????
-    // this.body.setCircle(15, 185, 185);
-    this.timer = game.time.events.add(3000, this.explode, this);
-    this.isExploded = false;
+    this.timer = game.time.events.add(3000, this.explode, this); //after 3 secs, the bomb explodes
+    this.isExploded = false; //check if the bomb is exploded or not, avoid bug in chain explosion
 
     // this.sizeTween = game.add.tween(this.scale).({x: 0.1, y: 0.1}, 300, Phaser.Easing.Default, true, 0, true, true);
 
@@ -17,14 +15,15 @@ function Bomb(aPlayer) {
 Bomb.prototype = Object.create(Phaser.Sprite.prototype);
 
 Bomb.prototype.explode = function () {
-    if (!this.isExploded) {
+    if (!this.isExploded) { // if the bomb has exploded, it will not explode again
         this.isExploded = true;
-        if (this.owner.checkLimit > 0) {
+        if (this.owner.checkLimit > 0) { // decrease the number of placed bombs of the player
             this.owner.checkLimit -= 1;
         }
         // console.log("bomb.explode!!!");
         var _self = this;
         this.visible = false;
+        //add fire
         fire.add(new Fire(_self));
         // this.sizeTween.stop();
 

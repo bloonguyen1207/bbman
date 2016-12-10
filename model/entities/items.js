@@ -1,10 +1,3 @@
-//TODO Item class //DONE
-//TODO generateItems() -> generate items on map //DONE
-//TODO checkOverlap() -> check overlap player with items
-//TODO checkVisibility() -> Destroy breakables -> visible item
-//TODO Associate with player.js attribute (limit, length, velocity <-> bomb_num, bomb_length, speed)
-
-
 function Items(type, x, y) {
     this.type = null;
 
@@ -31,18 +24,21 @@ function Items(type, x, y) {
 
 }
 
-Items.prototype = Object.create(Phaser.Sprite.prototype);
+Items.prototype = Object.create(Phaser.Sprite.prototype); //inherit
 Items.prototype.update = function () {
     var _self = this;
-    game.physics.arcade.overlap(this, players, this.destroyItems);
+    game.physics.arcade.overlap(this, players, this.destroyItems); //check overlap between player and item
     breakables.forEachDead(this.checkCor, _self);
 };
 
+// if there is an item under a killed breakable block, the item will appear.
 Items.prototype.checkCor = function (breakable) {
     if (breakable.x === this.x && breakable.y === this.y) {
         this.visible = true;
     }
 };
+
+// destroy item and modify player properties
 Items.prototype.destroyItems = function (item, aPlayer) {
     if (item.type === 'length') {
         if (aPlayer.length < 8) {

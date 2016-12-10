@@ -7,10 +7,10 @@ function Player(x, y) {
     Phaser.Sprite.call(this, game, x, y, 'dude');
     game.add.existing(this);
     game.physics.enable(this, Phaser.Physics.ARCADE);
-    this.body.setCircle(16);
+    this.body.setCircle(16); //normal hitbox size
     this.body.collideWorldBounds = true;
 
-    this.dropX = 0;
+    this.dropX = 0; //store the location of the newest bomb
     this.dropY = 0;
 
     this.setUpHitbox();
@@ -18,20 +18,23 @@ function Player(x, y) {
 
 }
 
+//inherit
 Player.prototype = Object.create(Phaser.Sprite.prototype);
 
 Player.prototype.cursors = game.input.keyboard.createCursorKeys();
 Player.prototype.space_bar = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
-Player.prototype.flipFlop = false;
+Player.prototype.flipFlop = false; //use when player presses "space bar"
 
+//set up hit box for player and fire
 Player.prototype.setUpHitbox = function () {
     var _self = this;
-    this.hitboxDistance = 4;
-    this.hitboxFire = game.add.sprite(_self.x + _self.hitboxDistance, _self.y + _self.hitboxDistance, null);
+    this.hitboxDistance = 4; //distance between normal hitbox and this hitbox
+    this.hitboxFire = game.add.sprite(_self.x + _self.hitboxDistance, _self.y + _self.hitboxDistance, null); //create invisible object
     game.physics.arcade.enable(this.hitboxFire);
     this.hitboxFire.body.setCircle(16 - _self.hitboxDistance);
 };
 
+//set animation
 Player.prototype.setUpAnimation = function () {
     this.animations.add('down', [0, 1, 2, 3], 10, true);
     this.animations.add('left', [12, 13, 14, 15], 10, true);
@@ -43,12 +46,14 @@ Player.prototype.update = function () {
     game.physics.arcade.collide(this, unbreakables);
     game.physics.arcade.collide(this, breakables);
     game.physics.arcade.collide(this, shrubs);
+    //reset the location of the newest bomb to 0
     if (Math.abs(this.dropX - this.x) >= 32 || Math.abs(this.dropY - this.y) >= 32) {
         // console.log("set dropX Y");
         this.dropX = 0;
         this.dropY = 0;
     }
-    // console.log("Collide: ");
+    // check collision between bomb and player
+    // it will ignore the collision between the newest bomb and player
     game.physics.arcade.collide(this, bombs, null, function (aPlayer, aBomb) {
         // console.log(!(Math.abs(aBomb.x - aPlayer.dropX) <= 31 && Math.abs(aBomb.y - aPlayer.dropY) <= 31));
         // console.log(aBomb.x + " " + aBomb.y);
@@ -59,16 +64,19 @@ Player.prototype.update = function () {
     this.body.velocity.x = 0;
     this.body.velocity.y = 0;
 
+    // if the hitbox with Fire is killed, the player is killed too
     if (this.alive && !this.hitboxFire.alive) {
         this.kill();
     }
 
+    // the player can only move when he is alive
     if (this.alive) {
         this.movement();
         this.updateHitboxLocation();
     }
 };
 
+// update the location of the hitbox with fire
 Player.prototype.updateHitboxLocation = function () {
     var _self = this;
     this.hitboxFire.x = this.x + _self.hitboxDistance;
@@ -76,6 +84,7 @@ Player.prototype.updateHitboxLocation = function () {
     this.hitboxFire.z = this.z;
 };
 
+// capture the input key
 Player.prototype.movement = function () {
 
     if (this.cursors.left.isDown) {
@@ -109,7 +118,7 @@ Player.prototype.movement = function () {
     }
 
     if (this.space_bar.isDown) {
-        if (!this.flipFlop) { //flipFlop is used to set one press to one callback (instead of multi)
+        if (!this.flipFlop) { //if the player presses and holds the space bar, it only counts as onc press
             if (!this.checkBombAvailable()) {
                 // console.log(this.x);
                 if (this.checkLimit < this.limit) {
@@ -128,6 +137,7 @@ Player.prototype.movement = function () {
     }
 };
 
+// if there is already a bomb, the player can not place another bomb in that location
 Player.prototype.checkBombAvailable = function () {
     bombsArray = bombs.children;
 
@@ -150,6 +160,7 @@ Player.prototype.checkBombAvailable = function () {
     return false;
 };
 
+//round the location of player and place a bomb, ex: player stands at 70, 70 --> bomb location is 64, 64
 Player.prototype.dropBomb = function () {
     var bomb = new Bomb(this);
     var round_x = this.x % 32;
@@ -162,6 +173,7 @@ Player.prototype.dropBomb = function () {
     if (round_y > 10) {
         bomb.y += 32;
     }
+    // add bomb
     bombs.add(bomb);
 
     // console.log(bomb.x);

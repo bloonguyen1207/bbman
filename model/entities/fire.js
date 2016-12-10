@@ -1,21 +1,18 @@
-//TODO fix chain explosion
-
 function Fire(aBomb) {
     // this.id = id;
     //add player length
     this.belongBomb = aBomb;
-    this.fireGroup = game.add.group();
+    this.fireGroup = game.add.group(); //Fire object is actually a collection of small fire, called fireGroup
     this.fireGroup.enableBody = true;
     this.createExplosion();
 
     game.physics.enable(this, Phaser.Physics.ARCADE);
     this.body.immovable = true;
 
-    // this.body.setCircle(16);
-    game.time.events.add(500, this.endFire, this);
+    game.time.events.add(500, this.endFire, this); //after 0.5 secs, stop rendering fire
 }
 
-Fire.prototype = Object.create(Phaser.Sprite.prototype);
+Fire.prototype = Object.create(Phaser.Sprite.prototype); //inherit
 
 Fire.prototype.update = function () {
     this.checkOtherOverlap();
@@ -30,6 +27,8 @@ Fire.prototype.createExplosion = function () {
     Phaser.Sprite.call(this, game, this.belongBomb.x, this.belongBomb.y, 'fire');
     var crossExplosion = this.fireGroup.create(this.belongBomb.x, this.belongBomb.y, 'fire');
     crossExplosion.animations.add('explodeChanged', [0, 7, 14, 21, 14, 7, 0], 14);
+
+    //add sprite
     for (var i = 1; i <= this.belongBomb.owner.length; i++) {
         if (i === this.belongBomb.owner.length) {
             upExplosion = this.oneSideExplosion(this.belongBomb.x, this.belongBomb.y - i * 32, [3, 10, 17, 24, 17, 10, 3], upExplosion);
@@ -44,41 +43,51 @@ Fire.prototype.createExplosion = function () {
         }
     }
     // this.animations.play('explodeChanged', 14);
+    //render the fire
     this.fireGroup.callAll('animations.play', 'animations', 'explodeChanged', 14);
 };
 
+//create a small fire object and add to fireGroup
 Fire.prototype.oneSideExplosion = function (x, y, keyframe, side) {
     var temp;
     if (side) {
+        // if the fire overlap with anything except unbreakables and bombs, it will kill that object and not go longer
         temp = this.fireGroup.create(x, y, 'fire');
         if (this.checkOtherOverlap()) {
             side = false;
         }
 
+        // if the fire overlap with unbreakables, the small fire object will be killed and the fire will not go longer
         if (game.physics.arcade.overlap(unbreakables, temp)) {
             temp.kill();
             side = false;
         }
+
+        //check if the fire overlap with another bomb
         game.physics.arcade.overlap(temp, bombs, this.chainExplosion);
         temp.animations.add('explodeChanged', keyframe, 14);
     }
     return side;
 };
 
+
 Fire.prototype.chainExplosion = function (oneFire, bomb) {
-    game.time.events.remove(bomb.timer);
+    game.time.events.remove(bomb.timer); // remove the explosion time of the bomb so that it will explode immediately
     bomb.explode();
 };
 
 Fire.prototype.checkOtherOverlap = function () {
     var isOverlap = false;
     var _self = this;
+
+    //check overlap between fire and breakable block, if true, call destroy
     if (game.physics.arcade.overlap(breakables, this.fireGroup, this.destroyOtherOverlap)) {
         // console.log("breakable vs fire");
 
         isOverlap = true;
     }
 
+    // check overlap between fire and player
     playersArray = players.children;
 
     var checkOverlapPlayerFire = function (player) {
@@ -101,6 +110,7 @@ Fire.prototype.destroyOtherOverlap = function (destroyable) {
 
 };
 
+// at the end of rendering fire, everything is killed
 Fire.prototype.endFire = function () {
     // console.log("end");
     this.fireGroup.callAll('kill');
