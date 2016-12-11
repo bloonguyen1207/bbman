@@ -117,19 +117,25 @@ var play = {
                     type = 'length';
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
 
+
                 }
                 else if (rdItems < 3) {
                     type = 'limit';
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
 
                 }
                 else if (rdItems < 4) {
                     type = 'velocity';
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
 
+
                 }
             }
+
+
         }
+
         else if (val == 2) {
             for (i = 0; i < breakables.length; i++) {
                 rdBlock = Math.floor(Math.random() * 132) + 1;
@@ -151,6 +157,7 @@ var play = {
 
                 }
             }
+
 
         }
 
@@ -176,6 +183,7 @@ var play = {
                 }
             }
 
+
         }
         else {
             for (i = 0; i < breakables.length; i++) {
@@ -198,6 +206,7 @@ var play = {
 
                 }
             }
+
         }
 
 

@@ -1,3 +1,4 @@
+//Constructor for creating object item , 3 parameter , type of item, coor x and y to place item on map
 function Items(type, x, y) {
     this.type = null;
 
@@ -24,21 +25,22 @@ function Items(type, x, y) {
 
 }
 
-Items.prototype = Object.create(Phaser.Sprite.prototype); //inherit
+Items.prototype = Object.create(Phaser.Sprite.prototype);
 Items.prototype.update = function () {
     var _self = this;
-    game.physics.arcade.overlap(this, players, this.destroyItems); //check overlap between player and item
+    //check overlap each player with items
+    for (i = 0; i < players.length; i++) {
+        game.physics.arcade.overlap(this, players.children[i], this.destroyItems);
+    }
     breakables.forEachDead(this.checkCor, _self);
 };
 
-// if there is an item under a killed breakable block, the item will appear.
 Items.prototype.checkCor = function (breakable) {
+    //function to check coordinate of breakable , if there is a breakable item will invisible till breakable is destroyed
     if (breakable.x === this.x && breakable.y === this.y) {
         this.visible = true;
     }
 };
-
-// destroy item and modify player properties
 Items.prototype.destroyItems = function (item, aPlayer) {
     if (item.type === 'length') {
         if (aPlayer.length < 8) {
