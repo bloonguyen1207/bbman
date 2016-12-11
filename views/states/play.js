@@ -116,22 +116,39 @@ var play = {
                 if (rdItems < 2) {
                     type = 'length';
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+                    for (i = 0; i < items.length; i++) {
+                        if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
+                            break;
+                        }
+                    }
+
 
 
                 }
                 else if (rdItems < 3) {
                     type = 'limit';
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+                    for (i = 0; i < items.length; i++) {
+                        if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
+                            break;
+                        }
+                    }
 
 
                 }
                 else if (rdItems < 4) {
                     type = 'velocity';
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+                    for (i = 0; i < items.length; i++) {
+                        if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
+                            break;
+                        }
+                    }
 
 
                 }
             }
+
 
 
         }
@@ -144,19 +161,35 @@ var play = {
                 if (rdItems < 2) {
                     type = 'length';
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+                    for (i = 0; i < items.length; i++) {
+                        if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
+                            break;
+                        }
+                    }
 
                 }
                 else if (rdItems < 3) {
                     type = 'limit';
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+                    for (i = 0; i < items.length; i++) {
+                        if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
+                            break;
+                        }
+                    }
 
                 }
                 else if (rdItems < 4) {
                     type = 'velocity';
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+                    for (i = 0; i < items.length; i++) {
+                        if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
+                            break;
+                        }
+                    }
 
                 }
             }
+
 
 
         }
@@ -169,19 +202,35 @@ var play = {
                 if (rdItems < 2) {
                     type = 'length';
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+                    for (i = 0; i < items.length; i++) {
+                        if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
+                            break;
+                        }
+                    }
 
                 }
                 else if (rdItems < 3) {
                     type = 'limit';
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+                    for (i = 0; i < items.length; i++) {
+                        if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
+                            break;
+                        }
+                    }
 
                 }
                 else if (rdItems < 4) {
                     type = 'velocity';
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+                    for (i = 0; i < items.length; i++) {
+                        if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
+                            break;
+                        }
+                    }
 
                 }
             }
+
 
 
         }
@@ -193,22 +242,37 @@ var play = {
                 if (rdItems < 2) {
                     type = 'length';
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+                    for (i = 0; i < items.length; i++) {
+                        if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
+                            break;
+                        }
+                    }
 
                 }
                 else if (rdItems < 3) {
                     type = 'limit';
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+                    for (i = 0; i < items.length; i++) {
+                        if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
+                            break;
+                        }
+                    }
 
                 }
                 else if (rdItems < 4) {
                     type = 'velocity';
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+                    for (i = 0; i < items.length; i++) {
+                        if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
+                            break;
+                        }
+                    }
 
                 }
             }
 
-        }
 
+        }
 
         // Create Bombs + Fire
         bombs = game.add.group();

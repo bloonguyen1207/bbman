@@ -2,6 +2,7 @@
 function Items(type, x, y) {
     this.type = null;
 
+
     if (type === 'length') {
         Phaser.Sprite.call(this, game, x, y, 'bomb_length');
         this.type = 'length';
