@@ -2,6 +2,8 @@
 var instruction_text = "Press space to proceed";
 var titleOffsetX = 55;
 var titleOffsetY = 20;
+var state = 'map';
+var socket = io();
 
 var menu = {
 
@@ -21,12 +23,22 @@ var menu = {
 
 		var proceed_key = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
 
+		console.log(socket.id);
+
+		socket.emit('New player', { ack: 'new' });
+
+		socket.on('players', function (data) {
+			if(data.num_player > 1) {
+				state = 'room';		
+			}
+		});
 		proceed_key.onDown.addOnce(this.start, this);
+
 	},
 
 	start: function() {
 
-		game.state.start('map');
+		game.state.start(state);
 	
-	}
+	},
 }

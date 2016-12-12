@@ -49,17 +49,6 @@ var room = {
 			cave.scale.setTo(0.16, 0.16);
 
 		}
-
-		//TODO: Implement socket to add new icon to slot when a player enters room
-		var player = game.add.sprite(game.world.width / 2 + 38, 115, 'player_3');
-		player.scale.setTo(0.1, 0.1);
-		var player1 = game.add.sprite(game.world.width / 2 + 142, 115, 'player_1');
-		player1.scale.setTo(0.1, 0.1);
-		var player2 = game.add.sprite(game.world.width / 2 + 38, 215, 'player_2');
-		player2.scale.setTo(0.1, 0.1);
-		var player3 = game.add.sprite(game.world.width / 2 + 142, 215, 'player_4');
-		player3.scale.setTo(0.1, 0.1);
-
 		// Declare stuff
 		var title = game.add.text(game.world.width / 2 - 50, 10, "Room", {
 			font: '40px Coiny', 
@@ -74,7 +63,29 @@ var room = {
 		var proceed_key = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
 		proceed_key.onDown.addOnce(this.start, this);
 
-		
+		//TODO: Implement socket to add new icon to slot when a player enters room & transfer it to menu.js
+
+		socket.emit('New player', { ack: 'new' });
+
+		socket.on('players', function (data) {
+			console.log(data.num_player);
+			if (data.num_player == 1) {
+				var player1 = game.add.sprite(game.world.width / 2 + 38, 115, 'player_3');
+				player1.scale.setTo(0.1, 0.1);
+			} else if (data.num_player == 2) {
+				var player2 = game.add.sprite(game.world.width / 2 + 142, 115, 'player_1');
+				player2.scale.setTo(0.1, 0.1);
+			} else if (data.num_player == 3) {
+				var player3 = game.add.sprite(game.world.width / 2 + 38, 215, 'player_2');
+				player3.scale.setTo(0.1, 0.1);
+			} else if (data.num_player == 4) {
+				var player4 = game.add.sprite(game.world.width / 2 + 142, 215, 'player_4');
+				player4.scale.setTo(0.1, 0.1);
+			}
+			// var test = game.add.text(50, 50, data.num_player, {
+			// 	font: '30px Coiny',
+			// });
+		});
 	},
 
 	actionOnClick: function() {

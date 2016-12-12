@@ -1,7 +1,7 @@
 var instruction_text = "Press space to proceed";
 var titleOffsetX = 55;
 var titleOffsetY = 20;
-var socket = io();
+// var socket = io();
 
 var lobby = {
 
@@ -20,7 +20,7 @@ var lobby = {
 		var proceed_key = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
 		proceed_key.onDown.addOnce(this.start, this);
 
-		console.log(socket.id);
+		// console.log(socket.id);
 	},
 
 	start: function() {

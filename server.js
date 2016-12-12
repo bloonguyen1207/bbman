@@ -34,12 +34,17 @@ io.on('connection', function(socket){
     console.log(io.engine.clientsCount);
   });
 
+  socket.on('New player', function (data) {
+    io.emit('players', { num_player: io.engine.clientsCount });
+    console.log(data);
+  });
+
   // Create room
-  socket.on('create', function(room) {
-	  socket.join(room);
-	});
-  console.log(io.sockets.clients());
-  console.log(io.engine.clientsCount);
+ //  socket.on('create', function(room) {
+	//   socket.join(room);
+	// });
+  // console.log(io.sockets.clients());
+  // console.log(io.engine.clientsCount);
 });
 
 
