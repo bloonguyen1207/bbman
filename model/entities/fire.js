@@ -73,8 +73,8 @@ Fire.prototype.oneSideExplosion = function (x, y, keyframe, side) {
 
 Fire.prototype.chainExplosion = function (oneFire, bomb) {
     //if (timer larger than 100) {
-    game.time.events.remove(bomb.timer); // remove the explosion time of the bomb so that it will explode immediately
-    bomb.timer = game.time.events.add(100, bomb.explode, bomb); //after 3 secs, the bomb explodes
+    game.time.events.remove(bomb.timer); // remove the explosion time of the bomb
+    bomb.timer = game.time.events.add(100, bomb.explode, bomb); //after 100 ms, the bomb explodes
     //}
 };
 
