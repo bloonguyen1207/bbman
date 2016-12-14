@@ -95,6 +95,7 @@ Fire.prototype.checkOtherOverlap = function () {
     var checkOverlapPlayerFire = function (player) {
         if (game.physics.arcade.overlap(player.hitboxFire, _self.fireGroup, _self.destroyOtherOverlap)) {
             // console.log("player vs fire");
+            deathSfx.play();
             isOverlap = true;
         }
     };

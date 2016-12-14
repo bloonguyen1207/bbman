@@ -1,5 +1,6 @@
 function Bomb(aPlayer) {
     // this.id = id;
+    bombSfx.play();
     this.owner = aPlayer;
     Phaser.Sprite.call(this, game, aPlayer.x, aPlayer.y, 'bomb');
     this.scale.setTo(0.08, 0.08);
@@ -16,6 +17,7 @@ Bomb.prototype = Object.create(Phaser.Sprite.prototype);
 
 Bomb.prototype.explode = function () {
     if (!this.isExploded) { // if the bomb has exploded, it will not explode again
+        explodeSfx.play();
         this.isExploded = true;
         if (this.owner.checkLimit > 0) { // decrease the number of placed bombs of the player
             this.owner.checkLimit -= 1;

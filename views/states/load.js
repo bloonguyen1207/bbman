@@ -92,13 +92,32 @@ var load = {
         game.load.script('Player', 'model/entities/player.js');
         game.load.script('Bomb', 'model/entities/bomb.js');
         game.load.script('Fire', 'model/entities/fire.js');
-        game.load.script('Items', 'model/entities/items.js');        
+        game.load.script('Items', 'model/entities/items.js');
+
+        // Sound effect
+        game.load.audio('bombSfx', 'res/sound/sfx/explosion_dull.ogg');
+        game.load.audio('explodeSfx', 'res/sound/sfx/8bit_bomb_explosion.ogg');
+        game.load.audio('deathSfx', 'res/sound/sfx/Hero_Death_00.ogg');
+
+        // Background music
+        game.load.audio('caveBgm', 'res/sound/bgm/GO4YRGUN.ogg')
 
 	},
 
 	create: function() {
+        bombSfx = game.add.audio('bombSfx');
+        explodeSfx = game.add.audio('explodeSfx');
+        deathSfx = game.add.audio('deathSfx');
 
-		game.state.start('menu');
+        caveBgm = game.add.audio('caveBgm');
+
+        game.state.start('menu');
 
 	}
 };
+
+var bombSfx;
+var explodeSfx;
+var deathSfx;
+
+var caveBgm;
