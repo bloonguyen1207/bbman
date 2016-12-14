@@ -13,6 +13,7 @@ var select_frame;
 var map = {
 
 	create: function() {
+        val = 1;
 		uiPickSfx.play();
 
 		// Initialize stuff
