@@ -95,12 +95,15 @@ var load = {
         game.load.script('Items', 'model/entities/items.js');
 
         // Sound effect
+        game.load.audio('uiNavSfx', 'res/sound/sfx/Menu_Navigate_03.ogg');
+        game.load.audio('uiPickSfx', 'res/sound/sfx/Shoot_01.ogg');
         game.load.audio('bombSfx', 'res/sound/sfx/explosion_dull.ogg');
         game.load.audio('explodeSfx', 'res/sound/sfx/8bit_bomb_explosion.ogg');
         game.load.audio('deathSfx', 'res/sound/sfx/Hero_Death_00.ogg');
         game.load.audio('pickupSfx', 'res/sound/sfx/Pickup_01.ogg');
 
         // Background music
+        game.load.audio('introBgm', 'res/sound/bgm/LEMONS.ogg');
         game.load.audio('fireBgm', 'res/sound/bgm/CHILL1.ogg');
         game.load.audio('iceBgm', 'res/sound/bgm/WINTER.ogg');
         game.load.audio('forestBgm', 'res/sound/bgm/BUGS.ogg');
@@ -109,21 +112,27 @@ var load = {
 	},
 
 	create: function() {
+        uiNavSfx = game.add.audio('uiNavSfx');
+        uiPickSfx = game.add.audio('uiPickSfx');
+
         bombSfx = game.add.audio('bombSfx');
         explodeSfx = game.add.audio('explodeSfx');
         deathSfx = game.add.audio('deathSfx');
-        pickupSfx = game.add.audio('pickupSfx');
+        pickupSfx = game.add.audio('pickupSfx', 0.5);
 
-        fireBgm = game.add.audio('fireBgm');
-        iceBgm = game.add.audio('iceBgm');
-        forestBgm = game.add.audio('forestBgm');
-        caveBgm = game.add.audio('caveBgm');
-        Bgm = [fireBgm, iceBgm, forestBgm, caveBgm];
+        introBgm = game.add.audio('introBgm', 0.5, true);
+        fireBgm = game.add.audio('fireBgm', 0.5, true);
+        iceBgm = game.add.audio('iceBgm', 0.5, true);
+        forestBgm = game.add.audio('forestBgm', 0.5, true);
+        caveBgm = game.add.audio('caveBgm', 0.5, true);
+        Bgm = [introBgm, fireBgm, iceBgm, forestBgm, caveBgm];
 
         game.state.start('menu');
 
 	}
 };
+var uiNavSfx;
+var uiPickSfx;
 
 var bombSfx;
 var explodeSfx;

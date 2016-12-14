@@ -13,6 +13,7 @@ var select_frame;
 var map = {
 
 	create: function() {
+		uiPickSfx.play();
 
 		// Initialize stuff
 
@@ -75,34 +76,42 @@ var map = {
 		var down_key = game.input.keyboard.addKey(Phaser.KeyCode.DOWN);
 		if (val == 1) {
 			if (down_key.isDown) {
+				uiNavSfx.play();
 				select_frame.y = 180;
 				val = 3;
 			} else if (right_key.isDown){
+				uiNavSfx.play();
 				select_frame.x = 210;
 				val = 2;
 			}
 		} else if (val == 2) {
 			if (left_key.isDown) {
+				uiNavSfx.play();
 				select_frame.x = 0;
 				val = 1;
 			} else if (down_key.isDown) {
+				uiNavSfx.play();
 				select_frame.y = 180;
 				val = 4;
 			}
 		} else if (val == 3) {
 			if (right_key.isDown) {
+				uiNavSfx.play();
 				select_frame.x = 210;
 				val = 4;
 			} else if (up_key.isDown) {
+				uiNavSfx.play();
 				select_frame.y = 0;
 				val = 1;
 			}
 
 		} else if (val == 4) {
 			if (left_key.isDown) {
+				uiNavSfx.play();
 				select_frame.x = 0;
 				val = 3;
 			} else if (up_key.isDown) {
+				uiNavSfx.play();
 				select_frame.y = 0;
 				val = 2;
 			}

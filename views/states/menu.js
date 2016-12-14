@@ -8,10 +8,11 @@ var socket = io();
 var menu = {
 
 	create: function() {
+		Bgm[0].play();
 		var bg = game.add.sprite(0, 0,'menubg');
 		bg.scale.setTo(0.6, 0.65);
 
-        game.load.image('title','res/tilesets/tiltle_screen.png');
+		game.load.image('title', 'res/tilesets/title.png');
 		
 		var instruction = game.add.text(game.world.centerX - 175, game.world.height - 40, instruction_text, {
 			font: '30px Coiny',

@@ -5,6 +5,7 @@ var titleOffsetY = 20;
 var room = {
 
 	create: function() {
+		uiPickSfx.play();
 
 		// Declare stuff
 		var slots = 4;

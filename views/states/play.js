@@ -284,13 +284,15 @@ var play = {
         game.world.bringToTop(players);
         game.world.bringToTop(breakables);
 
-        Bgm[val - 1].play();
-        
+        uiPickSfx.play();
+        Bgm[val].play();
+        Bgm[0].destroy();
 	},
 
     update: function () {
         //game.physics.arcade.overlap(players, items, this.destroyItem);
         if (players.getFirstAlive() === null) {
+            Bgm[val].destroy();
             var game_over = game.add.sprite(0, 0, 'game_over');
             game_over.alpha = 0.1;
             var title = game.add.text(game.world.width / 2 - 100, 10, "Game Over", {
