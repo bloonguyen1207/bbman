@@ -98,6 +98,7 @@ var load = {
         game.load.audio('bombSfx', 'res/sound/sfx/explosion_dull.ogg');
         game.load.audio('explodeSfx', 'res/sound/sfx/8bit_bomb_explosion.ogg');
         game.load.audio('deathSfx', 'res/sound/sfx/Hero_Death_00.ogg');
+        game.load.audio('pickupSfx', 'res/sound/sfx/Pickup_01.ogg');
 
         // Background music
         game.load.audio('caveBgm', 'res/sound/bgm/GO4YRGUN.ogg')
@@ -108,6 +109,7 @@ var load = {
         bombSfx = game.add.audio('bombSfx');
         explodeSfx = game.add.audio('explodeSfx');
         deathSfx = game.add.audio('deathSfx');
+        pickupSfx = game.add.audio('pickupSfx');
 
         caveBgm = game.add.audio('caveBgm');
 
@@ -119,5 +121,6 @@ var load = {
 var bombSfx;
 var explodeSfx;
 var deathSfx;
+var pickupSfx;
 
 var caveBgm;

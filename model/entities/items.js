@@ -43,6 +43,7 @@ Items.prototype.checkCor = function (breakable) {
     }
 };
 Items.prototype.destroyItems = function (item, aPlayer) {
+    pickupSfx.play();
     if (item.type === 'length') {
         if (aPlayer.length < 8) {
             aPlayer.length++;
