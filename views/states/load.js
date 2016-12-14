@@ -101,7 +101,10 @@ var load = {
         game.load.audio('pickupSfx', 'res/sound/sfx/Pickup_01.ogg');
 
         // Background music
-        game.load.audio('caveBgm', 'res/sound/bgm/GO4YRGUN.ogg')
+        game.load.audio('fireBgm', 'res/sound/bgm/CHILL1.ogg');
+        game.load.audio('iceBgm', 'res/sound/bgm/WINTER.ogg');
+        game.load.audio('forestBgm', 'res/sound/bgm/BUGS.ogg');
+        game.load.audio('caveBgm', 'res/sound/bgm/GO4YRGUN.ogg');
 
 	},
 
@@ -111,7 +114,11 @@ var load = {
         deathSfx = game.add.audio('deathSfx');
         pickupSfx = game.add.audio('pickupSfx');
 
+        fireBgm = game.add.audio('fireBgm');
+        iceBgm = game.add.audio('iceBgm');
+        forestBgm = game.add.audio('forestBgm');
         caveBgm = game.add.audio('caveBgm');
+        Bgm = [fireBgm, iceBgm, forestBgm, caveBgm];
 
         game.state.start('menu');
 
@@ -123,4 +130,4 @@ var explodeSfx;
 var deathSfx;
 var pickupSfx;
 
-var caveBgm;
+var Bgm;

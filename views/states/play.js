@@ -283,6 +283,8 @@ var play = {
 
         game.world.bringToTop(players);
         game.world.bringToTop(breakables);
+
+        Bgm[val - 1].play();
         
 	},
 
