@@ -2,6 +2,7 @@ function Bomb(aPlayer) {
     // this.id = id;
     bombSfx.play();
     this.owner = aPlayer;
+    this.length = aPlayer.length;
     Phaser.Sprite.call(this, game, aPlayer.x, aPlayer.y, 'bomb');
     this.scale.setTo(0.08, 0.08);
     game.physics.enable(this, Phaser.Physics.ARCADE);

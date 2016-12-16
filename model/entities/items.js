@@ -45,24 +45,20 @@ Items.prototype.checkCor = function (breakable) {
 Items.prototype.destroyItems = function (item, aPlayer) {
     pickupSfx.play();
     if (item.type === 'length') {
-        if (aPlayer.length < 8) {
+        if (aPlayer.length < 6) {
             aPlayer.length++;
         }
     }
     else if (item.type === 'limit') {
-        if (aPlayer.limit < 10) {
+        if (aPlayer.limit < 8) {
             aPlayer.limit++;
         }
     }
     else if (item.type === 'velocity') {
-        if (aPlayer.speed < 210) {
+        if (aPlayer.speed < 230) {
             aPlayer.speed = aPlayer.speed + 20;
         }
     }
     item.destroy();
     console.log('Item picked');
 };
-
-
-
-

@@ -319,11 +319,11 @@ var play = {
             game.debug.body(member);
         }
 
-        //show hitboxFire
-        // var playersArray = players.children;
-        // playersArray.forEach(function (player) {
-        //     game.debug.body(player.hitboxFire);
-        // });
+        // show hitboxFire
+        var playersArray = players.children;
+        playersArray.forEach(function (player) {
+            game.debug.body(player.hitboxFire);
+        });
 
         //show fireRange
         // var fireArray = fire.children;
