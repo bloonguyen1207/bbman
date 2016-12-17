@@ -103,11 +103,11 @@ var load = {
             game.load.audio('pickupSfx', ['res/sound/ogg/sfx/Pickup_01.ogg', 'res/sound/mp3/sfx/Pickup_01.mp3']);
 
         // Background music
-            game.load.audio('introBgm', ['res/sound/ogg/bgm/LEMONS.ogg', 'res/sound/mp3/bgm/LEMONS.mp3']);
-            game.load.audio('fireBgm', ['res/sound/ogg/bgm/CHILL1.ogg', 'res/sound/mp3/bgm/CHILL1.mp3']);
+        game.load.audio('introBgm', ['res/sound/ogg/bgm/HUMANOID.ogg', 'res/sound/mp3/bgm/HUMANOID.mp3']);
+        game.load.audio('fireBgm', ['res/sound/ogg/bgm/LEMONS.ogg', 'res/sound/mp3/bgm/LEMONS.mp3']);
             game.load.audio('iceBgm', ['res/sound/ogg/bgm/WINTER.ogg', 'res/sound/mp3/bgm/WINTER.mp3']);
             game.load.audio('forestBgm', ['res/sound/ogg/bgm/BUGS.ogg', 'res/sound/mp3/bgm/BUGS.mp3']);
-            game.load.audio('caveBgm', ['res/sound/bgm/ogg/GO4YRGUN.ogg', 'res/sound/mp3/bgm/GO4YRGUN.mp3']);
+        game.load.audio('caveBgm', ['res/sound/ogg/bgm/GO4YRGUN.ogg', 'res/sound/mp3/bgm/GO4YRGUN.mp3']);
 
 	},
 

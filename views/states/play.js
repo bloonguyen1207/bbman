@@ -116,7 +116,10 @@ var play = {
                 rdItems = Math.floor(Math.random() * 14) + 1;
                 if (rdItems < 2) {
                     type = 'length';
+
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
+
                     for (i = 0; i < items.length; i++) {
                         if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
                             break;
@@ -124,11 +127,13 @@ var play = {
                     }
 
 
-
                 }
                 else if (rdItems < 3) {
                     type = 'limit';
+
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
+
                     for (i = 0; i < items.length; i++) {
                         if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
                             break;
@@ -139,7 +144,11 @@ var play = {
                 }
                 else if (rdItems < 4) {
                     type = 'velocity';
+
+
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
+
                     for (i = 0; i < items.length; i++) {
                         if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
                             break;
@@ -161,7 +170,9 @@ var play = {
                 rdItems = Math.floor(Math.random() * 14) + 1;
                 if (rdItems < 2) {
                     type = 'length';
+
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
                     for (i = 0; i < items.length; i++) {
                         if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
                             break;
@@ -171,7 +182,9 @@ var play = {
                 }
                 else if (rdItems < 3) {
                     type = 'limit';
+
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
                     for (i = 0; i < items.length; i++) {
                         if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
                             break;
@@ -181,7 +194,9 @@ var play = {
                 }
                 else if (rdItems < 4) {
                     type = 'velocity';
+
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
                     for (i = 0; i < items.length; i++) {
                         if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
                             break;
@@ -202,7 +217,9 @@ var play = {
                 rdItems = Math.floor(Math.random() * 14) + 1;
                 if (rdItems < 2) {
                     type = 'length';
+
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
                     for (i = 0; i < items.length; i++) {
                         if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
                             break;
@@ -212,7 +229,9 @@ var play = {
                 }
                 else if (rdItems < 3) {
                     type = 'limit';
+
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
                     for (i = 0; i < items.length; i++) {
                         if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
                             break;
@@ -222,19 +241,19 @@ var play = {
                 }
                 else if (rdItems < 4) {
                     type = 'velocity';
+
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
                     for (i = 0; i < items.length; i++) {
                         if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
                             break;
                         }
                     }
-
                 }
+
             }
-
-
-
         }
+
         else {
             for (i = 0; i < breakables.length; i++) {
                 rdBlock = Math.floor(Math.random() * 83) + 1;
@@ -242,7 +261,9 @@ var play = {
                 rdItems = Math.floor(Math.random() * 14) + 1;
                 if (rdItems < 2) {
                     type = 'length';
+
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
                     for (i = 0; i < items.length; i++) {
                         if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
                             break;
@@ -252,7 +273,9 @@ var play = {
                 }
                 else if (rdItems < 3) {
                     type = 'limit';
+
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
                     for (i = 0; i < items.length; i++) {
                         if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
                             break;
@@ -262,7 +285,9 @@ var play = {
                 }
                 else if (rdItems < 4) {
                     type = 'velocity';
+
                     items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
                     for (i = 0; i < items.length; i++) {
                         if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
                             break;
