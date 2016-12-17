@@ -18,6 +18,7 @@ var type;
 var play = {
 
 	create: function() {
+        socket.emit('setInGame', true);
 
         if (val == 1) {
             game.stage.backgroundColor = bg_map1;
@@ -307,9 +308,9 @@ var play = {
     },
 
     actionOnClick: function() {
-
+        socket.emit('setMapOnly', false);
+        socket.emit('setInGame', false);
         game.state.start('menu');
-    
     },
 
 	render: function() {

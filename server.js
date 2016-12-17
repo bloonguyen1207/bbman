@@ -25,18 +25,78 @@ http.listen(app.get('port'), function() {
 });
 
 // Web Socket
-io.on('connection', function(socket){
+var state = {
+  inGame: false,
+  num_player: io.engine.clientsCount,
+  clientState: [],
+  isSetMap: false
+};
+
+var clients = [];
+
+io.on('connection', function(socket) {
   console.log('a user connected with id: ' + socket.id);
+
+  state.num_player = io.engine.clientsCount;
+  clients.push(socket.id);
+  state.clientState.push("menu");
+
+  // console.log("server file state:");
+  // console.log(state.inGame);
 
   // User disconnected
   socket.on('disconnect', function(){
     console.log('user disconnected');
     console.log(io.engine.clientsCount);
+
+    //remove client
+    state.clientState.splice(clients.indexOf(socket.id), 1);
+    clients.splice(clients.indexOf(socket.id), 1);
+
+    state.num_player = io.engine.clientsCount;
+
+    //reset
+    if (io.engine.clientsCount == 0) {
+      state.inGame = false;
+      state.isSetMap = false;
+    }
+
   });
 
   socket.on('New player', function (data) {
     io.emit('players', { num_player: io.engine.clientsCount });
     console.log(data);
+  });
+
+  socket.on('setInGame', function(inGame) {
+    state.inGame = inGame;
+    console.log("set In game: ");
+    console.log(state.inGame);
+  });
+
+  socket.on('setMap', function(isSetMap) {
+    state.isSetMap = isSetMap;
+    console.log("set map, update State");
+    io.emit('updateState', state);
+    console.log(state.isSetMap);
+  });
+
+  socket.on('setMapOnly', function(isSetMap) {
+    console.log("set Map only");
+    state.isSetMap = isSetMap;
+    console.log(state.isSetMap);
+  });
+
+  socket.on('upState', function(clientState) {
+    // console.log("clientState on server file");
+    // console.log(clientState);
+    state.clientState[clients.indexOf(socket.id)] = clientState;
+  });
+
+  socket.on('checkState', function() {
+    console.log("return state");
+    console.log(state.isSetMap);
+    io.emit('returnState', state);
   });
 
   // Create room

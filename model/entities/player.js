@@ -28,7 +28,7 @@ Player.prototype.flipFlop = false; //use when player presses "space bar"
 //set up hit box for player and fire
 Player.prototype.setUpHitbox = function () {
     var _self = this;
-    this.hitboxDistance = 4; //distance between normal hitbox and this hitbox
+    this.hitboxDistance = 8; //distance between normal hitbox and this hitbox
     this.hitboxFire = game.add.sprite(_self.x + _self.hitboxDistance, _self.y + _self.hitboxDistance, null); //create invisible object
     game.physics.arcade.enable(this.hitboxFire);
     this.hitboxFire.body.setCircle(16 - _self.hitboxDistance);

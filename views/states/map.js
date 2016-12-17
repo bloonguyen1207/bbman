@@ -13,6 +13,8 @@ var select_frame;
 var map = {
 
 	create: function() {
+        socket.emit('setMap', true);
+
         val = 1;
 		uiPickSfx.play();
 
@@ -122,7 +124,6 @@ var map = {
 	},
 
 	start: function() {
-
 		game.state.start('room');
 	
 	}
