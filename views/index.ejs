@@ -20,14 +20,125 @@
 
         <style>
             body {
-                background-color: black;
                 font-family: 'Coiny', cursive;
+                background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/res/bg.png');
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
             }
             
             canvas {
-                display: block;   
-                margin: auto;
+                display: block;
+                margin-left: 25%;
+                border: 1px solid #f9f9f9;
+
             }
+
+            .btn {
+                margin: 0 auto;
+            }
+
+            .navigation {
+                height: 200px;
+                position: relative;
+            }
+
+            .about {
+                font-size: 20px;
+                font-weight: bold;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                height: 70px;
+                width: 200px;
+            }
+
+            .tut {
+                font-size: 20px;
+                font-weight: bold;
+                position: absolute;
+                top: 50%;
+                left: 30%;
+                height: 70px;
+                width: 200px;
+            }
+
+            .tutorial {
+                color: white;
+                font-size: 20px;
+            }
+
+            /*Animation for hover*/
+            @-webkit-keyframes hvr-bob {
+                0% {
+                    -webkit-transform: translateY(-8px);
+                    transform: translateY(-8px);
+                }
+                50% {
+                    -webkit-transform: translateY(-4px);
+                    transform: translateY(-4px);
+                }
+                100% {
+                    -webkit-transform: translateY(-8px);
+                    transform: translateY(-8px);
+                }
+            }
+
+            @keyframes hvr-bob {
+                0% {
+                    -webkit-transform: translateY(-8px);
+                    transform: translateY(-8px);
+                }
+                50% {
+                    -webkit-transform: translateY(-4px);
+                    transform: translateY(-4px);
+                }
+                100% {
+                    -webkit-transform: translateY(-8px);
+                    transform: translateY(-8px);
+                }
+            }
+
+            @-webkit-keyframes hvr-bob-float {
+                100% {
+                    -webkit-transform: translateY(-8px);
+                    transform: translateY(-8px);
+                }
+            }
+
+            @keyframes hvr-bob-float {
+                100% {
+                    -webkit-transform: translateY(-8px);
+                    transform: translateY(-8px);
+                }
+            }
+
+            .hvr-bob {
+                display: inline-block;
+                vertical-align: middle;
+                -webkit-transform: perspective(1px) translateZ(0);
+                transform: perspective(1px) translateZ(0);
+                box-shadow: 0 0 1px transparent;
+            }
+
+            .hvr-bob:hover, .hvr-bob:focus, .hvr-bob:active {
+                -webkit-animation-name: hvr-bob-float, hvr-bob;
+                animation-name: hvr-bob-float, hvr-bob;
+                -webkit-animation-duration: .3s, 1.5s;
+                animation-duration: .3s, 1.5s;
+                -webkit-animation-delay: 0s, .3s;
+                animation-delay: 0s, .3s;
+                -webkit-animation-timing-function: ease-out, ease-in-out;
+                animation-timing-function: ease-out, ease-in-out;
+                -webkit-animation-iteration-count: 1, infinite;
+                animation-iteration-count: 1, infinite;
+                -webkit-animation-fill-mode: forwards;
+                animation-fill-mode: forwards;
+                -webkit-animation-direction: normal, alternate;
+                animation-direction: normal, alternate;
+            }
+
 
         </style>
 
@@ -45,7 +156,30 @@
 
     </head>
     <body>
-        
-        <div class="game" style = "display : block;   margin: 0 auto;"></div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="game"></div>
+        </div>
+
+
+        <div class="row">
+            <div class="navigation">
+
+                <button onclick="location.href='/views/about.html';" type="button"
+                        class="hvr-bob about btn btn-warning">About us.
+                </button>
+                <button onclick="location.href='/views/tutorial.html';" type="button"
+                        class="hvr-bob tut btn btn-warning">Tutorials.
+                </button>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
     </body>
 </html>
