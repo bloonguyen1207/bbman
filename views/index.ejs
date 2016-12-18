@@ -21,17 +21,19 @@
         <style>
             body {
                 font-family: 'Coiny', cursive;
-                background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/res/bg.png');
-                -webkit-background-size: cover;
+                background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/res/bg2.png');
+                background-position: top left;
+                /*-webkit-background-size: cover;
                 -moz-background-size: cover;
                 -o-background-size: cover;
-                background-size: cover;
+                background-size: cover;*/
             }
             
             canvas {
                 display: block;
-                margin-left: 25%;
-                border: 1px solid #f9f9f9;
+                margin-left: auto;
+                margin-right: auto;
+                border: 2px solid black;
 
             }
 
@@ -40,33 +42,26 @@
             }
 
             .navigation {
-                height: 200px;
-                position: relative;
+                margin-top: 30px;
+                margin-bottom: 20px;
             }
 
             .about {
                 font-size: 20px;
                 font-weight: bold;
-                position: absolute;
-                top: 50%;
-                left: 50%;
                 height: 70px;
                 width: 200px;
+                margin-left: 40px;
             }
 
             .tut {
                 font-size: 20px;
                 font-weight: bold;
-                position: absolute;
-                top: 50%;
-                left: 30%;
                 height: 70px;
                 width: 200px;
-            }
-
-            .tutorial {
-                color: white;
-                font-size: 20px;
+                margin-right: auto;
+                margin-left: auto;
+                margin-left: 30px;
             }
 
             /*Animation for hover*/
@@ -164,16 +159,18 @@
         </div>
 
 
-        <div class="row">
-            <div class="navigation">
-
-                <button onclick="location.href='/views/about.html';" type="button"
-                        class="hvr-bob about btn btn-warning">About us.
-                </button>
-                <button onclick="location.href='/views/tutorial.html';" type="button"
-                        class="hvr-bob tut btn btn-warning">Tutorials.
-                </button>
-
+        <div class="navigation">
+            <div class="row">
+                <div class="col-md-3 col-md-offset-3">
+                    <button onclick="location.href='/views/about.html';" type="button"
+                            class="hvr-bob about btn btn-warning">About us
+                    </button>
+                </div>
+                <div class="col-md-3">
+                    <button onclick="location.href='/views/tutorial.html';" type="button"
+                            class="hvr-bob tut btn btn-warning">Tutorials
+                    </button>
+                </div>
             </div>
         </div>
 

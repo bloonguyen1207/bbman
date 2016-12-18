@@ -30,15 +30,16 @@
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
-            background-size: cover;
+            background-size: cover;*/
         }
 
-        h1 {
-            font-size: 70px;
+        .jumbotron {
+            margin-top: 20px;
         }
 
-        h2 {
-            font-size: 50px;
+        #home {
+            height:40px;
+            width: auto;
         }
 
         .controls {
@@ -46,12 +47,27 @@
             font-size: 20px
         }
 
-        th, td {
-            color: black;
-            font-size: 20px;
-            padding: 10px;
+        .key img{
+            margin-left:80px;
+            margin-right:auto;
         }
 
+        .space img {
+            margin-top: 20px;
+        }
+
+        .list-group-item {
+            font-size: 18px;
+        }
+
+        .item {
+            margin-right: 20px;
+        }
+
+        #more {
+            width:32px;
+            height: auto;
+        }
 
     </style>
 
@@ -59,47 +75,61 @@
 
 <body>
 <div class="container">
-    <h1> Tutorials</h1>
-    <div class="row">
-        <div class="controls">
-            <h2> Controls </h2>
-            <div class="key">
-                <img src="/res/keyboard.gif">
-            </div>
-            <div class="key-des">
+    <div class="jumbotron">
+        <h1> Tutorials <a href="/"><img id="home" src="/res/home.png"></a></h1>
 
-                <p><strong> Use your arrow keys to move the character</strong></p>
-            </div>
-            <div class="space">
-                <img src="/res/spacebar.png">
+        <hr/>
 
-                <p><strong> Use your spacebar to place a bomb</strong></p>
-            </div>
+        <h2> Controls </h2>
 
+        <div class="row">
+            <div class="col-md-6">
+                <div class="key">
+                    <img src="/res/arrowkeys.png">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="space">
+                    <img src="/res/spacebar.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong> Use arrow keys to move the character</strong></p>
+            </div>
+            <div class="col-md-6">
+                <p><strong> Use spacebar to place a bomb</strong></p>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-6">
+                <h2> Items</h2>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-success">
+                        <img class="item" src="/res/tilesets/item1.png"/>
+                        Increase one bomb
+                    </li>
+                    
+                    <li class="list-group-item list-group-item-info">
+                        <img class="item" src="/res/tilesets/item2.png">
+                        Increase length of fire when bomb explodes
+                    </li>
+                    
+                    <li class="list-group-item list-group-item-warning">
+                        <img class="item" src="/res/tilesets/item3.png">
+                    Increase speed
+                    </li>
+                    
+                    <li class="list-group-item list-group-item-danger">
+                        <img class="item" id="more" src="/res/ite.jpg">
+                        More items coming soon...
+                    </li>
+                </ul>
         </div>
     </div>
-    <div class="row">
-        <div class="item">
-            <h2> Items</h2>
-            <table>
-                <tr>
-                    <td><img src="/res/tilesets/item1.png"/></td>
-                    <td>Increase one bomb</td>
-                </tr>
-                <tr>
-                    <td><img src="/res/tilesets/item2.png"></td>
-                    <td>Increase length of fire when bomb explodes</td>
-                </tr>
-                <tr>
-                    <td><img src="/res/tilesets/item3.png"></td>
-                    <td>Increase speed</td>
-                </tr>
-            </table>
-
-
-        </div>
-    </div>
-
 </div>
 
 

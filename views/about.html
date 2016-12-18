@@ -33,9 +33,8 @@
             background-size: cover;
         }
 
-        .greeting h1 {
-            color: black;
-            font-size: 50px;
+        .greeting{
+            margin-top: 20px;
         }
 
         .greeting p {
@@ -43,12 +42,33 @@
             font-size: 20px;
         }
 
+        .list-group-item {
+            font-size: 18px;
+        }
+
+        #home {
+            height:40px;
+            width: auto;
+        }
+
         .tech img {
-            width: 300px;
-            height: 300px;
             padding-left: 20px;
         }
 
+        .tech #phaser {
+            height: 300px;
+            width: auto;
+        }
+
+        .tech #nodejs {
+            height: 300px;
+            width: auto;
+        }
+
+        .tech #socketio {
+            height: 300px;
+            width: auto;
+        }
 
     </style>
 
@@ -56,38 +76,33 @@
 
 <body>
 <div class="container">
-    <div class="greeting">
-        <h1> Hi there !</h1>
-        <p> We are from Max Leveled Team currently studying Building IT Systems.
-            <br> This bomberman game is our first javascript game
-            <br> Our beloved and professional member:
-        <ol>
-            <li>
-                <strong>Tran Huu Khanh Van</strong>
-            </li>
-            <li>
-                <strong>Nguyen Thi Mai Thao</strong>
-            </li>
-            <li>
-                <strong>Nguyen Ha Phuong Mai</strong>
-            </li>
-            <li>
-                <strong>Tran Minh Quang</strong>
-            </li>
-
-        </ol>
-        <br>
+    <div class="jumbotron greeting">
+        <h1>Hi there ! <a href="/"><img id="home" src="/res/home.png"></a> </h1>
+        <p>We are from Max Leveled Team currently studying Building IT Systems (2016C)</p>
+        <p>This bomberman game is our first javascript game.</p>
+        <p>Our beloved and professional member:</p>
+        <div class="row">
+            <div class="col-md-4">
+                <ul class="list-group">
+                  <li class="list-group-item list-group-item-success">Tran Huu Khanh Van</li>
+                  <li class="list-group-item list-group-item-info">Nguyen Thi Mai Thao</li>
+                  <li class="list-group-item list-group-item-warning">Nguyen Ha Phuong Mai</li>
+                  <li class="list-group-item list-group-item-danger">Tran Minh Quang</li>
+                </ul>
+            </div>
+        </div>
+        
+        <hr/>
+        
         <h2>Tools and technologies used: </h2>
-
-
-        </p>
+    
+        <div class="tech">
+            <img id="phaser" src="/res/phaser.png">
+            <img id="heroku" src="/res/heroku.png">
+            <img id="nodejs" src="/res/nodejs.png">
+            <img id="socketio" src="/res/socketio.png">
+        </div>
     </div>
-    <div class="tech">
-        <img src="/res/phaser.png">
-        <img src="/res/heroku.png">
-
-    </div>
-
 </div>
 
 
