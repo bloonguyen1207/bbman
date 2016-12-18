@@ -16,6 +16,14 @@ app.get('/', function(req, res) {
 	res.render('index');
 });
 
+app.get('/about', function(req, res) {
+  res.render('about');
+})
+
+app.get('/howtoplay', function(req, res) {
+  res.render('tutorial');
+})
+
 app.get('/cool', function(req, res) {
   res.send(cool());
 });

@@ -27,6 +27,7 @@
         body {
             font-family: 'Raleway', sans-serif;
             background: url('/res/aboutbg.png');
+            background-position: bottom right;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -35,6 +36,7 @@
 
         .jumbotron {
             margin-top: 20px;
+            background: transparent;
         }
 
         #home {
@@ -58,6 +60,8 @@
 
         .list-group-item {
             font-size: 18px;
+            background: transparent;
+            border:transparent;
         }
 
         .item {
@@ -76,7 +80,7 @@
 <body>
 <div class="container">
     <div class="jumbotron">
-        <h1> Tutorials <a href="/"><img id="home" src="/res/home.png"></a></h1>
+        <h1> How to play <a href="/"><img id="home" src="/res/home.png"></a></h1>
 
         <hr/>
 
@@ -108,22 +112,22 @@
             <div class="col-md-6">
                 <h2> Items</h2>
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-success">
+                    <li class="list-group-item">
                         <img class="item" src="/res/tilesets/item1.png"/>
                         Increase one bomb
                     </li>
                     
-                    <li class="list-group-item list-group-item-info">
+                    <li class="list-group-item">
                         <img class="item" src="/res/tilesets/item2.png">
                         Increase length of fire when bomb explodes
                     </li>
                     
-                    <li class="list-group-item list-group-item-warning">
+                    <li class="list-group-item">
                         <img class="item" src="/res/tilesets/item3.png">
                     Increase speed
                     </li>
                     
-                    <li class="list-group-item list-group-item-danger">
+                    <li class="list-group-item">
                         <img class="item" id="more" src="/res/ite.jpg">
                         More items coming soon...
                     </li>

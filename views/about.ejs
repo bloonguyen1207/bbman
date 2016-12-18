@@ -27,6 +27,7 @@
         body {
             font-family: 'Raleway', sans-serif;
             background: url('/res/aboutbg.png');
+            background-position: bottom right;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -35,6 +36,7 @@
 
         .greeting{
             margin-top: 20px;
+            background: transparent;
         }
 
         .greeting p {
@@ -44,6 +46,9 @@
 
         .list-group-item {
             font-size: 18px;
+            color: black;
+            background: transparent;
+            border:transparent;
         }
 
         #home {
@@ -53,22 +58,26 @@
 
         .tech img {
             padding-left: 20px;
-        }
-
-        .tech #phaser {
             height: 300px;
             width: auto;
         }
 
-        .tech #nodejs {
-            height: 300px;
+        .tech #webstorm {
+            height: 200px;
             width: auto;
+            margin-left: 100px;
         }
 
-        .tech #socketio {
+        .tech #sublime {
+            height: 200px;
+            width: auto;
+            margin-left: 100px;
+        }
+
+        /*.tech #socketio {
             height: 300px;
             width: auto;
-        }
+        }*/
 
     </style>
 
@@ -83,12 +92,12 @@
         <p>Our beloved and professional member:</p>
         <div class="row">
             <div class="col-md-4">
-                <ul class="list-group">
-                  <li class="list-group-item list-group-item-success">Tran Huu Khanh Van</li>
-                  <li class="list-group-item list-group-item-info">Nguyen Thi Mai Thao</li>
-                  <li class="list-group-item list-group-item-warning">Nguyen Ha Phuong Mai</li>
-                  <li class="list-group-item list-group-item-danger">Tran Minh Quang</li>
-                </ul>
+                <ol class="list-group">
+                  <li class="list-group-item">Tran Huu Khanh Van</li>
+                  <li class="list-group-item">Nguyen Thi Mai Thao</li>
+                  <li class="list-group-item">Nguyen Ha Phuong Mai</li>
+                  <li class="list-group-item">Tran Minh Quang</li>
+                </ol>
             </div>
         </div>
         
@@ -101,6 +110,8 @@
             <img id="heroku" src="/res/heroku.png">
             <img id="nodejs" src="/res/nodejs.png">
             <img id="socketio" src="/res/socketio.png">
+            <img id="sublime" src="/res/sublime.png">
+            <img id="webstorm" src="/res/webstorm.jpg">
         </div>
     </div>
 </div>
