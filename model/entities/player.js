@@ -1,5 +1,5 @@
-function Player(x, y) {
-    // this.id = id;
+function Player(id, x, y) {
+    this.id = id;
     this.length = 1;
     this.limit = 2;
     this.checkLimit = 0;
@@ -70,7 +70,7 @@ Player.prototype.update = function () {
     }
 
     // the player can only move when he is alive
-    if (this.alive) {
+    if (this.alive && this.id == socket.id) {
         this.movement();
         this.updateHitboxLocation();
     }
