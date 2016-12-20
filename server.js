@@ -146,9 +146,9 @@ io.on('connection', function(socket) {
   });
 
   socket.on('setInGame', function(inGame) {
-      serverState.isInGame = inGame;
+    serverState.isInGame = inGame;
     console.log("set In game: ");
-      console.log(serverState.isInGame);
+    console.log(serverState.isInGame);
   });
 
     socket.on('resetGame', function () {

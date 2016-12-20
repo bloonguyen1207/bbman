@@ -5,35 +5,38 @@ var titleOffsetY = 20;
 var room = {
     playerReadyGroup: [],
 
-	create: function() {
+    create: function () {
         state = 'room';
-		uiPickSfx.play();
+
+        uiPickSfx.play();
+        muteToggle.onDown.add(toggleAudio, this);
+
 
         socket.emit('setClientState', 'room');
 
-		// Declare stuff
-		var slots = 4;
+        // Declare stuff
+        var slots = 4;
 
-		var bg = game.add.sprite(0, 0,'grassbg');
+        var bg = game.add.sprite(0, 0, 'grassbg');
 
         var roomImage = game.add.sprite(game.world.width / 2 - 265, 60, 'empty_room');
         roomImage.scale.setTo(0.55, 0.55);
 
-		var back_btn = game.add.button(game.world.centerX + 130, game.world.centerY + 100, 'exit', this.actionOnClick, this, 2, 1, 0);
-		back_btn.scale.setTo(0.06, 0.03);
+        var back_btn = game.add.button(game.world.centerX + 130, game.world.centerY + 100, 'exit', this.actionOnClick, this, 2, 1, 0);
+        back_btn.scale.setTo(0.06, 0.03);
 
         this.proceed_key = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
 
-		// Declare stuff
-		var title = game.add.text(game.world.width / 2 - 50, 10, "Room", {
-			font: '40px Coiny', 
-		});
-		var instruction = game.add.text(game.world.centerX - 175, game.world.height - 40, instruction_text, {
-			font: '30px Coiny',
-		});
-		instruction.alpha = 0;
+        // Declare stuff
+        var title = game.add.text(game.world.width / 2 - 50, 10, "Room", {
+            font: '40px Coiny',
+        });
+        var instruction = game.add.text(game.world.centerX - 175, game.world.height - 40, instruction_text, {
+            font: '30px Coiny',
+        });
+        instruction.alpha = 0;
 
-		game.add.tween(instruction).to( { alpha: 1 }, 800, Phaser.Easing.Linear.None, true, 0, 1000, true);
+        game.add.tween(instruction).to({alpha: 1}, 800, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
 		//TODO: Implement socket to add new icon to slot when a player enters room & transfer it to menu.js
 

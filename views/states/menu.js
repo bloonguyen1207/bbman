@@ -7,14 +7,16 @@ var socket = io();
 
 var menu = {
 
-	create: function() {
+    create: function () {
         state = 'menu';
 
         Bgm[0].play();
-		var bg = game.add.sprite(0, 0,'menubg');
-		bg.scale.setTo(0.6, 0.65);
+        var bg = game.add.sprite(0, 0, 'menubg');
+        bg.scale.setTo(0.6, 0.65);
 
-		game.load.image('title', 'res/tilesets/title.png');
+        game.load.image('title', 'res/tilesets/title.png');
+
+        muteToggle.onDown.add(toggleAudio, this);
 
         // run
         socket.emit('checkServerState');
