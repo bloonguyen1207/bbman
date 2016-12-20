@@ -6,6 +6,9 @@ var players;
 var mapText;
 var bombs;
 var fire;
+var timeLimit;
+var timerEvent;
+var timerText;
 var bg_map1 = "#602320";
 var bg_map2 = "#A5F2F3";
 var bg_map4 = "#261712";
@@ -52,8 +55,24 @@ var play = {
         fire = game.add.group();
         fire.enableBody = true;
 
+        // Timer
+        timeLimit = game.time.create();
+        timerEvent = timeLimit.add(Phaser.Timer.MINUTE * 0 + Phaser.Timer.SECOND * 5, this.endTimer, this);
+        timeLimit.start();
+
+
+        timerText = game.add.text(game.world.centerX, 0, "", {
+            font: "20px Arial",
+            fill: "#000000",
+            backgroundColor: "#ffffff",
+            align: "center"
+        });
+        timerText.anchor.set(0.5, 0);
+
+
         game.world.bringToTop(players);
         game.world.bringToTop(breakables);
+        game.world.bringToTop(timerText);
 
         socket.emit('checkServerState');
         socket.on('returnServerState', function (serverState) {
@@ -69,6 +88,15 @@ var play = {
 	},
 
     update: function () {
+        //print timeLimit
+        if (timeLimit.running) {
+            timerText.setText(this.formatTime(Math.round((timerEvent.delay - timeLimit.ms) / 1000)));
+            // console.log(timerText);
+            // game.debug.text(timerText);
+        }
+        else {
+            timerText.setText('TIME\'S UP!');
+        }
         //game.physics.arcade.overlap(players, items, this.destroyItem);
         if (play.isFinishLoad && players.getFirstAlive() === null) {
             Bgm[play.mapValue].stop();
@@ -114,6 +142,21 @@ var play = {
         //items.forEachAlive(renderGroup, this);
         // bombs.forEachAlive(renderGroup, this);
         players.forEachAlive(renderGroup, this);
+
+
+    },
+
+    endTimer: function () {
+        // Stop the timeLimit when the delayed event triggers
+        timeLimit.stop();
+        //TODO: trigger game over
+    },
+
+    formatTime: function (s) {
+        // Convert seconds (s) to a nicely formatted and padded time string
+        var minutes = "0" + Math.floor(s / 60);
+        var seconds = "0" + (s - minutes * 60);
+        return minutes.substr(-2) + ":" + seconds.substr(-2);
     },
 
     //Destroy item when Player overlap

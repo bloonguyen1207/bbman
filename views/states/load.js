@@ -98,18 +98,18 @@ var load = {
         game.load.script('Items', 'model/entities/items.js');
 
         // Sound effect
-            game.load.audio('uiNavSfx', ['res/sound/ogg/sfx/Menu_Navigate_03.ogg', 'res/sound/mp3/sfx/Menu_Navigate_03.mp3']);
-            game.load.audio('uiPickSfx', ['res/sound/ogg/sfx/Shoot_01.ogg', 'res/sound/mp3/sfx/Shoot_01.mp3']);
-            game.load.audio('bombSfx', ['res/sound/ogg/sfx/explosion_dull.ogg', 'res/sound/mp3/sfx/explosion_dull.mp3']);
-            game.load.audio('explodeSfx', ['res/sound/ogg/sfx/8bit_bomb_explosion.ogg', 'res/sound/mp3/sfx/8bit_bomb_explosion.mp3']);
-            game.load.audio('deathSfx', ['res/sound/ogg/sfx/Hero_Death_00.ogg', 'res/sound/mp3/sfx/Hero_Death_00.mp3']);
-            game.load.audio('pickupSfx', ['res/sound/ogg/sfx/Pickup_01.ogg', 'res/sound/mp3/sfx/Pickup_01.mp3']);
+        game.load.audio('uiNavSfx', ['res/sound/ogg/sfx/Menu_Navigate_03.ogg', 'res/sound/mp3/sfx/Menu_Navigate_03.mp3']);
+        game.load.audio('uiPickSfx', ['res/sound/ogg/sfx/Shoot_01.ogg', 'res/sound/mp3/sfx/Shoot_01.mp3']);
+        game.load.audio('bombSfx', ['res/sound/ogg/sfx/explosion_dull.ogg', 'res/sound/mp3/sfx/explosion_dull.mp3']);
+        game.load.audio('explodeSfx', ['res/sound/ogg/sfx/8bit_bomb_explosion.ogg', 'res/sound/mp3/sfx/8bit_bomb_explosion.mp3']);
+        game.load.audio('deathSfx', ['res/sound/ogg/sfx/Hero_Death_00.ogg', 'res/sound/mp3/sfx/Hero_Death_00.mp3']);
+        game.load.audio('pickupSfx', ['res/sound/ogg/sfx/Pickup_01.ogg', 'res/sound/mp3/sfx/Pickup_01.mp3']);
 
         // Background music
         game.load.audio('introBgm', ['res/sound/ogg/bgm/HUMANOID.ogg', 'res/sound/mp3/bgm/HUMANOID.mp3']);
         game.load.audio('fireBgm', ['res/sound/ogg/bgm/LEMONS.ogg', 'res/sound/mp3/bgm/LEMONS.mp3']);
-            game.load.audio('iceBgm', ['res/sound/ogg/bgm/WINTER.ogg', 'res/sound/mp3/bgm/WINTER.mp3']);
-            game.load.audio('forestBgm', ['res/sound/ogg/bgm/BUGS.ogg', 'res/sound/mp3/bgm/BUGS.mp3']);
+        game.load.audio('iceBgm', ['res/sound/ogg/bgm/WINTER.ogg', 'res/sound/mp3/bgm/WINTER.mp3']);
+        game.load.audio('forestBgm', ['res/sound/ogg/bgm/BUGS.ogg', 'res/sound/mp3/bgm/BUGS.mp3']);
         game.load.audio('caveBgm', ['res/sound/ogg/bgm/GO4YRGUN.ogg', 'res/sound/mp3/bgm/GO4YRGUN.mp3']);
 
 	},
