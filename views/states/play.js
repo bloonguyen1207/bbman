@@ -22,7 +22,7 @@ var play = {
     mapValue: 0,
     isFinishLoad: false,
 
-	create: function() {
+    create: function () {
         state = 'play';
         socket.emit('setClientState', 'play');
         socket.emit('setInGame', true);
@@ -60,6 +60,8 @@ var play = {
         timerEvent = timeLimit.add(Phaser.Timer.MINUTE * 0 + Phaser.Timer.SECOND * 5, this.endTimer, this);
         timeLimit.start();
 
+        // Sound toggle hotkey
+        muteToggle.onDown.add(toggleAudio, this);
 
         timerText = game.add.text(game.world.centerX, 0, "", {
             font: "20px Arial",
@@ -85,7 +87,7 @@ var play = {
             }
         });
 
-	},
+    },
 
     update: function () {
         //print timeLimit
@@ -113,14 +115,14 @@ var play = {
         }
     },
 
-    actionOnClick: function() {
+    actionOnClick: function () {
         // socket.removeAllListeners('updateServerState');
         socket.removeAllListeners('returnServerState');
         socket.emit('resetGame');
         game.state.start('menu');
     },
 
-	render: function() {
+    render: function () {
         // change group name
         function renderGroup(member) {
             //show hitbox of single sprite
@@ -191,7 +193,7 @@ var play = {
         for (i = 0; i < 15; i++) {
             for (var j = 0; j < 19; j++) {
                 if (mapText[i][j] == 1) {
-                    switch(val) {
+                    switch (val) {
                         case 1:
                             unbreakable = unbreakables.create(j * 32, i * 32, 'volcano');
                             unbreakable.scale.setTo(0.2, 0.2);
@@ -213,7 +215,7 @@ var play = {
                     }
                     unbreakable.body.immovable = true;
                 } else if (mapText[i][j] == 2) {
-                    switch(val) {
+                    switch (val) {
                         case 1:
                             breakable = breakables.create(j * 32, i * 32, 'fossil');
                             break;
