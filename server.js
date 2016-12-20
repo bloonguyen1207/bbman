@@ -38,18 +38,17 @@ var serverState = {
     numPlayer: io.engine.clientsCount,
     clientsState: [],
     clientsReady: [],
+    clients: [],
     isSetMap: false,
     mapValue: 0
 };
-
-var clients = [];
 
 io.on('connection', function(socket) {
   console.log('a user connected with id: ' + socket.id);
 
     var initClient = function () {
         serverState.numPlayer = io.engine.clientsCount; // update numPlayer
-        clients.push(socket.id); // track index
+        serverState.clients.push(socket.id); // track index
         serverState.clientsState.push("menu"); // check all ready to get in game play
         serverState.clientsReady.push("");
 
@@ -76,26 +75,36 @@ io.on('connection', function(socket) {
     };
 
     var removeClient = function () {
-        var clientIndex = clients.indexOf(socket.id);
+        var clientIndex = serverState.clients.indexOf(socket.id);
         if (serverState.clientsReady[clientIndex] == "Host") {
             updateHost(clientIndex);
         }
         serverState.clientsState.splice(clientIndex, 1); // remove player serverState
         serverState.clientsReady.splice(clientIndex, 1);
-        clients.splice(clientIndex, 1); // remove player
+        serverState.clients.splice(clientIndex, 1); // remove player
 
-        socket.broadcast.emit('updateServerState', serverState);
         console.log("removeClient");
 
         serverState.numPlayer = io.engine.clientsCount; // update numPlayer
+        socket.broadcast.emit('updateServerState', serverState);
+
     };
 
     var resetServer = function () {
-        if (io.engine.clientsCount == 0) {
+        var countPlayers = 0;
+        serverState.clientsState.forEach(function (clientState) {
+            if (clientState != "menu") {
+                countPlayers += 1;
+            }
+        });
+
+        if (countPlayers == 0) {
             serverState.isInGame = false;
             serverState.isSetMap = false;
             serverState.mapValue = 0;
         }
+
+        socket.broadcast.emit('updateServerState', serverState);
     };
 
     initClient();
@@ -119,7 +128,7 @@ io.on('connection', function(socket) {
     });
 
     socket.on('setClientState', function (clientState) {
-        serverState.clientsState[clients.indexOf(socket.id)] = clientState;
+        serverState.clientsState[serverState.clients.indexOf(socket.id)] = clientState;
         socket.broadcast.emit('updateServerState', serverState);
     });
 
@@ -131,18 +140,18 @@ io.on('connection', function(socket) {
 
     socket.on('setMapValue', function (mapValue) {
         serverState.mapValue = mapValue;
-        serverState.clientsReady[clients.indexOf(socket.id)] = "Host";
+        serverState.clientsReady[serverState.clients.indexOf(socket.id)] = "Host";
         // console.log(serverState.mapValue);
         socket.broadcast.emit('updateServerState', serverState);
     });
 
     socket.on('setClientReady', function (clientReady) {
-        serverState.clientsReady[clients.indexOf(socket.id)] = clientReady;
+        serverState.clientsReady[serverState.clients.indexOf(socket.id)] = clientReady;
         io.sockets.emit('updateServerState', serverState);
     });
 
     socket.on('getClientIndex', function () {
-        socket.emit('returnClientIndex', clients.indexOf(socket.id));
+        socket.emit('returnClientIndex', serverState.clients.indexOf(socket.id));
   });
 
   socket.on('setInGame', function(inGame) {

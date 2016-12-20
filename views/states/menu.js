@@ -68,7 +68,7 @@ var menu = {
     // check server state
     checkServerState: function (serverState) {
         // console.log("check server state");
-        if (!serverState.isInGame && serverState.numPlayer <= 4) {
+        if (!serverState.isInGame && serverState.clients.indexOf("/#" + socket.id) < 4) {
             menu.proceed_key = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
 
             console.log(socket.id);
@@ -78,7 +78,7 @@ var menu = {
         } else {
             // change text
             // console.log("in game!!!");
-            if (serverState.numPlayer > 4) {
+            if (serverState.clients.indexOf("/#" + socket.id) >= 4) {
                 menu.updateInstruction("Full slots!!! Please come back later");
             } else {
                 menu.updateInstruction("In game!!! Please come back later");
