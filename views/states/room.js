@@ -52,6 +52,7 @@ var room = {
 
 	actionOnClick: function() {
         socket.removeAllListeners('updateServerState');
+        socket.removeAllListeners('letsPlay');
         // socket.removeAllListeners('returnServerState');
     	game.state.start('menu');
 	
@@ -154,47 +155,47 @@ var room = {
         room.playerReadyGroup[index].setText(clientReady);
     },
 
+    updateHost: function (serverState) {
+        var countPlayers = 0;
+        var checkReady = 1; //Host counts as Ready
+        serverState.clientsState.forEach(function (clientState, index) {
+            if (clientState == 'room') {
+                countPlayers += 1;
+                if (serverState.clientsReady[index] == "Ready") {
+                    checkReady += 1;
+                }
+            }
+        });
+        if (checkReady == countPlayers && checkReady > 1) {
+            socket.emit('goToGame');
+            socket.once('letsPlay', function () {
+                room.start();
+            });
+        } else {
+            socket.removeAllListeners("letsPlay");
+            socket.emit('setClientReady', "Host");
+        }
+    },
+
     checkClientReady: function (key, serverState) {
         socket.emit('getClientIndex');
         socket.once('returnClientIndex', function (clientIndex) {
             var clientReady = serverState.clientsReady[clientIndex];
             if (clientReady == "Host") {
-                var countPlayers = 0;
-                var checkReady = 1; //Host counts as Ready
-                serverState.clientsState.forEach(function (clientState, index) {
-                    console.log("forEach");
-                    console.log(index);
-                    console.log(clientState);
-                    if (clientState == 'room') {
-                        countPlayers += 1;
-                        console.log("index");
-                        console.log(index);
-                        console.log(serverState.clientsReady[index]);
-                        if (serverState.clientsReady[index] == "Ready") {
-                            checkReady += 1;
-                        }
-                    }
-                });
-                console.log(countPlayers);
-                console.log(checkReady);
-
-                if (checkReady == countPlayers && checkReady > 1) {
-                    // socket.emit('setInGame');
-                    //emit in game
-                    room.start();
-                } else {
-                    socket.emit('setClientReady', "Host");
-                }
+                room.updateHost(serverState);
             } else if (clientReady == "") {
                 socket.emit('setClientReady', "Ready");
+                socket.once('letsPlay', function () {
+                    room.start();
+                })
             } else if (clientReady == "Ready") {
+                socket.removeAllListeners("letsPlay");
                 socket.emit('setClientReady', "");
             }
         });
     },
 
     runRoom: function (serverState) {
-        room.chooseImage(serverState.mapValue);
         room.drawPlayers(serverState);
         room.drawPlayersReady(serverState);
         room.proceed_key.onDown.addOnce(this.checkClientReady, this, 0, serverState);
@@ -204,6 +205,7 @@ var room = {
         if (state == 'room') {
             room.initPlayerImages();
             room.initPlayersReady();
+            room.chooseImage(serverState.mapValue);
 
             room.runRoom(serverState);
 

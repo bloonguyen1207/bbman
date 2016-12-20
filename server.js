@@ -151,6 +151,10 @@ io.on('connection', function(socket) {
     console.log(serverState.isInGame);
   });
 
+    socket.on('goToGame', function () {
+        io.sockets.emit('letsPlay');
+    });
+
     socket.on('resetGame', function () {
         serverState.isInGame = false;
         serverState.mapValue = 0;
@@ -159,7 +163,7 @@ io.on('connection', function(socket) {
             serverState.clientsReady[index] = "";
         });
         socket.broadcast.emit('updateServerState', serverState);
-  });
+    });
   // Create room
  //  socket.on('create', function(room) {
 	//   socket.join(room);

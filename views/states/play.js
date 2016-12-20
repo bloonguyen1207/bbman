@@ -235,7 +235,7 @@ var play = {
             }
 
         }
-        socket.once('returnClientIndex', function(idx) {
+        socket.once('returnClientIndex', function (idx) {
             console.log(idx);
             players.add(new Player(socket.id, spawnSpots[idx][1] * 32, spawnSpots[idx][0] * 32));
         });
