@@ -22,7 +22,8 @@ var play = {
     mapValue: 0,
     isFinishLoad: false,
 
-    create: function () {
+	create: function() {
+        isFinishLoad = false;
         state = 'play';
         socket.emit('setClientState', 'play');
         socket.emit('setInGame', true);
@@ -175,6 +176,7 @@ var play = {
         var unbreakable;
         var breakable;
         var count = 0;
+        var spawnSpots = [];
 
         var mapFile = game.cache.getText('map' + val);
         mapText = mapFile.split('\n');
@@ -226,13 +228,17 @@ var play = {
                     breakable.body.immovable = true;
 
                 } else if (mapText[i][j] == 'x') {
-                    count += 1;
+                    socket.emit('getClientIndex');
+                    spawnSpots.push([i, j]);
                     console.log(count);
-                    players.add(new Player(socket.id, j * 32, i * 32));
                 }
             }
 
         }
+        socket.once('returnClientIndex', function(idx) {
+            console.log(idx);
+            players.add(new Player(socket.id, spawnSpots[idx][1] * 32, spawnSpots[idx][0] * 32));
+        });
     },
 
     initItems: function (blength) {

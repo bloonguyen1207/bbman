@@ -45,6 +45,7 @@ var clients = [];
 
 io.on('connection', function(socket) {
   console.log('a user connected with id: ' + socket.id);
+  var spawnSpots= [];
 
     var initClient = function () {
         serverState.numPlayer = io.engine.clientsCount; // update numPlayer
@@ -72,6 +73,8 @@ io.on('connection', function(socket) {
         }
     };
 
+
+
     initClient();
 
   // User disconnected
@@ -86,44 +89,44 @@ io.on('connection', function(socket) {
       resetServer();
   });
 
-    socket.on('checkServerState', function () {
-        // console.log("return serverState");
-        // console.log(serverState.isSetMap);
-        socket.emit('returnServerState', serverState);
-    });
-
-    socket.on('setClientState', function (clientState) {
-        serverState.clientsState[clients.indexOf(socket.id)] = clientState;
-        socket.broadcast.emit('updateServerState', serverState);
-    });
-
-    socket.on('setIsSetMap', function (isSetMap) {
-        serverState.isSetMap = isSetMap;
-        console.log(serverState.isSetMap);
-        socket.broadcast.emit('updateServerState', serverState);
+  socket.on('checkServerState', function () {
+    // console.log("return serverState");
+    // console.log(serverState.isSetMap);
+    socket.emit('returnServerState', serverState);
   });
 
-    socket.on('setMapValue', function (mapValue) {
-        serverState.mapValue = mapValue;
-        console.log(serverState.mapValue);
-        socket.broadcast.emit('updateServerState', serverState);
-    });
+  socket.on('setClientState', function (clientState) {
+    serverState.clientsState[clients.indexOf(socket.id)] = clientState;
+    socket.broadcast.emit('updateServerState', serverState);
+  });
 
-    socket.on('getClientIndex', function () {
-        socket.emit('returnClientIndex', clients.indexOf(socket.id));
+  socket.on('setIsSetMap', function (isSetMap) {
+    serverState.isSetMap = isSetMap;
+    console.log(serverState.isSetMap);
+    socket.broadcast.emit('updateServerState', serverState);
+  });
+
+  socket.on('setMapValue', function (mapValue) {
+      serverState.mapValue = mapValue;
+      console.log(serverState.mapValue);
+      socket.broadcast.emit('updateServerState', serverState);
+  });
+
+  socket.on('getClientIndex', function () {
+      socket.emit('returnClientIndex', clients.indexOf(socket.id));
   });
 
   socket.on('setInGame', function(inGame) {
-      serverState.isInGame = inGame;
+    serverState.isInGame = inGame;
     console.log("set In game: ");
-      console.log(serverState.isInGame);
+    console.log(serverState.isInGame);
   });
 
-    socket.on('resetGame', function () {
-        serverState.isInGame = false;
-        serverState.mapValue = 0;
-        serverState.isSetMap = false;
-        socket.broadcast.emit('updateServerState', serverState);
+  socket.on('resetGame', function () {
+    serverState.isInGame = false;
+    serverState.mapValue = 0;
+    serverState.isSetMap = false;
+    socket.broadcast.emit('updateServerState', serverState);
   });
   // Create room
  //  socket.on('create', function(room) {
