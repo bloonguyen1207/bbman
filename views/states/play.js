@@ -27,55 +27,6 @@ var play = {
         socket.emit('setClientState', 'play');
         socket.emit('setInGame', true);
 
-        //game.physics.enable()
-        // Create iron iron
-        irons = game.add.group();
-        irons.enableBody = true;
-
-        // Create unbreakable unbreakable
-        unbreakables = game.add.group();
-        unbreakables.enableBody = true;
-
-        // Create breakables
-        breakables = game.add.group();
-        breakables.enableBody = true;
-
-        //Item
-        items = game.add.group();
-        items.enableBody = true;
-        //var item;
-
-        // Create players
-        players = game.add.group();
-
-        // Create Bombs + Fire
-        bombs = game.add.group();
-        bombs.enableBody = true;
-
-        fire = game.add.group();
-        fire.enableBody = true;
-
-        // Timer
-        timeLimit = game.time.create();
-        timerEvent = timeLimit.add(Phaser.Timer.MINUTE * 0 + Phaser.Timer.SECOND * 5, this.endTimer, this);
-        timeLimit.start();
-
-        // Sound toggle hotkey
-        muteToggle.onDown.add(toggleAudio, this);
-
-        timerText = game.add.text(game.world.centerX, 0, "", {
-            font: "20px Arial",
-            fill: "#000000",
-            backgroundColor: "#ffffff",
-            align: "center"
-        });
-        timerText.anchor.set(0.5, 0);
-
-
-        game.world.bringToTop(players);
-        game.world.bringToTop(breakables);
-        game.world.bringToTop(timerText);
-
         this.initWorld();
 
         socket.emit('checkServerState');
@@ -158,7 +109,7 @@ var play = {
     //     item.kill();
     //     console.log("item Pick");
     // }
-    initWorld: function() {
+    initWorld: function () {
         //game.physics.enable()
         // Create iron iron
         irons = game.add.group();
@@ -218,7 +169,7 @@ var play = {
             case 3:
                 var bg = game.add.sprite(0, 0, 'grassbg');
                 break;
-            case 4:    
+            case 4:
                 game.stage.backgroundColor = bg_map4;
                 break;
         }
@@ -344,7 +295,7 @@ var play = {
         }
     },
 
-    gameOver: function() {
+    gameOver: function () {
         Bgm[play.mapValue].stop();
         var game_over = game.add.sprite(0, 0, 'game_over');
         game_over.alpha = 0.1;
