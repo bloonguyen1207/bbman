@@ -6,9 +6,9 @@ var players;
 var mapText;
 var bombs;
 var fire;
-var timeLimit;
-var timerEvent;
-var timerText;
+// var timeLimit;
+// var timerEvent;
+// var timerText;
 var bg_map1 = "#602320";
 var bg_map2 = "#A5F2F3";
 var bg_map4 = "#261712";
@@ -28,6 +28,7 @@ var play = {
         socket.emit('setInGame', true);
 
         this.initWorld();
+        muteToggle.onDown.add(toggleAudio, this);
 
         socket.emit('checkServerState');
         socket.on('returnServerState', function (serverState) {
@@ -43,18 +44,13 @@ var play = {
     },
 
     update: function () {
-        //print timeLimit
-        if (timeLimit.running) {
-            timerText.setText(this.formatTime(Math.round((timerEvent.delay - timeLimit.ms) / 1000)));
-            // console.log(timerText);
-            // game.debug.text(timerText);
-        }
-        else {
-            this.gameOver();
-        }
+
         //game.physics.arcade.overlap(players, items, this.destroyItem);
-        if (play.isFinishLoad && players.getFirstAlive() === null) {
+        if ((play.isFinishLoad && players.getFirstAlive() === null) || !timeLimit.running) {
             this.gameOver();
+        } else {
+            //print timeLimit
+            timerText.setText(this.formatTime(Math.round((timerEvent.delay - timeLimit.ms) / 1000)));
         }
     },
 
@@ -62,6 +58,7 @@ var play = {
         // socket.removeAllListeners('updateServerState');
         socket.removeAllListeners('returnServerState');
         socket.emit('resetGame');
+
         game.state.start('menu');
     },
 
@@ -89,12 +86,6 @@ var play = {
         players.forEachAlive(renderGroup, this);
 
 
-    },
-
-    endTimer: function () {
-        // Stop the timeLimit when the delayed event triggers
-        timeLimit.stop();
-        //TODO: trigger game over
     },
 
     formatTime: function (s) {
@@ -140,7 +131,7 @@ var play = {
 
         // Timer
         timeLimit = game.time.create();
-        timerEvent = timeLimit.add(Phaser.Timer.MINUTE * 3 + Phaser.Timer.SECOND * 0, this.endTimer, this);
+        timerEvent = timeLimit.add(Phaser.Timer.MINUTE * 0 + Phaser.Timer.SECOND * 3, this.gameOver, this);
         timeLimit.start();
 
 
@@ -296,6 +287,7 @@ var play = {
     },
 
     gameOver: function () {
+        timeLimit.stop();
         Bgm[play.mapValue].stop();
         var game_over = game.add.sprite(0, 0, 'game_over');
         game_over.alpha = 0.1;
