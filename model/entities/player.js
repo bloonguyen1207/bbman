@@ -4,7 +4,7 @@ function Player(x, y) {
     this.limit = 2;
     this.checkLimit = 0;
     this.speed = 150;
-    Phaser.Sprite.call(this, game, x, y, 'dude');
+    Phaser.Sprite.call(this, game, x, y, 'cat');
     game.add.existing(this);
     game.physics.enable(this, Phaser.Physics.ARCADE);
     this.body.setCircle(16); //normal hitbox size
@@ -36,10 +36,10 @@ Player.prototype.setUpHitbox = function () {
 
 //set animation
 Player.prototype.setUpAnimation = function () {
-    this.animations.add('down', [0, 1, 2, 3], 10, true);
-    this.animations.add('left', [12, 13, 14, 15], 10, true);
-    this.animations.add('right', [24, 25, 26, 27], 10, true);
-    this.animations.add('up', [36, 37, 38, 39], 10, true);
+    this.animations.add('down', [0, 1, 2], 10, true);
+    this.animations.add('left', [12, 13, 14], 10, true);
+    this.animations.add('right', [24, 25, 26], 10, true);
+    this.animations.add('up', [36, 37, 38], 10, true);
 };
 
 Player.prototype.update = function () {
@@ -112,9 +112,8 @@ Player.prototype.movement = function () {
     }
     else {
         //  Stand still
-        this.animations.stop();
-
-        this.frame = 4;
+        this.animations.stop(true);
+        this.frame = 0;
     }
 
     if (this.space_bar.isDown) {

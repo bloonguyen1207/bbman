@@ -112,7 +112,7 @@ var play = {
         // });
 
         //items.forEachAlive(renderGroup, this);
-        bombs.forEachAlive(renderGroup, this);
+        // bombs.forEachAlive(renderGroup, this);
         players.forEachAlive(renderGroup, this);
     },
 
@@ -148,40 +148,51 @@ var play = {
         for (i = 0; i < 15; i++) {
             for (var j = 0; j < 19; j++) {
                 if (mapText[i][j] == 1) {
-                    if (val == 1) {
-                        unbreakable = unbreakables.create(j * 32, i * 32, 'volcano');
-                        unbreakable.scale.setTo(0.2, 0.2);
-                    } else if (val == 2) {
-                        unbreakable = unbreakables.create(j * 32, i * 32, 'steel');
-                        unbreakable.scale.setTo(0.32, 0.32);
-                    } else if (val == 3) {
-                        unbreakable = unbreakables.create(j * 32, i * 32, 'tree');
-                    } else if (val == 4) {
-                        unbreakable = unbreakables.create(j * 32, i * 32, 'iron');
-                        unbreakable.scale.setTo(0.4, 0.4);
+                    switch(val) {
+                        case 1:
+                            unbreakable = unbreakables.create(j * 32, i * 32, 'volcano');
+                            unbreakable.scale.setTo(0.2, 0.2);
+                            break;
+                        case 2:
+                            unbreakable = unbreakables.create(j * 32, i * 32, 'steel');
+                            unbreakable.scale.setTo(0.32, 0.32);
+                            break;
+                        case 3:
+                            unbreakable = unbreakables.create(j * 32, i * 32, 'tree');
+                            break;
+                        case 4:
+                            unbreakable = unbreakables.create(j * 32, i * 32, 'iron');
+                            unbreakable.scale.setTo(0.4, 0.4);
+                            break;
+                        default:
+                            console.log("No map selected.");
+                            break;
                     }
                     unbreakable.body.immovable = true;
                 } else if (mapText[i][j] == 2) {
-                    if (val == 1) {
-                        breakable = breakables.create(j * 32, i * 32, 'fossil');
-
-
-                    } else if (val == 2) {
-                        breakable = breakables.create(j * 32, i * 32, 'ice');
-                        breakable.scale.setTo(0.5, 0.5);
-                    } else if (val == 3) {
-                        breakable = breakables.create(j * 32, i * 32, 'shrub');
-                        // breakable.scale.setTo(0.5, 0.5);
-                    } else if (val == 4) {
-                        breakable = unbreakables.create(j * 32, i * 32, 'brick');
-                        breakable.scale.setTo(0.5, 0.5);
+                    switch(val) {
+                        case 1:
+                            breakable = breakables.create(j * 32, i * 32, 'fossil');
+                            break;
+                        case 2:
+                            breakable = breakables.create(j * 32, i * 32, 'ice');
+                            breakable.scale.setTo(0.5, 0.5);
+                            break;
+                        case 3:
+                            breakable = breakables.create(j * 32, i * 32, 'shrub');
+                            break;
+                        case 4:
+                            breakable = unbreakables.create(j * 32, i * 32, 'brick');
+                            breakable.scale.setTo(0.5, 0.5);
+                            break;
+                        default:
+                            console.log("No map selected.");
+                            break;
                     }
 
                     breakable.body.immovable = true;
 
-                }
-
-                else if (mapText[i][j] == 'x') {
+                } else if (mapText[i][j] == 'x') {
                     players.add(new Player(j * 32, i * 32));
                 }
             }
