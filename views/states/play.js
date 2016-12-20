@@ -242,8 +242,8 @@ var play = {
     },
 
     initItems: function (blength) {
-        for (i = 0; i < breakables.length; i++) {
-            rdBlock = Math.floor(Math.random() * breakables.length);
+        for (i = 0; i < blength; i++) {
+            rdBlock = Math.floor(Math.random() * blength);
             //random integer associated with Item (If < 2 , generate bomblength .... )
             rdItems = Math.floor(Math.random() * 14) + 1;
             if (rdItems < 2) {
@@ -271,8 +271,6 @@ var play = {
                         break;
                     }
                 }
-
-
             }
             else if (rdItems < 4) {
                 type = 'velocity';
@@ -286,8 +284,6 @@ var play = {
                         break;
                     }
                 }
-
-
             }
         }
     },
