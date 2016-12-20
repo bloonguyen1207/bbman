@@ -27,52 +27,7 @@ var play = {
         socket.emit('setClientState', 'play');
         socket.emit('setInGame', true);
 
-        //game.physics.enable()
-        // Create iron iron
-        irons = game.add.group();
-        irons.enableBody = true;
-
-        // Create unbreakable unbreakable
-        unbreakables = game.add.group();
-        unbreakables.enableBody = true;
-
-        // Create breakables
-        breakables = game.add.group();
-        breakables.enableBody = true;
-
-        //Item
-        items = game.add.group();
-        items.enableBody = true;
-        //var item;
-
-        // Create players
-        players = game.add.group();
-
-        // Create Bombs + Fire
-        bombs = game.add.group();
-        bombs.enableBody = true;
-
-        fire = game.add.group();
-        fire.enableBody = true;
-
-        // Timer
-        timeLimit = game.time.create();
-        timerEvent = timeLimit.add(Phaser.Timer.MINUTE * 0 + Phaser.Timer.SECOND * 5, this.endTimer, this);
-        timeLimit.start();
-
-
-        timerText = game.add.text(game.world.centerX, 0, "", {
-            font: "20px Arial",
-            fill: "#000000",
-            backgroundColor: "#ffffff",
-            align: "center"
-        });
-        timerText.anchor.set(0.5, 0);
-
-
-        game.world.bringToTop(players);
-        game.world.bringToTop(breakables);
-        game.world.bringToTop(timerText);
+        this.initWorld();
 
         socket.emit('checkServerState');
         socket.on('returnServerState', function (serverState) {
@@ -95,21 +50,11 @@ var play = {
             // game.debug.text(timerText);
         }
         else {
-            timerText.setText('TIME\'S UP!');
+            this.gameOver();
         }
         //game.physics.arcade.overlap(players, items, this.destroyItem);
         if (play.isFinishLoad && players.getFirstAlive() === null) {
-            Bgm[play.mapValue].stop();
-            var game_over = game.add.sprite(0, 0, 'game_over');
-            game_over.alpha = 0.1;
-            var title = game.add.text(game.world.width / 2 - 100, 10, "Game Over", {
-                font: '40px Coiny',
-                fill: '#ff9900',
-                align: 'center'
-            });
-            // game.paused = true;
-            var back_btn = game.add.button(game.world.centerX - 30, game.world.height - 70, 'exit', this.actionOnClick, this, 2, 1, 0);
-            back_btn.scale.setTo(0.06, 0.03);
+            this.gameOver();
         }
     },
 
@@ -164,6 +109,54 @@ var play = {
     //     item.kill();
     //     console.log("item Pick");
     // }
+    initWorld: function() {
+        //game.physics.enable()
+        // Create iron iron
+        irons = game.add.group();
+        irons.enableBody = true;
+
+        // Create unbreakable unbreakable
+        unbreakables = game.add.group();
+        unbreakables.enableBody = true;
+
+        // Create breakables
+        breakables = game.add.group();
+        breakables.enableBody = true;
+
+        //Item
+        items = game.add.group();
+        items.enableBody = true;
+        //var item;
+
+        // Create players
+        players = game.add.group();
+
+        // Create Bombs + Fire
+        bombs = game.add.group();
+        bombs.enableBody = true;
+
+        fire = game.add.group();
+        fire.enableBody = true;
+
+        // Timer
+        timeLimit = game.time.create();
+        timerEvent = timeLimit.add(Phaser.Timer.MINUTE * 3 + Phaser.Timer.SECOND * 0, this.endTimer, this);
+        timeLimit.start();
+
+
+        timerText = game.add.text(game.world.centerX, 0, "", {
+            font: "20px Arial",
+            fill: "#000000",
+            backgroundColor: "#ffffff",
+            align: "center"
+        });
+        timerText.anchor.set(0.5, 0);
+
+
+        game.world.bringToTop(players);
+        game.world.bringToTop(breakables);
+        game.world.bringToTop(timerText);
+    },
 
     initBackground: function (val) {
         switch (val) {
@@ -300,5 +293,19 @@ var play = {
 
             }
         }
+    },
+
+    gameOver: function() {
+        Bgm[play.mapValue].stop();
+        var game_over = game.add.sprite(0, 0, 'game_over');
+        game_over.alpha = 0.1;
+        var title = game.add.text(game.world.width / 2 - 100, 10, "Game Over", {
+            font: '40px Coiny',
+            fill: '#ff9900',
+            align: 'center'
+        });
+        // game.paused = true;
+        var back_btn = game.add.button(game.world.centerX - 30, game.world.height - 70, 'exit', this.actionOnClick, this, 2, 1, 0);
+        back_btn.scale.setTo(0.06, 0.03);
     }
 };
