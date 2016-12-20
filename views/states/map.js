@@ -2,7 +2,6 @@ var instruction_text = "Press space to proceed";
 
 var map_text = "Map selection";
 
-var val = 1;
 var deb = 0;
 var left_x = 119;
 var right_x = 329;
@@ -12,10 +11,14 @@ var select_frame;
 
 var map = {
 
-	create: function() {
-        socket.emit('setMap', true);
+    val: 1,
 
-        val = 1;
+	create: function() {
+        state = 'map';
+
+        socket.emit('setIsSetMap', true);
+        socket.emit('setClientState', 'map');
+
 		uiPickSfx.play();
 
 		// Initialize stuff
@@ -77,53 +80,57 @@ var map = {
 		var right_key = game.input.keyboard.addKey(Phaser.KeyCode.RIGHT);
 		var up_key = game.input.keyboard.addKey(Phaser.KeyCode.UP);
 		var down_key = game.input.keyboard.addKey(Phaser.KeyCode.DOWN);
-		if (val == 1) {
+        if (map.val == 1) {
 			if (down_key.isDown) {
 				uiNavSfx.play();
 				select_frame.y = 180;
-				val = 3;
+                map.val = 3;
 			} else if (right_key.isDown){
 				uiNavSfx.play();
 				select_frame.x = 210;
-				val = 2;
+                map.val = 2;
 			}
-		} else if (val == 2) {
+        } else if (map.val == 2) {
 			if (left_key.isDown) {
 				uiNavSfx.play();
 				select_frame.x = 0;
-				val = 1;
+                map.val = 1;
 			} else if (down_key.isDown) {
 				uiNavSfx.play();
 				select_frame.y = 180;
-				val = 4;
+                map.val = 4;
 			}
-		} else if (val == 3) {
+        } else if (map.val == 3) {
 			if (right_key.isDown) {
 				uiNavSfx.play();
 				select_frame.x = 210;
-				val = 4;
+                map.val = 4;
 			} else if (up_key.isDown) {
 				uiNavSfx.play();
 				select_frame.y = 0;
-				val = 1;
+                map.val = 1;
 			}
 
-		} else if (val == 4) {
+        } else if (map.val == 4) {
 			if (left_key.isDown) {
 				uiNavSfx.play();
 				select_frame.x = 0;
-				val = 3;
+                map.val = 3;
 			} else if (up_key.isDown) {
 				uiNavSfx.play();
 				select_frame.y = 0;
-				val = 2;
+                map.val = 2;
 			}
 		}
-		deb.text = val;
+        deb.text = map.val;
 
 	},
 
 	start: function() {
+        // console.log(map.val);
+        socket.removeAllListeners('updateServerState');
+        socket.removeAllListeners('returnServerState');
+        socket.emit('setMapValue', map.val);
 		game.state.start('room');
 	
 	}

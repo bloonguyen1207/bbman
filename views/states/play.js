@@ -16,20 +16,13 @@ var type;
 
 
 var play = {
+    mapValue: 0,
+    isFinishLoad: false,
 
 	create: function() {
+        state = 'play';
+        socket.emit('setClientState', 'play');
         socket.emit('setInGame', true);
-
-        if (val == 1) {
-            game.stage.backgroundColor = bg_map1;
-        } else if (val == 2) {
-            game.stage.backgroundColor = bg_map2;
-        } else if (val == 3) {
-            var bg = game.add.sprite(0, 0, 'grassbg');
-        } else if (val == 4) {
-            game.stage.backgroundColor = bg_map4;
-        }
-
 
         //game.physics.enable()
         // Create iron iron
@@ -40,20 +33,9 @@ var play = {
         unbreakables = game.add.group();
         unbreakables.enableBody = true;
 
-
-        var unbreakable;
-
-        // Create Shrubs
-        shrubs = game.add.group();
-        shrubs.enableBody = true;
-
-        var shrub;
-
         // Create breakables
         breakables = game.add.group();
         breakables.enableBody = true;
-
-        var breakable;
 
         //Item
         items = game.add.group();
@@ -63,7 +45,104 @@ var play = {
         // Create players
         players = game.add.group();
 
+        // Create Bombs + Fire
+        bombs = game.add.group();
+        bombs.enableBody = true;
+
+        fire = game.add.group();
+        fire.enableBody = true;
+
+        game.world.bringToTop(players);
+        game.world.bringToTop(breakables);
+
+        socket.emit('checkServerState');
+        socket.on('returnServerState', function (serverState) {
+            if (state == 'play') {
+                play.mapValue = serverState.mapValue;
+                play.initBackground(serverState.mapValue);
+                play.loadMapFile(serverState.mapValue);
+                play.initItems(serverState.mapValue);
+                play.isFinishLoad = true;
+            }
+        });
+
+	},
+
+    update: function () {
+        //game.physics.arcade.overlap(players, items, this.destroyItem);
+        if (play.isFinishLoad && players.getFirstAlive() === null) {
+            Bgm[play.mapValue].stop();
+            var game_over = game.add.sprite(0, 0, 'game_over');
+            game_over.alpha = 0.1;
+            var title = game.add.text(game.world.width / 2 - 100, 10, "Game Over", {
+                font: '40px Coiny',
+                fill: '#ff9900',
+                align: 'center'
+            });
+            // game.paused = true;
+            var back_btn = game.add.button(game.world.centerX - 30, game.world.height - 70, 'exit', this.actionOnClick, this, 2, 1, 0);
+            back_btn.scale.setTo(0.06, 0.03);
+        }
+    },
+
+    actionOnClick: function() {
+        // socket.removeAllListeners('updateServerState');
+        socket.removeAllListeners('returnServerState');
+        socket.emit('resetGame');
+        game.state.start('menu');
+    },
+
+	render: function() {
+        // change group name
+        function renderGroup(member) {
+            //show hitbox of single sprite
+            game.debug.body(member);
+        }
+
+        // show hitboxFire
+        var playersArray = players.children;
+        playersArray.forEach(function (player) {
+            game.debug.body(player.hitboxFire);
+        });
+
+        //show fireRange
+        // var fireArray = fire.children;
+        // fireArray.forEach(function (fireG) {
+        //     fireG.fireGroup.forEachAlive(renderGroup, this);
+        // });
+
+        //items.forEachAlive(renderGroup, this);
+        bombs.forEachAlive(renderGroup, this);
+        players.forEachAlive(renderGroup, this);
+    },
+
+    //Destroy item when Player overlap
+    // destroyItem: function (aPlayer, item) {
+    //     item.kill();
+    //     console.log("item Pick");
+    // }
+
+    initBackground: function (val) {
+        if (val == 1) {
+            game.stage.backgroundColor = bg_map1;
+        } else if (val == 2) {
+            game.stage.backgroundColor = bg_map2;
+        } else if (val == 3) {
+            var bg = game.add.sprite(0, 0, 'grassbg');
+        } else if (val == 4) {
+            game.stage.backgroundColor = bg_map4;
+        }
+
+        uiPickSfx.play();
+        Bgm[val].play();
+        Bgm[0].stop();
+    },
+
+    loadMapFile: function (val) {
         // Load mapfile
+        var unbreakable;
+        var breakable;
+
         var mapFile = game.cache.getText('map' + val);
         mapText = mapFile.split('\n');
         for (i = 0; i < 15; i++) {
@@ -108,7 +187,9 @@ var play = {
             }
 
         }
+    },
 
+    initItems: function (val) {
         if (val == 1) {
             for (i = 0; i < breakables.length; i++) {
                 rdBlock = Math.floor(Math.random() * 144) + 1;
@@ -160,7 +241,6 @@ var play = {
             }
 
 
-
         }
 
         else if (val == 2) {
@@ -205,7 +285,6 @@ var play = {
 
                 }
             }
-
 
 
         }
@@ -296,75 +375,6 @@ var play = {
 
                 }
             }
-
-
         }
-
-        // Create Bombs + Fire
-        bombs = game.add.group();
-        bombs.enableBody = true;
-
-        fire = game.add.group();
-        fire.enableBody = true;
-
-        game.world.bringToTop(players);
-        game.world.bringToTop(breakables);
-
-        uiPickSfx.play();
-        Bgm[val].play();
-        Bgm[0].stop();
-	},
-
-    update: function () {
-        //game.physics.arcade.overlap(players, items, this.destroyItem);
-        if (players.getFirstAlive() === null) {
-            Bgm[val].stop();
-            var game_over = game.add.sprite(0, 0, 'game_over');
-            game_over.alpha = 0.1;
-            var title = game.add.text(game.world.width / 2 - 100, 10, "Game Over", {
-                font: '40px Coiny',
-                fill: '#ff9900',
-                align: 'center'
-            });
-            // game.paused = true;
-            var back_btn = game.add.button(game.world.centerX - 30, game.world.height - 70, 'exit', this.actionOnClick, this, 2, 1, 0);
-            back_btn.scale.setTo(0.06, 0.03);
-        }
-    },
-
-    actionOnClick: function() {
-        socket.emit('setMapOnly', false);
-        socket.emit('setInGame', false);
-        game.state.start('menu');
-    },
-
-	render: function() {
-        // change group name
-        function renderGroup(member) {
-            //show hitbox of single sprite
-            game.debug.body(member);
-        }
-
-        // show hitboxFire
-        var playersArray = players.children;
-        playersArray.forEach(function (player) {
-            game.debug.body(player.hitboxFire);
-        });
-
-        //show fireRange
-        // var fireArray = fire.children;
-        // fireArray.forEach(function (fireG) {
-        //     fireG.fireGroup.forEachAlive(renderGroup, this);
-        // });
-
-        //items.forEachAlive(renderGroup, this);
-        bombs.forEachAlive(renderGroup, this);
-        players.forEachAlive(renderGroup, this);
     }
-
-    //Destroy item when Player overlap
-    // destroyItem: function (aPlayer, item) {
-    //     item.kill();
-    //     console.log("item Pick");
-    // }
 };
