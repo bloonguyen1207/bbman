@@ -43,8 +43,6 @@ var serverState = {
     mapValue: 0
 };
 
-players = [];
-
 io.on('connection', function(socket) {
   console.log('a user connected with id: ' + socket.id);
 
@@ -167,7 +165,6 @@ io.on('connection', function(socket) {
   });
 
   socket.on('resetGame', function () {
-      players = [];
       serverState.isInGame = false;
       serverState.mapValue = 0;
       serverState.isSetMap = false;
