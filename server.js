@@ -43,6 +43,8 @@ var serverState = {
     mapValue: 0
 };
 
+players = [];
+
 io.on('connection', function(socket) {
   console.log('a user connected with id: ' + socket.id);
 
@@ -160,19 +162,26 @@ io.on('connection', function(socket) {
     console.log(serverState.isInGame);
   });
 
-    socket.on('goToGame', function () {
-        io.sockets.emit('letsPlay');
-    });
+  socket.on('goToGame', function () {
+      io.sockets.emit('letsPlay');
+  });
 
-    socket.on('resetGame', function () {
-        serverState.isInGame = false;
-        serverState.mapValue = 0;
-        serverState.isSetMap = false;
-        serverState.clientsReady.forEach(function (clientReady, index) {
-            serverState.clientsReady[index] = "";
-        });
-        socket.broadcast.emit('updateServerState', serverState);
-    });
+  socket.on('resetGame', function () {
+      players = [];
+      serverState.isInGame = false;
+      serverState.mapValue = 0;
+      serverState.isSetMap = false;
+      serverState.clientsReady.forEach(function (clientReady, index) {
+          serverState.clientsReady[index] = "";
+      });
+      socket.broadcast.emit('updateServerState', serverState);
+  });
+
+  socket.on('playerSpawn', function(player) {
+    console.log(player);
+    // players.push(player);
+    socket.broadcast.emit("createPlayers", player);
+  });
   // Create room
  //  socket.on('create', function(room) {
 	//   socket.join(room);
@@ -181,4 +190,6 @@ io.on('connection', function(socket) {
   // console.log(io.engine.clientsCount);
 });
 
-
+// socket.emit: send response to the one who requested
+// socket.broadcast.emit: send to everybody except who the one who requested
+// io.sockets.emit: send response to everyone

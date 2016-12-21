@@ -131,8 +131,8 @@ var play = {
         fire.enableBody = true;
 
         // Timer
-        timeLimit = game.time.create();
-        timerEvent = timeLimit.add(Phaser.Timer.MINUTE * 0 + Phaser.Timer.SECOND * 3, this.gameOver, this);
+        timeLimit = game.time.create(true);
+        timerEvent = timeLimit.add(Phaser.Timer.MINUTE * 3 + Phaser.Timer.SECOND * 0, this.gameOver, this);
         timeLimit.start();
 
 
@@ -143,7 +143,6 @@ var play = {
             align: "center"
         });
         timerText.anchor.set(0.5, 0);
-
 
         game.world.bringToTop(players);
         game.world.bringToTop(breakables);
@@ -236,8 +235,12 @@ var play = {
 
         }
         socket.once('returnClientIndex', function (idx) {
-            console.log(idx);
-            players.add(new Player(socket.id, spawnSpots[idx][1] * 32, spawnSpots[idx][0] * 32));
+            var player = new Player(socket.id, spawnSpots[idx][1] * 32, spawnSpots[idx][0] * 32); 
+            players.add(player);
+            socket.emit('playerSpawn', {id: socket.id, x: spawnSpots[idx][1] * 32, y: spawnSpots[idx][0] * 32});
+            socket.on('createPlayers', function(splayer) {
+                players.add(new Player(splayer.id, splayer.x, splayer.y));
+            })
         });
     },
 
