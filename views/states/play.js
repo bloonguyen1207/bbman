@@ -42,22 +42,45 @@ var play = {
         });
         socket.on('updatePlayer', function(location) {
             // console.log(players.children[0].id);
-            console.log(location.id);
+            // console.log(location.id);
             players.children.forEach(function (player) {
-                console.log(player.id);
+                // console.log(player.id);
                 if (location.id == player.id) {
                     if (location.x > player.x) {
-                        player.animations.play('right');
+                        player.speed = location.speed;
+                        player.length = location.length;
+                        while (location.x > player.x) {
+                            player.body.velocity.x = player.speed;
+                            player.animations.play('right');
+                        }
+
                     } else if (location.x < player.x) {
-                        player.animations.play('left');
+                        player.speed = location.speed;
+                        player.length = location.length;
+                        while (location.x < player.x) {
+                            player.body.velocity.x = -(player.speed);
+                            player.animations.play('left');
+                        }
                     } else if (location.y > player.y) {
-                        player.animations.play('up');
+                        player.speed = location.speed;
+                        player.length = location.length;
+                        while (location.y > player.y) {
+                            player.body.velocity.y = -(player.speed);
+                            player.animations.play('up');
+                        }
                     } else if (location.y < player.y) {
-                        player.animations.play('down');
+                        player.speed = location.speed;
+                        player.length = location.length;
+                        while (location.y < player.y) {
+                            player.body.velocity.y = player.speed;
+                            player.animations.play('down');
+                        }
                     } else {
                         player.animations.stop();
                         player.frame = 0;
                     }
+                    player.body.velocity.x = 0;
+                    player.body.velocity.y = 0;
                     player.x = location.x;
                     player.y = location.y;
                 }
