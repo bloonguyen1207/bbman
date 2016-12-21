@@ -38,7 +38,7 @@ var play = {
                 play.initBackground(serverState.mapValue);
                 play.loadMapFile(serverState.mapValue);
                 play.initItems(breakables.length);
-                
+                play.isFinishLoad = true;
             }
         });
 
@@ -47,7 +47,7 @@ var play = {
     update: function () {
 
         //game.physics.arcade.overlap(players, items, this.destroyItem);
-        if ((play.isFinishLoad && players.getFirstAlive() === null) || !timeLimit.running) {
+        if ((play.isFinishLoad ) || !timeLimit.running) {
             this.gameOver();
         } else {
             //print timeLimit
@@ -288,7 +288,6 @@ var play = {
                 }
             }
         }
-        play.isFinishLoad = true;
     },
 
     gameOver: function () {

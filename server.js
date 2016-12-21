@@ -117,7 +117,7 @@ io.on('connection', function(socket) {
     console.log(io.engine.clientsCount);
 
     //remove client
-      removeClient();
+    removeClient();
 
       //auto reset if there is no player left
       resetServer();
