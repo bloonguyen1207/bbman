@@ -63,9 +63,6 @@ var play = {
                             players.children[i].animations.play('up');
                         } else if (location.y < players.children[i].y) {
                             players.children[i].animations.play('down');
-                        } else {
-                            players.children[i].animations.stop(true);
-                            players.children[i].frame = 0;
                         }
                         players.children[i].x = location.x;
                         players.children[i].y = location.y;
