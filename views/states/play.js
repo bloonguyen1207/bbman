@@ -55,8 +55,21 @@ var play = {
                 for (var i = 0; i < players.length; i++) {
                     // console.log(players[i].id)                    
                     if (location.id == players.children[i].id) {
+                        if (location.x > players.children[i].x) {
+                            players.children[i].animations.play('right');
+                        } else if (location.x < players.children[i].x) {
+                            players.children[i].animations.play('left');
+                        } else if (location.y > players.children[i].y) {
+                            players.children[i].animations.play('up');
+                        } else if (location.y < players.children[i].y) {
+                            players.children[i].animations.play('down');
+                        } else {
+                            players.children[i].animations.stop(true);
+                            players.children[i].frame = 0;
+                        }
                         players.children[i].x = location.x;
                         players.children[i].y = location.y;
+                        players.children[i].updateHitboxLocation();
                     }
                 }
             });
