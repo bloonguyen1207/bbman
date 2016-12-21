@@ -47,7 +47,7 @@ var play = {
     update: function () {
 
         //game.physics.arcade.overlap(players, items, this.destroyItem);
-        if ((play.isFinishLoad ) || !timeLimit.running) {
+        if (!timeLimit.running) {
             this.gameOver();
         } else {
             //print timeLimit
