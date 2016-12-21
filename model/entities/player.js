@@ -95,27 +95,27 @@ Player.prototype.movement = function () {
         this.body.velocity.x = -(this.speed);
 
         this.animations.play('left');
-        socket.emit('playerPosition', {id: socket.id, x: this.x, y: this.y, length: this.length, speed: this.speed});
+        socket.emit('playerPosition', {id: socket.id, x: this.x, y: this.y, length: this.length});
     }
     else if (this.cursors.right.isDown) {
         //  Move to the right
         this.body.velocity.x = this.speed;
 
         this.animations.play('right');
-        socket.emit('playerPosition', {id: socket.id, x: this.x, y: this.y, length: this.length, speed: this.speed});
+        socket.emit('playerPosition', {id: socket.id, x: this.x, y: this.y, length: this.length});
     }
     else if (this.cursors.up.isDown) {
 
         this.body.velocity.y = -(this.speed);
         this.animations.play('up');
-        socket.emit('playerPosition', {id: socket.id, x: this.x, y: this.y, length: this.length, speed: this.speed});
+        socket.emit('playerPosition', {id: socket.id, x: this.x, y: this.y, length: this.length});
     }
     else if (this.cursors.down.isDown) {
 
         this.body.velocity.y = this.speed;
 
         this.animations.play('down');
-        socket.emit('playerPosition', {id: socket.id, x: this.x, y: this.y, length: this.length, speed: this.speed});
+        socket.emit('playerPosition', {id: socket.id, x: this.x, y: this.y, length: this.length});
     }
     else {
         //  Stand still

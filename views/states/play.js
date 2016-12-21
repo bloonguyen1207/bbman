@@ -47,24 +47,16 @@ var play = {
                 // console.log(player.id);
                 if (location.id == player.id) {
                     if (location.x > player.x) {
-                        player.speed = location.speed;
                         player.length = location.length;
-                        player.body.velocity.x = player.speed;
                         player.animations.play('right');
                     } else if (location.x < player.x) {
-                        player.speed = location.speed;
                         player.length = location.length;
-                        player.body.velocity.x = -(player.speed);
                         player.animations.play('left');
                     } else if (location.y > player.y) {
-                        player.speed = location.speed;
                         player.length = location.length;
-                        player.body.velocity.y = -(player.speed);
                         player.animations.play('up');
                     } else if (location.y < player.y) {
-                        player.speed = location.speed;
                         player.length = location.length;
-                        player.body.velocity.y = player.speed;
                         player.animations.play('down');
                     } else {
                         player.animations.stop();
@@ -72,8 +64,6 @@ var play = {
                     }
                     player.x = location.x;
                     player.y = location.y;
-                    player.body.velocity.x = 0;
-                    player.body.velocity.y = 0;
                 }
             });
         });
