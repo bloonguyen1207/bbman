@@ -49,40 +49,31 @@ var play = {
                     if (location.x > player.x) {
                         player.speed = location.speed;
                         player.length = location.length;
-                        while (location.x > player.x) {
-                            player.body.velocity.x = player.speed;
-                            player.animations.play('right');
-                        }
-
+                        player.body.velocity.x = player.speed;
+                        player.animations.play('right');
                     } else if (location.x < player.x) {
                         player.speed = location.speed;
                         player.length = location.length;
-                        while (location.x < player.x) {
-                            player.body.velocity.x = -(player.speed);
-                            player.animations.play('left');
-                        }
+                        player.body.velocity.x = -(player.speed);
+                        player.animations.play('left');
                     } else if (location.y > player.y) {
                         player.speed = location.speed;
                         player.length = location.length;
-                        while (location.y > player.y) {
-                            player.body.velocity.y = -(player.speed);
-                            player.animations.play('up');
-                        }
+                        player.body.velocity.y = -(player.speed);
+                        player.animations.play('up');
                     } else if (location.y < player.y) {
                         player.speed = location.speed;
                         player.length = location.length;
-                        while (location.y < player.y) {
-                            player.body.velocity.y = player.speed;
-                            player.animations.play('down');
-                        }
+                        player.body.velocity.y = player.speed;
+                        player.animations.play('down');
                     } else {
                         player.animations.stop();
                         player.frame = 0;
                     }
-                    player.body.velocity.x = 0;
-                    player.body.velocity.y = 0;
                     player.x = location.x;
                     player.y = location.y;
+                    player.body.velocity.x = 0;
+                    player.body.velocity.y = 0;
                 }
             });
         });
