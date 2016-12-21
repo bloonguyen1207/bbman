@@ -38,7 +38,7 @@ var play = {
                 play.initBackground(serverState.mapValue);
                 play.loadMapFile(serverState.mapValue);
                 play.initItems(breakables.length);
-                play.isFinishLoad = true;
+                
             }
         });
 
@@ -229,7 +229,6 @@ var play = {
                 } else if (mapText[i][j] == 'x') {
                     socket.emit('getClientIndex');
                     spawnSpots.push([i, j]);
-                    console.log(count);
                 }
             }
 
@@ -289,6 +288,7 @@ var play = {
                 }
             }
         }
+        play.isFinishLoad = true;
     },
 
     gameOver: function () {
