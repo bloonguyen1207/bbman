@@ -175,6 +175,7 @@ Player.prototype.dropBomb = function () {
     }
     // add bomb
     bombs.add(bomb);
+    socket.emit("playerBomb", {x: bomb.x, y :bomb.y});
 
     // console.log(bomb.x);
     // console.log(bomb.y);
