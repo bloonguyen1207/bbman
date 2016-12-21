@@ -23,7 +23,7 @@ var play = {
     isFinishLoad: false,
 
 	create: function() {
-        isFinishLoad = false;
+        this.isFinishLoad = false;
         state = 'play';
         socket.emit('setClientState', 'play');
         socket.emit('setInGame', true);
@@ -45,9 +45,9 @@ var play = {
 
     update: function () {
         console.log(players.length);
-        console.log(isFinishLoad);
+        console.log(this.isFinishLoad);
         //game.physics.arcade.overlap(players, items, this.destroyItem);
-        if ((players.length == 1 && isFinishLoad) || !timeLimit.running) {
+        if ((players.length == 1 && this.isFinishLoad) || !timeLimit.running) {
             this.gameOver();
         } else {
             //print timeLimit
