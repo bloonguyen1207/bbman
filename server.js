@@ -184,7 +184,12 @@ io.on('connection', function(socket) {
 
   socket.on('playerBomb', function(bomb) {
     console.log(bomb);
+      socket.broadcast.emit("updateBomb", bomb);
   });
+
+    socket.on('playerDestroy', function (player) {
+        socket.broadcast.emit("updatePlayerDestroy", player);
+    });
   // Create room
  //  socket.on('create', function(room) {
 	//   socket.join(room);

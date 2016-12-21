@@ -72,6 +72,9 @@ Player.prototype.update = function () {
     // the player can only move when he is alive
     if (this.alive && this.id == socket.id) {
         this.movement();
+    }
+
+    if (this.alive) {
         this.updateHitboxLocation();
     }
 };
@@ -92,31 +95,33 @@ Player.prototype.movement = function () {
         this.body.velocity.x = -(this.speed);
 
         this.animations.play('left');
+        socket.emit('playerPosition', {id: socket.id, x: this.x, y: this.y});
     }
     else if (this.cursors.right.isDown) {
         //  Move to the right
         this.body.velocity.x = this.speed;
 
         this.animations.play('right');
+        socket.emit('playerPosition', {id: socket.id, x: this.x, y: this.y});
     }
     else if (this.cursors.up.isDown) {
 
         this.body.velocity.y = -(this.speed);
         this.animations.play('up');
+        socket.emit('playerPosition', {id: socket.id, x: this.x, y: this.y});
     }
     else if (this.cursors.down.isDown) {
 
         this.body.velocity.y = this.speed;
 
         this.animations.play('down');
+        socket.emit('playerPosition', {id: socket.id, x: this.x, y: this.y});
     }
     else {
         //  Stand still
         this.animations.stop(true);
         this.frame = 0;
     }
-
-    socket.emit('playerPosition', {id:socket.id, x: this.x, y: this.y});
 
     if (this.space_bar.isDown) {
         if (!this.flipFlop) { //if the player presses and holds the space bar, it only counts as onc press
@@ -176,7 +181,7 @@ Player.prototype.dropBomb = function () {
     }
     // add bomb
     bombs.add(bomb);
-    socket.emit("playerBomb", {x: bomb.x, y :bomb.y});
+    socket.emit("playerBomb", {id: socket.id, x: bomb.x, y: bomb.y});
 
     // console.log(bomb.x);
     // console.log(bomb.y);

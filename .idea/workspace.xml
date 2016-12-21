@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="92ebb70f-c43d-455a-9a4d-6ad4fad61d23" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/entities/fire.js" afterPath="$PROJECT_DIR$/model/entities/fire.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/entities/player.js" afterPath="$PROJECT_DIR$/model/entities/player.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/states/menu.js" afterPath="$PROJECT_DIR$/views/states/menu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/states/play.js" afterPath="$PROJECT_DIR$/views/states/play.js" />
     </list>
     <ignored path="bbman.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,8 +32,8 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-705">
-              <caret line="95" column="36" lean-forward="false" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="36" />
+            <state relative-caret-position="255">
+              <caret line="190" column="61" lean-forward="false" selection-start-line="190" selection-start-column="61" selection-end-line="190" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -50,8 +52,38 @@
       <file leaf-file-name="play.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/states/play.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="237" column="27" lean-forward="false" selection-start-line="237" selection-start-column="21" selection-end-line="237" selection-end-column="27" />
+            <state relative-caret-position="15">
+              <caret line="265" column="18" lean-forward="false" selection-start-line="265" selection-start-column="18" selection-end-line="265" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/entities/player.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bomb.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/entities/bomb.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="310">
+              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fire.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/entities/fire.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="281">
+              <caret line="112" column="43" lean-forward="true" selection-start-line="112" selection-start-column="43" selection-end-line="112" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -60,7 +92,7 @@
       <file leaf-file-name="map.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/states/map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1950">
+            <state relative-caret-position="446">
               <caret line="130" column="8" lean-forward="false" selection-start-line="130" selection-start-column="8" selection-end-line="131" selection-end-column="32" />
               <folding />
             </state>
@@ -70,8 +102,8 @@
       <file leaf-file-name="menu.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/states/menu.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="69" column="45" lean-forward="false" selection-start-line="69" selection-start-column="45" selection-end-line="69" selection-end-column="45" />
+            <state relative-caret-position="86">
+              <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -96,6 +128,7 @@
       <find>val</find>
       <find>player</find>
       <find>clients</find>
+      <find>owner</find>
     </findStrings>
     <replaceStrings>
       <replace>menu</replace>
@@ -117,18 +150,18 @@
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/data/maps/map1.txt" />
         <option value="$PROJECT_DIR$/views/states/load.js" />
-        <option value="$PROJECT_DIR$/model/entities/fire.js" />
-        <option value="$PROJECT_DIR$/model/entities/player.js" />
         <option value="$PROJECT_DIR$/model/entities/bomb.js" />
         <option value="$PROJECT_DIR$/model/entities/items.js" />
         <option value="$PROJECT_DIR$/views/about.html" />
         <option value="$PROJECT_DIR$/views/index.ejs" />
         <option value="$PROJECT_DIR$/views/tutorial.html" />
         <option value="$PROJECT_DIR$/views/states/map.js" />
-        <option value="$PROJECT_DIR$/views/states/play.js" />
         <option value="$PROJECT_DIR$/views/states/room.js" />
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/views/states/menu.js" />
+        <option value="$PROJECT_DIR$/model/entities/fire.js" />
+        <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/model/entities/player.js" />
+        <option value="$PROJECT_DIR$/views/states/play.js" />
       </list>
     </option>
   </component>
@@ -164,6 +197,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -228,8 +263,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -365,7 +398,8 @@
       <workItem from="1482214612696" duration="6214000" />
       <workItem from="1482221051699" duration="5168000" />
       <workItem from="1482226973782" duration="4163000" />
-      <workItem from="1482233484142" duration="587000" />
+      <workItem from="1482233484142" duration="797000" />
+      <workItem from="1482315261444" duration="5446000" />
     </task>
     <task id="LOCAL-00001" summary="press Spacebar to add bomb (without collision)">
       <created>1478053285534</created>
@@ -507,11 +541,18 @@
       <option name="project" value="LOCAL" />
       <updated>1482228408837</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="fix get client index and fix check full slots">
+      <created>1482234172278</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1482234172278</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166412000" />
+    <option name="totallyTimeSpent" value="172068000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-5" y="33" width="1376" height="635" extended-state="6" />
@@ -520,7 +561,7 @@
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13859911" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32874617" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35968378" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18774703" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -536,6 +577,26 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32874617" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18774703" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13859911" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3992095" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -565,7 +626,8 @@
     <MESSAGE value="update server for menu map room" />
     <MESSAGE value="Merge" />
     <MESSAGE value="let all players get into game at the same time" />
-    <option name="LAST_COMMIT_MESSAGE" value="let all players get into game at the same time" />
+    <MESSAGE value="fix get client index and fix check full slots" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix get client index and fix check full slots" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -814,25 +876,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/tutorial.html" />
-    <entry file="file://$PROJECT_DIR$/model/entities/bomb.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="9" lean-forward="false" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/states/lobby.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/entities/fire.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1560">
-          <caret line="104" column="2" lean-forward="false" selection-start-line="104" selection-start-column="2" selection-end-line="104" selection-end-column="2" />
           <folding />
         </state>
       </provider>
@@ -845,26 +892,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/entities/player.js">
+    <entry file="file://$PROJECT_DIR$/views/states/menu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="896">
-          <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/states/map.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1950">
-          <caret line="130" column="8" lean-forward="false" selection-start-line="130" selection-start-column="8" selection-end-line="131" selection-end-column="32" />
+        <state relative-caret-position="86">
+          <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-705">
-          <caret line="95" column="36" lean-forward="false" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="36" />
+        <state relative-caret-position="255">
+          <caret line="190" column="61" lean-forward="false" selection-start-line="190" selection-start-column="61" selection-end-line="190" selection-end-column="61" />
           <folding />
         </state>
       </provider>
@@ -877,18 +916,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/states/menu.js">
+    <entry file="file://$PROJECT_DIR$/views/states/map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="69" column="45" lean-forward="false" selection-start-line="69" selection-start-column="45" selection-end-line="69" selection-end-column="45" />
+        <state relative-caret-position="446">
+          <caret line="130" column="8" lean-forward="false" selection-start-line="130" selection-start-column="8" selection-end-line="131" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/entities/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/entities/fire.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="112" column="43" lean-forward="true" selection-start-line="112" selection-start-column="43" selection-end-line="112" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/entities/bomb.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/states/play.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="237" column="27" lean-forward="false" selection-start-line="237" selection-start-column="21" selection-end-line="237" selection-end-column="27" />
+        <state relative-caret-position="15">
+          <caret line="265" column="18" lean-forward="false" selection-start-line="265" selection-start-column="18" selection-end-line="265" selection-end-column="18" />
           <folding />
         </state>
       </provider>

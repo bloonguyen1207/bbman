@@ -41,28 +41,53 @@ var play = {
             }
         });
         socket.on('updatePlayer', function(location) {
-                // console.log(players.children[0].id);
-                for (var i = 0; i < players.length; i++) {
-                    // console.log(players[i].id)                    
-                    if (location.id == players.children[i].id) {
-                        if (location.x > players.children[i].x) {
-                            players.children[i].animations.play('right');
-                        } else if (location.x < players.children[i].x) {
-                            players.children[i].animations.play('left');
-                        } else if (location.y > players.children[i].y) {
-                            players.children[i].animations.play('up');
-                        } else if (location.y < players.children[i].y) {
-                            players.children[i].animations.play('down');
-                        } else {
-                            players.children[i].animations.stop();
-                            players.children[i].frame = 0;
-                        }
-                        players.children[i].x = location.x;
-                        players.children[i].y = location.y;
-                        players.children[i].updateHitboxLocation();
+            // console.log(players.children[0].id);
+            console.log(location.id);
+            players.children.forEach(function (player) {
+                console.log(player.id);
+                if (location.id == player.id) {
+                    if (location.x > player.x) {
+                        player.animations.play('right');
+                    } else if (location.x < player.x) {
+                        player.animations.play('left');
+                    } else if (location.y > player.y) {
+                        player.animations.play('up');
+                    } else if (location.y < player.y) {
+                        player.animations.play('down');
+                    } else {
+                        player.animations.stop();
+                        player.frame = 0;
                     }
+                    player.x = location.x;
+                    player.y = location.y;
                 }
             });
+        });
+        socket.on('updateBomb', function (sBomb) {
+            var playerIndex = -1;
+            players.children.forEach(function (player, index) {
+                if (player.id == sBomb.id) {
+                    playerIndex = index;
+                }
+            });
+            var bomb = new Bomb(players.getChildAt(playerIndex));
+            bomb.x = sBomb.x;
+            bomb.y = sBomb.y;
+            // add bomb
+            bombs.add(bomb);
+
+            players.getChildAt(playerIndex).dropX = bomb.x;
+            players.getChildAt(playerIndex).dropY = bomb.y;
+            // console.log(players.children[0].id);
+        });
+        socket.on('updatePlayerDestroy', function (sPlayer) {
+            players.children.forEach(function (player) {
+                if (player.id == sPlayer.id && player.alive) {
+                    player.kill();
+                    players.removeChild(player);
+                }
+            });
+        });
 
     },
 
@@ -73,13 +98,16 @@ var play = {
         } else {
             //print timeLimit
             timerText.setText(this.formatTime(Math.round((timerEvent.delay - timeLimit.ms) / 1000)));
-            
+
         }
     },
 
     actionOnClick: function () {
-        // socket.removeAllListeners('updateServerState');
-        socket.removeAllListeners('returnServerState');
+        socket.removeAllListeners('updateServerState');
+        // socket.removeAllListeners('returnServerState');
+        socket.removeAllListeners('updatePlayer');
+        socket.removeAllListeners('updateBomb');
+        socket.removeAllListeners('updatePlayerDestroy');
         socket.emit('resetGame');
 
         game.state.start('menu');
@@ -256,7 +284,7 @@ var play = {
 
         }
         socket.once('returnClientIndex', function (idx) {
-            var player = new Player(socket.id, spawnSpots[idx][1] * 32, spawnSpots[idx][0] * 32); 
+            var player = new Player(socket.id, spawnSpots[idx][1] * 32, spawnSpots[idx][0] * 32);
             players.add(player);
             socket.emit('playerSpawn', {id: socket.id, x: spawnSpots[idx][1] * 32, y: spawnSpots[idx][0] * 32});
             socket.on('createPlayer', function(splayer) {
