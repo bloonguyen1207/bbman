@@ -73,7 +73,6 @@ Player.prototype.update = function () {
     if (this.alive && this.id == socket.id) {
         this.movement();
         this.updateHitboxLocation();
-        socket.emit('playerPosition', {id:socket.id, x: this.x, y: this.y});
     }
 };
 
@@ -116,6 +115,8 @@ Player.prototype.movement = function () {
         this.animations.stop(true);
         this.frame = 0;
     }
+
+    socket.emit('playerPosition', {id:socket.id, x: this.x, y: this.y});
 
     if (this.space_bar.isDown) {
         if (!this.flipFlop) { //if the player presses and holds the space bar, it only counts as onc press
