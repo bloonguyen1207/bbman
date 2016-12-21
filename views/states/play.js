@@ -44,9 +44,9 @@ var play = {
     },
 
     update: function () {
-
+        console.log(players.length);
         //game.physics.arcade.overlap(players, items, this.destroyItem);
-        if ((isFinishLoad && players.getFirstAlive() === null) || !timeLimit.running) {
+        if ((players.length == 1 && isFinishLoad) || !timeLimit.running) {
             this.gameOver();
         } else {
             //print timeLimit
