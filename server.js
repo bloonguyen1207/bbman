@@ -175,9 +175,11 @@ io.on('connection', function(socket) {
   });
 
   socket.on('playerSpawn', function(player) {
-    console.log(player);
-    // players.push(player);
-    socket.broadcast.emit("createPlayers", player);
+    socket.broadcast.emit("createPlayer", player);
+  });
+
+  socket.on('playerPosition', function(location) {
+    socket.broadcast.emit("updatePlayer", location);
   });
   // Create room
  //  socket.on('create', function(room) {

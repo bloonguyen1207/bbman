@@ -44,14 +44,22 @@ var play = {
     },
 
     update: function () {
-        console.log(players.length);
-        console.log(this.isFinishLoad);
         //game.physics.arcade.overlap(players, items, this.destroyItem);
         if ((players.length == 1 && this.isFinishLoad) || !timeLimit.running) {
             this.gameOver();
         } else {
             //print timeLimit
             timerText.setText(this.formatTime(Math.round((timerEvent.delay - timeLimit.ms) / 1000)));
+            socket.on('updatePlayer', function(location) {
+                // console.log(players.children[0].id);
+                for (var i = 0; i < players.length; i++) {
+                    // console.log(players[i].id)                    
+                    if (location.id == players.children[i].id) {
+                        players.children[i].x = location.x;
+                        players.children[i].y = location.y;
+                    }
+                }
+            });
         }
     },
 
@@ -237,7 +245,7 @@ var play = {
             var player = new Player(socket.id, spawnSpots[idx][1] * 32, spawnSpots[idx][0] * 32); 
             players.add(player);
             socket.emit('playerSpawn', {id: socket.id, x: spawnSpots[idx][1] * 32, y: spawnSpots[idx][0] * 32});
-            socket.on('createPlayers', function(splayer) {
+            socket.on('createPlayer', function(splayer) {
                 players.add(new Player(splayer.id, splayer.x, splayer.y));
                 play.isFinishLoad = true;
             })

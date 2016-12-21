@@ -73,6 +73,7 @@ Player.prototype.update = function () {
     if (this.alive && this.id == socket.id) {
         this.movement();
         this.updateHitboxLocation();
+        socket.emit('playerPosition', {id:socket.id, x: this.x, y: this.y});
     }
 };
 
