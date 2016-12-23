@@ -43,6 +43,9 @@ var serverState = {
     mapValue: 0
 };
 
+var itemsLocation = [];
+var itemsType=[];
+
 io.on('connection', function(socket) {
   console.log('a user connected with id: ' + socket.id);
 
@@ -161,7 +164,9 @@ io.on('connection', function(socket) {
   });
 
   socket.on('goToGame', function () {
-      io.sockets.emit('letsPlay');
+    itemsLocation = [];
+    itemsType = [];
+    io.sockets.emit('letsPlay');
   });
 
   socket.on('resetGame', function () {
@@ -171,6 +176,7 @@ io.on('connection', function(socket) {
       serverState.clientsReady.forEach(function (clientReady, index) {
           serverState.clientsReady[index] = "";
       });
+      itemsLocation = [];
       socket.broadcast.emit('updateServerState', serverState);
   });
 
@@ -183,13 +189,31 @@ io.on('connection', function(socket) {
   });
 
   socket.on('playerBomb', function(bomb) {
-    console.log(bomb);
-      socket.broadcast.emit("updateBomb", bomb);
+    socket.broadcast.emit("updateBomb", bomb);
   });
 
-    socket.on('playerDestroy', function (player) {
-        socket.broadcast.emit("updatePlayerDestroy", player);
-    });
+  socket.on('playerDestroy', function (player) {
+    socket.broadcast.emit("updatePlayerDestroy", player);
+  });
+
+  socket.once('loadItems', function(breakables) {
+    console.log(breakables);
+    var itemPercentage = 0.4;
+    var numBlocks = Math.floor(breakables.length * itemPercentage);
+    while(itemsLocation.length < numBlocks){
+      var rdBlock = Math.floor(Math.random() * breakables.length);
+      
+      if (itemsLocation.indexOf(rdBlock) > -1) { continue; }
+      
+      itemsLocation.push(rdBlock);
+      
+      //random integer associated with Item (If < 2 , generate bomblength .... )
+      var rdItems = Math.floor(Math.random() * 3);
+      
+      itemsType.push(rdItems);
+    }
+    io.sockets.emit("returnItems", { Loc: itemsLocation, Type: itemsType});
+  });
   // Create room
  //  socket.on('create', function(room) {
 	//   socket.join(room);

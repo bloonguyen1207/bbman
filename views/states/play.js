@@ -37,6 +37,14 @@ var play = {
                 play.mapValue = serverState.mapValue;
                 play.initBackground(serverState.mapValue);
                 play.loadMapFile(serverState.mapValue);
+                //TODO: if host then emit, else dont
+                socket.emit('getClientIndex');
+                socket.once('returnClientIndex', function (clientIndex) {
+                    var clientReady = serverState.clientsReady[clientIndex];
+                    if (clientReady == "Host") {
+                        socket.emit("loadItems", {length:breakables.length});
+                    }
+                });
                 play.initItems(breakables.length);
             }
         });
@@ -299,50 +307,63 @@ var play = {
     },
 
     initItems: function (blength) {
-        for (i = 0; i < blength; i++) {
-            rdBlock = Math.floor(Math.random() * blength);
-            //random integer associated with Item (If < 2 , generate bomblength .... )
-            rdItems = Math.floor(Math.random() * 14) + 1;
-            if (rdItems < 2) {
-                type = 'length';
-
-                items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
-
-
-                for (i = 0; i < items.length; i++) {
-                    if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
-                        break;
-                    }
-                }
-
-
-            }
-            else if (rdItems < 3) {
-                type = 'limit';
-
-                items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
-
-
-                for (i = 0; i < items.length; i++) {
-                    if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
-                        break;
-                    }
+        // for (i = 0; i < blength; i++) {
+        //     rdBlock = Math.floor(Math.random() * blength);
+        //     //random integer associated with Item (If < 2 , generate bomblength .... )
+        //     rdItems = Math.floor(Math.random() * 14) + 1;
+        socket.once("returnItems", function(itemsData) {
+            console.log(itemsData);
+            for (i = 0; i < itemsData.Loc.length; i++) {
+                if (itemsData.Type[i] === 0) {
+                    type = 'length';
+                    items.add(new Items(type, breakables.children[itemsData.Loc[i]].x, breakables.children[itemsData.Loc[i]].y));
+                } else if (itemsData.Type[i] === 1) {
+                    type = 'limit';
+                    items.add(new Items(type, breakables.children[itemsData.Loc[i]].x, breakables.children[itemsData.Loc[i]].y));
+                } else {
+                    type = 'velocity';
+                    items.add(new Items(type, breakables.children[itemsData.Loc[i]].x, breakables.children[itemsData.Loc[i]].y));
                 }
             }
-            else if (rdItems < 4) {
-                type = 'velocity';
+        });
+        //     if (rdItems < 2) {
+        //         type = 'length';
+
+        //         items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
 
 
-                items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+        //         for (i = 0; i < items.length; i++) {
+        //             if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
+        //                 break;
+        //             }
+        //         }
 
 
-                for (i = 0; i < items.length; i++) {
-                    if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
-                        break;
-                    }
-                }
-            }
-        }
+        //     } else if (rdItems < 3) {
+        //         type = 'limit';
+
+        //         items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
+
+        //         for (i = 0; i < items.length; i++) {
+        //             if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
+        //                 break;
+        //             }
+        //         }
+        //     } else if (rdItems < 4) {
+        //         type = 'velocity';
+
+
+        //         items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
+
+
+        //         for (i = 0; i < items.length; i++) {
+        //             if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // }
     },
 
     gameOver: function () {
