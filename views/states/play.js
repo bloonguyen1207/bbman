@@ -1,5 +1,5 @@
 // Map tiles
-var unbreakables;
+var nonbreakables;
 var shrubs;
 var breakables;
 var players;
@@ -8,7 +8,7 @@ var bombs;
 var fire;
 // var timeLimit;
 // var timerEvent;
-// var timerText;
+var timerText;
 var bg_map1 = "#602320";
 var bg_map2 = "#A5F2F3";
 var bg_map4 = "#261712";
@@ -105,11 +105,12 @@ var play = {
 
     update: function () {
         //game.physics.arcade.overlap(players, items, this.destroyItem);
-        if ((players.length == 1 && this.isFinishLoad) || !timeLimit.running) {
+        if ((players.length == 1 && this.isFinishLoad) || timeLimit < (this.game.time.totalElapsedSeconds() - timeStart)/*|| !timeLimit.running*/) {
+            timerText.setText('00:00');
             this.gameOver();
         } else {
             //print timeLimit
-            timerText.setText(this.formatTime(Math.round((timerEvent.delay - timeLimit.ms) / 1000)));
+            timerText.setText(this.formatTime(timeLimit - Math.floor(this.game.time.totalElapsedSeconds() - timeStart)));
 
         }
     },
@@ -121,6 +122,10 @@ var play = {
         socket.removeAllListeners('updateBomb');
         socket.removeAllListeners('updatePlayerDestroy');
         socket.emit('resetGame');
+        // timeLimit.reset();
+        // timeLimit.removeAll();
+        // game.time.events.remove(timerEvent);
+        // timerEvent = timeLimit.remove();
 
         game.state.start('menu');
     },
@@ -169,9 +174,9 @@ var play = {
         irons = game.add.group();
         irons.enableBody = true;
 
-        // Create unbreakable unbreakable
-        unbreakables = game.add.group();
-        unbreakables.enableBody = true;
+        // Create nonbreakable nonbreakable
+        nonbreakables = game.add.group();
+        nonbreakables.enableBody = true;
 
         // Create breakables
         breakables = game.add.group();
@@ -193,9 +198,11 @@ var play = {
         fire.enableBody = true;
 
         // Timer
-        timeLimit = game.time.create(true);
-        timerEvent = timeLimit.add(Phaser.Timer.MINUTE * 3 + Phaser.Timer.SECOND * 0, this.gameOver, this);
-        timeLimit.start();
+        // timeLimit = game.time.create(true);
+        // timerEvent = timeLimit.add(Phaser.Timer.MINUTE * 3 + Phaser.Timer.SECOND * 0, this.gameOver, this);
+        // timeLimit.start();
+        timeLimit = 180;
+        timeStart = this.game.time.totalElapsedSeconds();
 
 
         timerText = game.add.text(game.world.centerX, 0, "", {
@@ -234,7 +241,7 @@ var play = {
 
     loadMapFile: function (val) {
         // Load mapfile
-        var unbreakable;
+        var nonbreakable;
         var breakable;
         var count = 0;
         var spawnSpots = [];
@@ -246,25 +253,25 @@ var play = {
                 if (mapText[i][j] == 1) {
                     switch (val) {
                         case 1:
-                            unbreakable = unbreakables.create(j * 32, i * 32, 'volcano');
-                            unbreakable.scale.setTo(0.2, 0.2);
+                            nonbreakable = nonbreakables.create(j * 32, i * 32, 'volcano');
+                            nonbreakable.scale.setTo(0.2, 0.2);
                             break;
                         case 2:
-                            unbreakable = unbreakables.create(j * 32, i * 32, 'steel');
-                            unbreakable.scale.setTo(0.32, 0.32);
+                            nonbreakable = nonbreakables.create(j * 32, i * 32, 'steel');
+                            nonbreakable.scale.setTo(0.32, 0.32);
                             break;
                         case 3:
-                            unbreakable = unbreakables.create(j * 32, i * 32, 'tree');
+                            nonbreakable = nonbreakables.create(j * 32, i * 32, 'tree');
                             break;
                         case 4:
-                            unbreakable = unbreakables.create(j * 32, i * 32, 'iron');
-                            unbreakable.scale.setTo(0.4, 0.4);
+                            nonbreakable = nonbreakables.create(j * 32, i * 32, 'iron');
+                            nonbreakable.scale.setTo(0.4, 0.4);
                             break;
                         default:
                             console.log("No map selected.");
                             break;
                     }
-                    unbreakable.body.immovable = true;
+                    nonbreakable.body.immovable = true;
                 } else if (mapText[i][j] == 2) {
                     switch (val) {
                         case 1:
@@ -278,7 +285,7 @@ var play = {
                             breakable = breakables.create(j * 32, i * 32, 'shrub');
                             break;
                         case 4:
-                            breakable = unbreakables.create(j * 32, i * 32, 'brick');
+                            breakable = nonbreakables.create(j * 32, i * 32, 'brick');
                             breakable.scale.setTo(0.5, 0.5);
                             break;
                         default:
@@ -367,7 +374,7 @@ var play = {
     },
 
     gameOver: function () {
-        timeLimit.stop();
+        // timeLimit.stop();
         Bgm[play.mapValue].stop();
         var game_over = game.add.sprite(0, 0, 'game_over');
         game_over.alpha = 0.1;

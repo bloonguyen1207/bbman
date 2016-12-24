@@ -51,14 +51,14 @@ Fire.prototype.createExplosion = function () {
 Fire.prototype.oneSideExplosion = function (x, y, keyframe, side) {
     var temp;
     if (side) {
-        // if the fire overlap with anything except unbreakables and bombs, it will kill that object and not go longer
+        // if the fire overlap with anything except nonbreakables and bombs, it will kill that object and not go longer
         temp = this.fireGroup.create(x, y, 'fire');
         if (this.checkOtherOverlap()) {
             side = false;
         }
 
-        // if the fire overlap with unbreakables, the small fire object will be killed and the fire will not go longer
-        if (game.physics.arcade.overlap(unbreakables, temp)) {
+        // if the fire overlap with nonbreakables, the small fire object will be killed and the fire will not go longer
+        if (game.physics.arcade.overlap(nonbreakables, temp)) {
             temp.kill();
             side = false;
         }

@@ -43,7 +43,7 @@ Player.prototype.setUpAnimation = function () {
 };
 
 Player.prototype.update = function () {
-    game.physics.arcade.collide(this, unbreakables);
+    game.physics.arcade.collide(this, nonbreakables);
     game.physics.arcade.collide(this, breakables);
     game.physics.arcade.collide(this, shrubs);
     //reset the location of the newest bomb to 0
