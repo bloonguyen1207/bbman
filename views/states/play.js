@@ -90,7 +90,6 @@ var play = {
 
             players.getChildAt(playerIndex).dropX = bomb.x;
             players.getChildAt(playerIndex).dropY = bomb.y;
-            // console.log(players.children[0].id);
         });
         socket.on('updatePlayerDestroy', function (sPlayer) {
             players.children.forEach(function (player) {
@@ -131,27 +130,27 @@ var play = {
     },
 
     render: function () {
-        // change group name
-        function renderGroup(member) {
-            //show hitbox of single sprite
-            game.debug.body(member);
-        }
+        // // change group name
+        // function renderGroup(member) {
+        //     //show hitbox of single sprite
+        //     game.debug.body(member);
+        // }
 
-        // show hitboxFire
-        var playersArray = players.children;
-        playersArray.forEach(function (player) {
-            game.debug.body(player.hitboxFire);
-        });
-
-        //show fireRange
-        // var fireArray = fire.children;
-        // fireArray.forEach(function (fireG) {
-        //     fireG.fireGroup.forEachAlive(renderGroup, this);
+        // // show hitboxFire
+        // var playersArray = players.children;
+        // playersArray.forEach(function (player) {
+        //     game.debug.body(player.hitboxFire);
         // });
 
-        //items.forEachAlive(renderGroup, this);
-        // bombs.forEachAlive(renderGroup, this);
-        players.forEachAlive(renderGroup, this);
+        // //show fireRange
+        // // var fireArray = fire.children;
+        // // fireArray.forEach(function (fireG) {
+        // //     fireG.fireGroup.forEachAlive(renderGroup, this);
+        // // });
+
+        // //items.forEachAlive(renderGroup, this);
+        // // bombs.forEachAlive(renderGroup, this);
+        // players.forEachAlive(renderGroup, this);
 
 
     },
@@ -163,11 +162,6 @@ var play = {
         return minutes.substr(-2) + ":" + seconds.substr(-2);
     },
 
-    //Destroy item when Player overlap
-    // destroyItem: function (aPlayer, item) {
-    //     item.kill();
-    //     console.log("item Pick");
-    // }
     initWorld: function () {
         //game.physics.enable()
         // Create iron iron
@@ -292,7 +286,6 @@ var play = {
                             console.log("No map selected.");
                             break;
                     }
-
                     breakable.body.immovable = true;
 
                 } else if (mapText[i][j] == 'x') {
@@ -314,12 +307,7 @@ var play = {
     },
 
     initItems: function (blength) {
-        // for (i = 0; i < blength; i++) {
-        //     rdBlock = Math.floor(Math.random() * blength);
-        //     //random integer associated with Item (If < 2 , generate bomblength .... )
-        //     rdItems = Math.floor(Math.random() * 14) + 1;
         socket.once("returnItems", function(itemsData) {
-            console.log(itemsData);
             for (i = 0; i < itemsData.Loc.length; i++) {
                 if (itemsData.Type[i] === 0) {
                     type = 'length';
@@ -333,44 +321,6 @@ var play = {
                 }
             }
         });
-        //     if (rdItems < 2) {
-        //         type = 'length';
-
-        //         items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
-
-
-        //         for (i = 0; i < items.length; i++) {
-        //             if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
-        //                 break;
-        //             }
-        //         }
-
-
-        //     } else if (rdItems < 3) {
-        //         type = 'limit';
-
-        //         items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
-
-
-        //         for (i = 0; i < items.length; i++) {
-        //             if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
-        //                 break;
-        //             }
-        //         }
-        //     } else if (rdItems < 4) {
-        //         type = 'velocity';
-
-
-        //         items.add(new Items(type, breakables.children[rdBlock].x, breakables.children[rdBlock].y));
-
-
-        //         for (i = 0; i < items.length; i++) {
-        //             if (items.children[i].x === breakables.children[rdBlock].x && items.children[i].y === breakables.children[rdBlock].y) {
-        //                 break;
-        //             }
-        //         }
-        //     }
-        // }
     },
 
     gameOver: function () {
