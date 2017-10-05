@@ -8,8 +8,14 @@ function Player(id, x, y, type) {
     if (type === 0) {
         Phaser.Sprite.call(this, game, x, y, 'character1');
     }
-    else {
+    else if (type == 1) {
         Phaser.Sprite.call(this, game, x, y, 'character2');
+    }
+    else if (type == 2) {
+        Phaser.Sprite.call(this, game, x, y, 'cat');
+    }
+    else {
+        Phaser.Sprite.call(this, game, x, y, 'dude');
     }
     game.add.existing(this);
     game.physics.enable(this, Phaser.Physics.ARCADE);
