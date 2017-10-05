@@ -1,10 +1,16 @@
-function Player(id, x, y) {
+function Player(id, x, y, type) {
     this.id = id;
+    this.type = type;
     this.length = 1;
     this.limit = 2;
     this.checkLimit = 0;
     this.speed = 150;
-    Phaser.Sprite.call(this, game, x, y, 'cat');
+    if (type === 0) {
+        Phaser.Sprite.call(this, game, x, y, 'character1');
+    }
+    else {
+        Phaser.Sprite.call(this, game, x, y, 'character2');
+    }
     game.add.existing(this);
     game.physics.enable(this, Phaser.Physics.ARCADE);
     this.body.setCircle(16); //normal hitbox size
