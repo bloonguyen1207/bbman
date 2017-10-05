@@ -296,11 +296,16 @@ var play = {
 
         }
         socket.once('returnClientIndex', function (idx) {
-            var player = new Player(socket.id, spawnSpots[idx][1] * 32, spawnSpots[idx][0] * 32);
+            var player = new Player(socket.id, spawnSpots[idx][1] * 32, spawnSpots[idx][0] * 32, idx);
             players.add(player);
-            socket.emit('playerSpawn', {id: socket.id, x: spawnSpots[idx][1] * 32, y: spawnSpots[idx][0] * 32});
+            socket.emit('playerSpawn', {
+                id: socket.id,
+                x: spawnSpots[idx][1] * 32,
+                y: spawnSpots[idx][0] * 32,
+                type: idx
+            });
             socket.on('createPlayer', function(splayer) {
-                players.add(new Player(splayer.id, splayer.x, splayer.y));
+                players.add(new Player(splayer.id, splayer.x, splayer.y, splayer.type));
                 play.isFinishLoad = true;
             })
         });

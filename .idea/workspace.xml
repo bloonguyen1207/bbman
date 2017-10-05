@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="92ebb70f-c43d-455a-9a4d-6ad4fad61d23" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/states/load.js" afterPath="$PROJECT_DIR$/views/states/load.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/entities/player.js" afterPath="$PROJECT_DIR$/model/entities/player.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/states/play.js" afterPath="$PROJECT_DIR$/views/states/play.js" />
     </list>
     <ignored path="bbman.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,11 +32,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="load.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="load.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/states/load.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
+            <state relative-caret-position="357">
               <caret line="60" column="76" lean-forward="true" selection-start-line="60" selection-start-column="76" selection-end-line="60" selection-end-column="76" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="play.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/states/play.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="398">
+              <caret line="303" column="41" lean-forward="true" selection-start-line="303" selection-start-column="41" selection-end-line="303" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -44,8 +55,8 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/entities/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="8" column="51" lean-forward="false" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
+            <state relative-caret-position="116">
+              <caret line="14" column="52" lean-forward="true" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -107,9 +118,9 @@
         <option value="$PROJECT_DIR$/views/states/menu.js" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/model/entities/fire.js" />
-        <option value="$PROJECT_DIR$/views/states/play.js" />
-        <option value="$PROJECT_DIR$/model/entities/player.js" />
         <option value="$PROJECT_DIR$/views/states/load.js" />
+        <option value="$PROJECT_DIR$/model/entities/player.js" />
+        <option value="$PROJECT_DIR$/views/states/play.js" />
       </list>
     </option>
   </component>
@@ -322,7 +333,7 @@
       <workItem from="1482315261444" duration="7706000" />
       <workItem from="1482335373395" duration="1515000" />
       <workItem from="1507191062143" duration="270000" />
-      <workItem from="1507195827925" duration="3151000" />
+      <workItem from="1507195827925" duration="3502000" />
     </task>
     <task id="LOCAL-00001" summary="press Spacebar to add bomb (without collision)">
       <created>1478053285534</created>
@@ -506,11 +517,18 @@
       <option name="project" value="LOCAL" />
       <updated>1507199118157</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="update">
+      <created>1507199361223</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1507199361223</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="179264000" />
+    <option name="totallyTimeSpent" value="179615000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -893,26 +911,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/states/play.js">
+    <entry file="file://$PROJECT_DIR$/views/states/load.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="301" column="57" lean-forward="true" selection-start-line="301" selection-start-column="57" selection-end-line="301" selection-end-column="57" />
+        <state relative-caret-position="357">
+          <caret line="60" column="76" lean-forward="true" selection-start-line="60" selection-start-column="76" selection-end-line="60" selection-end-column="76" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/entities/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="8" column="51" lean-forward="false" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
+        <state relative-caret-position="116">
+          <caret line="14" column="52" lean-forward="true" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/states/load.js">
+    <entry file="file://$PROJECT_DIR$/views/states/play.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="60" column="76" lean-forward="true" selection-start-line="60" selection-start-column="76" selection-end-line="60" selection-end-column="76" />
+        <state relative-caret-position="398">
+          <caret line="303" column="41" lean-forward="true" selection-start-line="303" selection-start-column="41" selection-end-line="303" selection-end-column="41" />
           <folding />
         </state>
       </provider>
