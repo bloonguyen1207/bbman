@@ -57,13 +57,13 @@ var load = {
         game.load.image('lavabg', 'res/tilesets/lavabg.png');
 
         // Sprites
-        game.load.spritesheet('dude', 'res/spritesheets/test.png', 32, 32);
-        game.load.spritesheet('duck', 'res/spritesheets/ducks.png', 32, 32);
         game.load.spritesheet('dog', 'res/spritesheets/dogs.png', 32, 32);
         game.load.spritesheet('cat', 'res/spritesheets/cats.png', 32, 32);
         game.load.spritesheet('character1', 'res/spritesheets/character1.png', 32, 32);
         game.load.spritesheet('character2', 'res/spritesheets/character2.png', 32, 32);
         game.load.spritesheet('character3', 'res/spritesheets/character3.png', 32, 32);
+        game.load.spritesheet('character4', 'res/spritesheets/character4.png', 32, 32);
+
 
 
         // Map 1

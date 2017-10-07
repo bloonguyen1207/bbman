@@ -12,10 +12,10 @@ function Player(id, x, y, type) {
         Phaser.Sprite.call(this, game, x, y, 'character2');
     }
     else if (type == 2) {
-        Phaser.Sprite.call(this, game, x, y, 'cat');
+        Phaser.Sprite.call(this, game, x, y, 'character3');
     }
     else {
-        Phaser.Sprite.call(this, game, x, y, 'dude');
+        Phaser.Sprite.call(this, game, x, y, 'character4');
     }
 
     game.add.existing(this);
