@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="92ebb70f-c43d-455a-9a4d-6ad4fad61d23" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/entities/player.js" afterPath="$PROJECT_DIR$/model/entities/player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/states/play.js" afterPath="$PROJECT_DIR$/views/states/play.js" />
     </list>
     <ignored path="bbman.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,8 +43,8 @@
       <file leaf-file-name="play.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/states/play.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="303" column="41" lean-forward="true" selection-start-line="303" selection-start-column="41" selection-end-line="303" selection-end-column="41" />
+            <state relative-caret-position="559">
+              <caret line="310" column="11" lean-forward="true" selection-start-line="310" selection-start-column="11" selection-end-line="310" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -333,7 +331,7 @@
       <workItem from="1482315261444" duration="7706000" />
       <workItem from="1482335373395" duration="1515000" />
       <workItem from="1507191062143" duration="270000" />
-      <workItem from="1507195827925" duration="3502000" />
+      <workItem from="1507195827925" duration="3808000" />
     </task>
     <task id="LOCAL-00001" summary="press Spacebar to add bomb (without collision)">
       <created>1478053285534</created>
@@ -524,11 +522,18 @@
       <option name="project" value="LOCAL" />
       <updated>1507199361223</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="update">
+      <created>1507199781529</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1507199781529</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="179615000" />
+    <option name="totallyTimeSpent" value="179921000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -929,8 +934,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/states/play.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="303" column="41" lean-forward="true" selection-start-line="303" selection-start-column="41" selection-end-line="303" selection-end-column="41" />
+        <state relative-caret-position="559">
+          <caret line="310" column="11" lean-forward="true" selection-start-line="310" selection-start-column="11" selection-end-line="310" selection-end-column="11" />
           <folding />
         </state>
       </provider>

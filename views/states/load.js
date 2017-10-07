@@ -61,6 +61,11 @@ var load = {
         game.load.spritesheet('duck', 'res/spritesheets/ducks.png', 32, 32);
         game.load.spritesheet('dog', 'res/spritesheets/dogs.png', 32, 32);
         game.load.spritesheet('cat', 'res/spritesheets/cats.png', 32, 32);
+        game.load.spritesheet('character1', 'res/spritesheets/character1.png', 32, 32);
+        game.load.spritesheet('character2', 'res/spritesheets/character2.png', 32, 32);
+        game.load.spritesheet('character3', 'res/spritesheets/character3.png', 32, 32);
+
+
         // Map 1
         game.load.image('volcano', 'res/tilesets/brick2.png');
         game.load.image('fossil', 'res/tilesets/fossil.png');
